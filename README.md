@@ -1,4 +1,4 @@
-# project_3
+# Final Project
 
 # Front End
 * Typed text in search bar > search button > movie posters below search bar
