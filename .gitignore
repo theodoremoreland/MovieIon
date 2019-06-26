@@ -1,4 +1,13 @@
 .git/
 __pycache__/
+ml-latest/
+ml-latest-small/
 config.py
 .ipynb_checkpoints/
+links.csv
+ml-latest.zip
+ml-latest-small.zip
+movies.csv
+ratings.csv
+tags.csv
+.vscode/
