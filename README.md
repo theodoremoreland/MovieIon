@@ -9,4 +9,5 @@
 
 # Back End
 * Postgres DB of movie titles and IMDB ids
-* Flask for DB queries and HTML display
+* Javascript for search bar and modifying HTML to display search results
+* Javascript calls to Flask for DB queries
