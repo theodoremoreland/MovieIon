@@ -1,24 +1,13 @@
 # %%
 import pandas as pd
-import csv
-
 
 # %%
-df = pd.read_csv("movie_filtered.csv")
+movie_filtered_final_df = pd.read_csv("movie_filtered_final.csv")
 
 # %%
-
-movielist_df = df.groupby(["movieId"], as_index=False).first()[
-    "movieId"].tolist()
+movie_filtered_final_df.drop("Unnamed: 0.1", axis=1, inplace=True)
 
 # %%
-for items in movielist_df:
-    print(items)
+movie_filtered_final_df.set_index("movieId", inplace=True)
 
 # %%
-movielist_df = pd.DataFrame({
-    "movieId": movielist_df
-})
-
-# %%
-movielist_df.to_csv("movie_list_filtered.csv")
