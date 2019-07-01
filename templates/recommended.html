@@ -1,0 +1,166 @@
+{% extends 'base.html' %}
+
+
+{% block header %}
+<header class="text-center py-5 mb-0">
+  <div class="container">
+    <h1 class="font-weight-light text-white">YOUR RECOMMENDATIONS:</h1>
+  </div>
+  <a href="/"><button type="button" class="btn btn-dark btn-lg btn-block">Reset Recommendations</button></a>
+</header>
+{% endblock %}
+
+
+{% block content %}
+<script type="text/javascript">
+    var mix = {{ mix2 | safe }};
+</script>
+
+<div class="container">
+  <div class="row justify-content-center" >
+       <!-- Col 1 -->
+      <div class="col mb-4">
+          <div class="card border-0 shadow" id="tiles15">
+            <img src="https://movie-posters-project3.s3.us-east-2.amazonaws.com/images/{{mix[0][1]}}.jpg" class="img-fluid" alt="...">
+            <div class="card-body text-center">
+              <h5 class="card-title mb-0">{{mix[0][0]}}</h5>
+            </div>
+          </div>
+        </div>
+         <!-- Col 2 -->
+        <div class="col mb-4">
+          <div class="card border-0 shadow" id="tiles15">
+            <img src="https://movie-posters-project3.s3.us-east-2.amazonaws.com/images/{{mix[1][1]}}.jpg" class="img-fluid" alt="...">
+            <div class="card-body text-center">
+              <h5 class="card-title mb-0">{{mix[1][0]}}</h5>
+            </div>
+         </div>
+        </div>
+        <!-- Col 3 -->
+        <div class="col mb-4">
+          <div class="card border-0 shadow" id="tiles15">
+            <img src="https://movie-posters-project3.s3.us-east-2.amazonaws.com/images/{{mix[2][1]}}.jpg" class="img-fluid" alt="...">
+            <div class="card-body text-center">
+              <h5 class="card-title mb-0">{{mix[2][0]}}</h5>
+            </div>
+          </div>
+        </div>
+        <!-- Col 4 -->
+        <div class="col mb-4">
+          <div class="card border-0 shadow" id="tiles15">
+            <img src="https://movie-posters-project3.s3.us-east-2.amazonaws.com/images/{{mix[3][1]}}.jpg" class="img-fluid" alt="...">
+            <div class="card-body text-center">
+              <h5 class="card-title mb-0">{{mix[3][0]}}</h5>
+            </div>
+          </div>
+        </div>
+        <!-- Col 5 -->
+        <div class="col mb-4">
+          <div class="card border-0 shadow" id="tiles15">
+            <img src="https://movie-posters-project3.s3.us-east-2.amazonaws.com/images/{{mix[4][1]}}.jpg" class="img-fluid" alt="...">
+            <div class="card-body text-center">
+              <h5 class="card-title mb-0">{{mix[4][0]}}</h5>
+            </div>
+          </div>
+        </div>
+  </div>
+  <div class="row justify-content-center" >
+         <!-- Col 6 -->
+        <div class="col mb-4">
+          <div class="card border-0 shadow" id="tiles15">
+            <img src="https://movie-posters-project3.s3.us-east-2.amazonaws.com/images/{{mix[5][1]}}.jpg" class="img-fluid" alt="...">
+            <div class="card-body text-center">
+              <h5 class="card-title mb-0">{{mix[5][0]}}</h5>
+            </div>
+          </div>
+        </div>
+        <!-- Col 7 -->
+        <div class="col mb-4">
+          <div class="card border-0 shadow" id="tiles15">
+            <img src="https://movie-posters-project3.s3.us-east-2.amazonaws.com/images/{{mix[6][1]}}.jpg" class="img-fluid" alt="...">
+            <div class="card-body text-center">
+              <h5 class="card-title mb-0">{{mix[6][0]}}</h5>
+            </div>
+          </div>
+        </div>
+        <!-- Col 8 -->
+        <div class="col mb-4">
+          <div class="card border-0 shadow" id="tiles15">
+            <img src="https://movie-posters-project3.s3.us-east-2.amazonaws.com/images/{{mix[7][1]}}.jpg" class="img-fluid" alt="...">
+            <div class="card-body text-center">
+              <h5 class="card-title mb-0">{{mix[7][0]}}</h5>
+            </div>
+          </div>
+        </div>
+        <!-- Col 9 -->
+        <div class="col mb-4">
+          <div class="card border-0 shadow" id="tiles15">
+            <img src="https://movie-posters-project3.s3.us-east-2.amazonaws.com/images/{{mix[8][1]}}.jpg" class="img-fluid" alt="...">
+            <div class="card-body text-center">
+              <h5 class="card-title mb-0">{{mix[8][0]}}</h5>
+            </div>
+          </div>
+        </div>
+        <!-- Col 10 -->
+        <div class="col mb-4">
+          <div class="card border-0 shadow" id="tiles15">
+            <img src="https://movie-posters-project3.s3.us-east-2.amazonaws.com/images/{{mix[9][1]}}.jpg" class="img-fluid" alt="...">
+            <div class="card-body text-center">
+              <h5 class="card-title mb-0">{{mix[9][0]}}</h5>
+            </div>
+          </div>
+        </div>
+  </div>
+        <!-- Col 11 -->
+  <div class="row justify-content-center" >
+        <div class="col mb-4">
+          <div class="card border-0 shadow" id="tiles15">
+            <img src="https://movie-posters-project3.s3.us-east-2.amazonaws.com/images/{{mix[10][1]}}.jpg" class="img-fluid" alt="...">
+            <div class="card-body text-center">
+              <h5 class="card-title mb-0">{{mix[10][0]}}</h5>
+            </div>
+          </div>
+        </div>
+        <!-- Col 12 -->
+        <div class="col mb-4">
+          <div class="card border-0 shadow" id="tiles15">
+            <img src="https://movie-posters-project3.s3.us-east-2.amazonaws.com/images/{{mix[11][1]}}.jpg" class="img-fluid" alt="...">
+            <div class="card-body text-center">
+              <h5 class="card-title mb-0">{{mix[11][0]}}</h5>
+            </div>
+          </div>
+        </div>
+        <!-- Col 13 -->
+        <div class="col mb-4">
+          <div class="card border-0 shadow" id="tiles15">
+            <img src="https://movie-posters-project3.s3.us-east-2.amazonaws.com/images/{{mix[12][1]}}.jpg" class="img-fluid" alt="...">
+            <div class="card-body text-center">
+              <h5 class="card-title mb-0">{{mix[12][0]}}</h5>
+            </div>
+          </div>
+        </div>
+        <!-- Col 14 -->
+        <div class="col mb-4">
+          <div class="card border-0 shadow" id="tiles15">
+            <img src="https://movie-posters-project3.s3.us-east-2.amazonaws.com/images/{{mix[13][1]}}.jpg" class="img-fluid" alt="...">
+            <div class="card-body text-center">
+              <h5 class="card-title mb-0">{{mix[13][0]}}</h5>
+            </div>
+          </div>
+        </div>
+        <!-- Col 15 -->
+        <div class="col mb-4">
+          <div class="card border-0 shadow" id="tiles15">
+            <img src="https://movie-posters-project3.s3.us-east-2.amazonaws.com/images/{{mix[14][1]}}.jpg" class="img-fluid" alt="...">
+            <div class="card-body text-center">
+              <h5 class="card-title mb-0">{{mix[14][0]}}</h5>
+            </div>
+          </div>
+        </div>
+
+    </div>
+  </div>
+
+<script type="text/javascript" src="static/js/output.js"></script>
+{% endblock %}
+

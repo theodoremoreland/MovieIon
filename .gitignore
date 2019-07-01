@@ -10,4 +10,5 @@ ml-latest-small.zip
 movies.csv
 ratings.csv
 tags.csv
+*.joblib
 .vscode/
