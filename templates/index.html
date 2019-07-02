@@ -3,32 +3,44 @@
 
 
 {% block content %}
-  
-  <!-- Tiles -->
-  <div class="container">
+<!-- <button id="toggleSlider"></button>
+<div class="">
+  <div class="slide">
+  <div class="slottt-machine-recipe">
+    <div class="slottt-machine-recipe__mask" id="wordbox">
+        <div class="slottt-machine-recipe__items_container recipe_if">
+        </div>
+    </div>
+  </div>
+</div>
+</div>
+
+<span id="place"></span> -->
+<!-- Tiles -->
+<div class="container">
     <div class="row justify-content-center" >
       <!-- Tile 1 -->
-      <div class="col-xl-3 col-md-6 mb-4">
+      <div class="col-xl-3 col-sm-12 mb-4">
         <div class="card border-0 shadow" id="tile1">
-          <img id="image1" src="static/images/random1.gif" class="img-fluid" alt="...">
+          <img id="image1" src="static/images/random1.gif" class="img-fluid" alt="Image not found">
           <div class="card-body text-center">
             <h5 class="card-title mb-0" id="movie_name1">Selection 1</h5>
           </div>
         </div>
       </div>
       <!-- Tile 2 -->
-      <div class="col-xl-3 col-md-6 mb-4">
+      <div class="col-xl-3 col-sm-12 mb-4">
         <div class="card border-0 shadow" id="tile2">
-          <img id="image2" src="static/images/random2.gif" class="img-fluid" alt="...">
+          <img id="image2" src="static/images/random2.gif" class="img-fluid" alt="Image not found">
           <div class="card-body text-center">
             <h5 class="card-title mb-0" id="movie_name2">Selection 2</h5>
           </div>
         </div>
       </div>
       <!-- Tile 3 -->
-      <div class="col-xl-3 col-md-6 mb-4">
+      <div class="col-xl-3 col-sm-12 mb-4">
         <div class="card border-0 shadow" id="tile3">
-          <img id="image3" src="static/images/random3.gif" class="img-fluid" alt="...">
+          <img id="image3" src="static/images/random3.gif" class="img-fluid" alt="Image not found" onClick="random()">
           <div class="card-body text-center">
             <h5 class="card-title mb-0" id="movie_name3">Selection 3</h5>
           </div>
@@ -36,20 +48,20 @@
       </div>
     </div>
     <!-- /.row -->
-  <div name="output"></div>
-  <div class="d-flex flex-row-reverse" style="width: 87%;">
-    <button type="submit" class="btn btn-dark" id="submit" >Submit</button>
+  
+  <div class="d-flex flex-row-reverse" style="width: 87%;" id="button">
+    <!-- <button type="submit" class="btn btn-success" id="submit" >Submit</button> -->
   </div>
 
   <div class="row justify-content-center" style="margin-bottom: 250px;">
-    <div class="col-xl-9 col-md-6 mb-5 mt-0">
+    <div class="col-xl-9 col-sm-12 mb-5 mt-0">
       <select id="filter"
          class="selectpicker"
          data-width="100%" 
          data-live-search="true"
          multiple data-max-options="3" 
          data-dropup-auto="false" 
-         multiple title="Choose a movie..."
+         multiple title="Click here to choose 3 movies..."
          virtualScroll="200"
          >
       </select>
@@ -83,8 +95,11 @@ crossorigin="anonymous"></script>
 
 
   
-
-
+ <!-- <script type="text/javascript" src="static/js/intro.js"></script>
+ <script type="text/javascript" src="static/js/slot.js"></script> -->
+ <div id="place2"></div>
 <script type="text/javascript" src="static/js/filter.js"></script>
+
+
 {% endblock %}
 

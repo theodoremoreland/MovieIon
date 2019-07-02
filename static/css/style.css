@@ -1,4 +1,103 @@
-/* Filter Styling */
+/* intro
+.intro {
+  width: 100%;
+  padding: 70px 0px 70px 0px;
+  overflow: hidden;
+}
+
+.slide {
+  background-color: rgb(255, 255, 255);
+  transition: .5s cubic-bezier(0, 1, 0.5, 1);
+  transform: translateY(0);
+}
+
+.slide-up {
+  transform: translateY(-100%);
+}
+
+#toggleSlider {
+
+    background: transparent;
+    border: none !important;
+    font-size:0;
+}
+
+
+/* Slot Machine Classes */
+
+body {
+  background: #FFF url("https://i.imgur.com/KheAuef.png") top left repeat-x;
+  font-family: 'Alex Brush', cursive !important;
+}
+
+.page    { display: none; padding: 0 0.5em; }
+.page h1 { font-size: 2em; line-height: 1em; margin-top: 1.1em; font-weight: bold; }
+.page p  { font-size: 1.5em; line-height: 1.275em; margin-top: 0.15em; }
+
+#loading {
+  display: block;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 100;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(192, 192, 192, 0.5);
+  background-image: url("https://i.stack.imgur.com/MnyxU.gif");
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+
+
+.slottt-machine-recipe {
+  margin: 0px auto;
+  width: 700px;
+  margin-top: 50px;
+}
+
+.slottt-machine-recipe__mask {
+    width: 100%;
+    height: 150px;
+    overflow: hidden; 
+    position: relative;
+    display: inline-block;
+    margin-bottom: -40px;
+}
+
+.slottt-machine-recipe__items_container {
+    position: absolute;
+}
+
+.slottt-machine-recipe__item {
+    min-height: 150px;
+    max-height: 150px;
+    margin: 0px;
+    padding: 0px;
+    background-size: contain;
+} */
+
+/* Typography */
+
+body {
+  font-family: Helvetica, Arial, sans serif;
+}
+
+.recipe_if, .recipe_then {
+    font-weight: bold;
+    font-size: 120px;
+}
+
+.tagline {
+  font-weight: normal;
+  font-size: 24px;
+}
+
+a {
+ font-weight: bold;
+ text-decoration: none;
+ color: #33CCFF;
+}
 
 
 
@@ -21,8 +120,13 @@ body {
 /* Other Classes for Page Styling */
 
 body {
+
   background: #007bff;
   background: linear-gradient(to right, #0062E6, #33AEFF);
+  background-image: url("../images/bg7.jpg");
+  background-attachment: fixed;
+  background-size: cover;
+  
 }
 
 #tile1:hover,
@@ -40,12 +144,7 @@ body {
     --input-padding-x: 1.5rem;
     --input-padding-y: .75rem;
   }
-  
-  body {
-    background: #007bff;
-    background: linear-gradient(to right, #0062E6, #33AEFF);
-  }
-  
+
   .card-signin {
     border: 0;
     border-radius: 1rem;

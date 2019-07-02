@@ -18,11 +18,18 @@ all_movies.forEach(function(row, index) {
     id_index["title"].push(title);
 });
 
+function random() {
+    document.getElementsByTagName("option")[5].click();
+    
+}
+
+
 
     
     $('#filter').on('changed.bs.select', (function (e, clickedIndex, isSelected, previousValue) {
-        // do something...
         
+
+        $('input[type="text"], textarea').val(''); // clears textbox area after selection
 
         id = id_index["id"][clickedIndex];
         title = id_index["title"][clickedIndex];
@@ -35,19 +42,20 @@ all_movies.forEach(function(row, index) {
         console.log(clickedIndex, id, title, previousValue);
         console.log(poster);
 
+        // variables to determine empyt spaces for posters
         var space1;
         var space2;
         var space3;
         var spaces = [space1, space2, space3];
 
-        // Checks for poster present then removes
+        // Checks to see if any posters have been added
         for (i = 0; i < previousValue.length; i++) { 
             if (previousValue[i] == id) {
                 poster_present = true;
             }
         }
         
-        // Checks if poster absent then adds
+        // Checks if poster absent then sets space value to true
         if (image1.includes("random")) {
             space1 = true;
         }
@@ -99,38 +107,42 @@ all_movies.forEach(function(row, index) {
             }
         };
 
+        movies = document.getElementById("filter").selectedOptions;
+        if (movies.length == 3) {
+            document.getElementById("button").innerHTML = '<button type="submit" class="btn btn-success" id="submit" >Submit</button>';
+            $('#submit').click(function() {
+                movies = document.getElementById("filter").selectedOptions;
+                console.log(movies);
+                list = [];
+            
+                for (var i = 0; i < movies.length; i++) {
+                    index = i + 1;
+                    movie = movies[i].text
+                    list.push(movie)
+                    console.log(movie);
+                }
+                $.ajax({
+                  type: "POST",
+                  contentType: "application/json;charset=utf-8",
+                  url: "/choices",
+                  traditional: "true",
+                  data: JSON.stringify(list),
+                  dataType: "json",
+                  success: function (res) { console.log(res) 
+                
+                  document.getElementById("page").innerHTML = res.data;
+                  var mix = mix;
+                  console.log(mix);
+                
+                
+                }, 
+                  // res is the response from the server 
+                error: function (error) { console.log(error) }
+                });
+            });
+        }
+        else {
+            document.getElementById("button").innerHTML = "";
+        }
 }));
 
-$('#submit').click(function() {
-    movies = document.getElementById("filter").selectedOptions;
-    console.log(movies);
-    list = [];
-
-    for (var i = 0; i < movies.length; i++) {
-        index = i + 1;
-        movie = movies[i].text
-        list.push(movie)
-        console.log(movie);
-    }
-    $.ajax({
-      type: "POST",
-      contentType: "application/json;charset=utf-8",
-      url: "/choices",
-      traditional: "true",
-      data: JSON.stringify(list),
-      dataType: "json",
-      success: function (res) { console.log(res) 
-    
-      document.getElementById("page").innerHTML = res.data;
-      var mix = mix;
-      console.log(mix);
-    
-    
-    }, 
-      // res is the response from the server 
-      // (from return request.data)
-    error: function (error) { console.log(error) }
-    });
-
-    
-});
