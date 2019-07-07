@@ -12,13 +12,19 @@ application = Flask(__name__)
 application.config['DEBUG'] = True
 application.secret_key = secret_key
 
-# @application.before_first_request
-# def setup():
-
-
-
-
 id_index = {"id": [], "title": []}
+
+# @application.before_request
+# def require_login():
+#     allowed_routes = ['login', 'signup', "index", "instructions"]
+#     if request.endpoint not in allowed_routes and 'username' not in session:
+#         return redirect('/login')
+
+@application.route("/instructions")
+def instructions():
+    return render_template("instructions.html")
+
+
 @application.route("/", methods=['POST', 'GET'])
 def index():
 
@@ -61,13 +67,16 @@ def index():
 @application.route('/choices', methods=['POST', 'GET'])
 def choices():
 
-    recommendations = []
+    #(title, dist)
+    recommendations1 = []
+    recommendations2 = []
+    recommendations3 = []
 
     if request.method == 'POST':
         movies = request.get_json() 
         print(movies)
 
-        recommendations.append(
+        recommendations1.append(
         make_recommendation(
             model_knn=model_knn,
             data=movie_matrix,
@@ -76,7 +85,7 @@ def choices():
             n_recommendations=10)
         )
 
-        recommendations.append(
+        recommendations2.append(
         make_recommendation(
             model_knn=model_knn,
             data=movie_matrix,
@@ -85,7 +94,7 @@ def choices():
             n_recommendations=10)
         )
 
-        recommendations.append(
+        recommendations3.append(
         make_recommendation(
             model_knn=model_knn,
             data=movie_matrix,
@@ -94,33 +103,127 @@ def choices():
             n_recommendations=10)
         )
 
-        mix = []
+        #titles
+        mix1 = []
+        mix2 = []
+        mix3 = []
+
+        #dist
+        dist1 = []
+        dist2 = []
+        dist3 = []
+
+        print(recommendations1)
+        #for each set of recommedations (3), pick a random recommendation and append to "mix" list
         for i in range(3):
+            j = str(i + 1)
+            recommendations = eval("recommendations" + j)
+            mix = eval("mix" + j)
+            dist = eval("dist" + j)
             for x in range(5):
                 scramble = random.randint(0, 9)
-                while recommendations[i][scramble] in mix:
+                while recommendations[0][0][scramble] in mix or recommendations[0][0][scramble] in movies:
                     scramble = random.randint(0, 9)
-                mix.append(recommendations[i][scramble])
+                mix.append(recommendations[0][0][scramble])
+                dist.append(recommendations[0][1][scramble])
         
-        mix2 = []
-        test = ['Blue Angel, The (Blaue Engel, Der) (1930)',
-                'War Room, The (1993)',
-                'Fast, Cheap & Out of Control (1997)']
+        list1 = []
+        list2 = []
+        list3 = []
 
-        for movie in mix:
-            movie = movie.replace(",", "").lower()
-            for i, title in enumerate(id_index["title"]):
-                title_l = title.lower()
-                #if movie[-5:] in title and movie[:4] in title:
-                    # print ("Comparing '%r' with '%r'" % (movie, title))
-                    # print(movie == title)
-                if movie in title_l:
-                    movie_id = id_index["id"][i]
-                    mix2.append([title, movie_id])
-        print(mix2)
-        return jsonify({'data': render_template('recommended.html', mix=mix2)})
+        for i in range(3):
+            j = str(i + 1)
+            mix = eval("mix" + j)
+            for movie in mix:
+                movie = movie.replace(",", "").lower()
+                for i, title in enumerate(id_index["title"]):
+                    title_l = title.lower()
+                    #if movie[-5:] in title and movie[:4] in title:
+                        # print ("Comparing '%r' with '%r'" % (movie, title))
+                        # print(movie == title)
+                    if movie in title_l:
+                        movie_id = id_index["id"][i]
+                        eval("list" + j).append([title, movie_id])
+        print(list3, dist3)
+        return jsonify({'data': render_template('recommended.html',
+                                                 list1=list1, 
+                                                 list2=list2,
+                                                 list3=list3,
+                                                 dist1=dist1,
+                                                 dist2=dist2,
+                                                 dist3=dist3,
+                                                 movies=movies)})
     
     return redirect("/")
+
+@application.route('/info/<movie_id>')
+def info(movie_id):
+    movie_id = movie_id
+
+    return render_template("info.html", movie_id=movie_id)
+
+@application.route('/logout')
+def logout():
+    del session['username']
+    flash("You are now logged out")
+    return redirect('/')
+
+@application.route('/login', methods=['POST', 'GET'])
+def login():
+    if request.method == 'POST':
+        username = request.form['username']
+        password = request.form['password']
+        # postgres can only interpret single quoted strings
+        cursor.execute(f"SELECT username, password FROM users WHERE username = '{username}';")
+        user = cursor.fetchone()
+        print(user)
+        if user[0] and user[1] == password:
+            session['username'] = username
+            flash("Logged in")
+            return redirect('/')
+        else:
+            flash('User password incorrect or user does not exist', 'error')
+    return render_template('login.html')
+
+@application.route('/signup', methods=['POST', 'GET'])
+def signup():
+     if request.method == 'POST':
+        username = request.form['username']
+        password = request.form['password']
+        verify = request.form['verify-password']
+
+        print(f'SELECT {username} FROM users;')
+
+        if len(username) <= 2 or len(username) > 20:
+            flash("Username must be between 3-20 characters")
+        if username.count(" ") > 0:
+            flash("Username can not have spaces")
+        if len(password) <= 2 or len(password) > 20:
+            flash("Password must be between 3-20 characters")
+        if password.count(" ") > 0:
+            flash("Password can not have spaces")
+        if password != verify:
+            flash("Passwords do not match")
+
+        else:
+            cursor.execute(f"SELECT username FROM users WHERE username = '{username}';")
+            existing_user = cursor.fetchone()
+            
+            print(existing_user)
+
+            if not existing_user:
+                insert = """ INSERT INTO users (username, password) VALUES (%s,%s)"""
+                record = (username, password)
+                cursor.execute(insert, record)
+                connection.commit()
+                session['username'] = username
+                flash('You now have a Movie Match user account')
+                return redirect('/')
+            else:
+                flash('Username already in use')
+                return render_template('signup.html')
+
+     return render_template('signup.html')
 
 
 

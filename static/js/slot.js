@@ -2,18 +2,18 @@
 // jen@ifttt.com
 // github.com/jhamon
 var wordlist = [
-    'Action',
-    'Animated',
-    'Superhero',
-    'Horror',
-    'Romance',
-    'Thriller',
-    'Comedy',
+    'Action?',
     'Adventure',
-    'Fantasy',
-    'Sci-Fi',
-    'Musical',
-    'Drama'
+    'Animated?',
+    'Comedy?',
+    'Drama?',
+    'Fantasy?',
+    'Horror?',
+    'Musical?',
+    "Sci-Fi?",
+    "What's Your Match?",
+    'Romance?',
+    'Thriller?'
   ]
   
   function buildSlotItem (text) {
@@ -51,8 +51,6 @@ var wordlist = [
     return (randIndex > 10) ? randIndex : randomSlotttIndex(max);
   }
   
-    
-    
   function animate() {
     var wordIndex = randomSlotttIndex(wordlist.length);
     $wordbox.animate({top: -wordIndex*150}, 500, 'swing', function () {
@@ -67,5 +65,11 @@ var wordlist = [
     buildSlotContents($wordbox, wordlist);  
     buildSlotContents($wordbox, wordlist);  
     
-    setInterval(animate, 2000);
+    setInterval(animate, 1000);
+    // setTimeout(clear, 3400);
   });
+
+  // function clear() {
+  //   wordlist = [];
+  //   document.getElementById("wordbox2").innerHTML = "What's Your Match?";
+  // }

@@ -4,7 +4,8 @@
     <head>
 
         <meta charset="utf-8">
-        <title>Movie Match Maker</title>
+        <meta content="width=device-width, initial-scale=1" name="viewport" />
+        <title>Movie Matchmaker</title>
 
         <!-- Styles -->
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
@@ -19,31 +20,32 @@
     </head>
 
     <!-- <span id="page2"></span> -->
-    <header>
+    
       {% block header %}
-      <header class="text-center py-5 mb-5">
+      <header class="text-center py-5 mb-0">
         <div class="container">
-          <h1 class="font-weight-light text-white">Movie Match Maker</h1>
+          <h1 class="font-weight-light text-white"><a href="/">Movie Matchmaker</a></h1>
+          <div class="row justify-content-center" >
+          <h5>
+            <a href="/instructions" id="one">Instructions</a>
+            <span> - </span>
+            <a href="/login" id="two">Log in</a>
+            <span> - </span>
+            <a href="signup" id="three">Register</a>
+            <span> - </span>
+            <a href="#" id="four">Profile</a>
+          </h5>
+          </div>
         </div>
       </header>
       {% endblock %}
-    </header>
-
-    <!-- <button id="toggleSlider"></button>
-    <div class="container" id="intro">
-      <div class="slide">
-      <div class="slottt-machine-recipe">
-        <div class="slottt-machine-recipe__mask" id="wordbox">
-            <div class="slottt-machine-recipe__items_container recipe_if">
-            </div>
-        </div>
-      </div>
-    </div>
-    </div> -->
+  
     <body class="d-flex flex-column">
       
       <div id="page-content">
+        
       {% block content %}
+
       {% endblock %}
       </div>
 

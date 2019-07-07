@@ -18,6 +18,16 @@ all_movies.forEach(function(row, index) {
     id_index["title"].push(title);
 });
 
+// $(window).resize(function() {
+//     if ($(window).width() < 960) {
+//        alert('Less than 960');
+        //   $('.selectpicker').selectpicker('mobile');
+//     }
+//    else {
+//       alert('More than 960');
+//    }
+//   });
+
 function random() {
     document.getElementsByTagName("option")[5].click();
     
@@ -36,19 +46,22 @@ function random() {
         var image1 = document.getElementById(`image1`).getAttribute("src");
         var image2 = document.getElementById(`image2`).getAttribute("src");
         var image3 = document.getElementById(`image3`).getAttribute("src");
+        var movie_name1 = document.getElementById("movie_name1").innerHTML;
+        var movie_name2 = document.getElementById("movie_name2").innerHTML;
+        var movie_name3 = document.getElementById("movie_name3").innerHTML;
         var poster_present = false;
         var poster = "https://movie-posters-project3.s3.us-east-2.amazonaws.com/images/";
         poster = poster + id + ".jpg";
         console.log(clickedIndex, id, title, previousValue);
         console.log(poster);
 
-        // variables to determine empyt spaces for posters
+        // variables to determine empty spaces for posters
         var space1;
         var space2;
         var space3;
         var spaces = [space1, space2, space3];
 
-        // Checks to see if any posters have been added
+        // Checks to see if the most recent selection has already been selected and therefore poster should be present
         for (i = 0; i < previousValue.length; i++) { 
             if (previousValue[i] == id) {
                 poster_present = true;
@@ -91,17 +104,17 @@ function random() {
         
        if (poster_present) {
            console.log("poster is present");
-            if (image1.includes(`/${id}.jpg`)) {
+            if (image1.includes(`/${id}.jpg`) || movie_name1 == title) {
                 document.getElementById("image1").setAttribute("src", "static/images/random1.gif");
                 document.getElementById("movie_name1").innerHTML = "Selection 1";
             }
 
-            else if (image2.includes(`/${id}.jpg`)) {
+            else if (image2.includes(`/${id}.jpg`) || movie_name2 == title) {
                 document.getElementById("image2").setAttribute("src", "static/images/random2.gif");
                 document.getElementById("movie_name2").innerHTML = "Selection 2";
             }
 
-            else if (image3.includes(`/${id}.jpg`)) {
+            else if (image3.includes(`/${id}.jpg`) || movie_name3 == title) {
                 document.getElementById("image3").setAttribute("src", "static/images/random3.gif");
                 document.getElementById("movie_name3").innerHTML = "Selection 3";
             }

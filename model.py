@@ -56,12 +56,14 @@ def make_recommendation(model_knn, data, fav_movie, mapper, n_recommendations):
     reverse_mapper = {v: k for k, v in mapper.items()}
     # print recommendations
     #print('Recommendations for {}:'.format(fav_movie))
-    movies = [] 
+    movies = []
+    distance = []
     for i, (idx, dist) in enumerate(raw_recommends):
         print('{0}: {1}, with distance of {2}'.format(i+1, reverse_mapper[idx], dist))
         #movies.append('{0}: {1}, with distance of {2}'.format(i+1, reverse_mapper[idx], dist))
         movies.append(reverse_mapper[idx])
-    return movies
+        distance.append(dist)
+    return movies, distance
 
 
 # my_favorite= "Ghostbust"
