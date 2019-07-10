@@ -17,6 +17,10 @@ span {
   color: #777;
 }
 
+#flash {
+  color: white;
+}
+
 
 
 /* tooltip */
@@ -46,10 +50,10 @@ a[target]:link {
   color: #000000;
   }
   a[target]:visited {
-  color: #005fec;
+  color: #3b3b3b;
   }
   a[target]:hover {
-  color: #cacaca;
+  color: #8b8b8b;
   }
 
 
@@ -163,7 +167,7 @@ body {
 a {
  font-weight: bold;
  text-decoration: none;
- color: #33CCFF;
+ color: rgb(255, 255, 255);
 }
 
 

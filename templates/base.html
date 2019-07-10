@@ -9,7 +9,7 @@
 
         <!-- Styles -->
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-        <link rel="stylesheet" href="static/css/style.css">
+        <link rel="stylesheet" href="../static/css/style.css">
 
         <!-- JQuery -->
         <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script> -->
@@ -31,9 +31,9 @@
             <span> - </span>
             <a href="/login" id="two">Log in</a>
             <span> - </span>
-            <a href="signup" id="three">Register</a>
+            <a href="/logout" id="three">Log out</a>
             <span> - </span>
-            <a href="#" id="four">Profile</a>
+            <a href="/profile/user" id="four">Profile</a>
           </h5>
           </div>
         </div>
@@ -43,7 +43,6 @@
     <body class="d-flex flex-column">
       
       <div id="page-content">
-        
       {% block content %}
 
       {% endblock %}
@@ -52,7 +51,7 @@
       {% block footer %}
       <footer id="sticky-footer" class="py-4 bg-dark text-white-50">
         <div class="container text-center text-white">
-          <small>Copyright &copy; MovieMatchMaker.com</small>
+          <small>Copyright &copy; MovieIon.com</small>
         </div>
       </footer>
       {% endblock %}

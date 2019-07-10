@@ -164,66 +164,130 @@ def info(movie_id):
 
 @application.route('/logout')
 def logout():
-    del session['username']
-    flash("You are now logged out")
-    return redirect('/')
+    if 'username' in session:
+        username = session['username']
+        del session['username']
+        flash(f"{username} is now logged out")
+    else:
+        flash("You need to log in before you can log out")
+    return redirect("/login")
 
 @application.route('/login', methods=['POST', 'GET'])
 def login():
     if request.method == 'POST':
+        try:
+            connection = pg8000.connect(user=user,
+                                        password=password,
+                                        host=host,
+                                        port=int(port),
+                                        database=database)
+            
+            cursor = connection.cursor()
+
+            # Print PostgreSQL version
+            cursor.execute("SELECT version();")
+            record = cursor.fetchone()
+            print("You are connected to - ", record, "\n")
+
+        except (Exception) as error:
+                print ("Error while connecting to PostgreSQL database", error)
+                connection = pg8000.connect(user = user,
+                                        password = password,
+                                        host = host,
+                                        port = int(port),
+                                        database = database)
+
+                cursor = connection.cursor()
         username = request.form['username']
-        password = request.form['password']
         # postgres can only interpret single quoted strings
-        cursor.execute(f"SELECT username, password FROM users WHERE username = '{username}';")
-        user = cursor.fetchone()
-        print(user)
-        if user[0] and user[1] == password:
-            session['username'] = username
-            flash("Logged in")
-            return redirect('/')
+        cursor.execute(f"SELECT user_id, username, watchlist FROM users WHERE username = '{username}';")
+        user_info = cursor.fetchone()
+        print(user_info)
+        if user_info:
+            if user_info[1] == username:
+                session['username'] = username
+                return redirect(f"/profile/{username}")
+            else:
+                flash('invalid username')
         else:
-            flash('User password incorrect or user does not exist', 'error')
+            flash('invalid username')
     return render_template('login.html')
 
-@application.route('/signup', methods=['POST', 'GET'])
-def signup():
-     if request.method == 'POST':
-        username = request.form['username']
-        password = request.form['password']
-        verify = request.form['verify-password']
+@application.route('/profile/<username>', methods=['POST', 'GET'])
+def profile(username):
+    if 'username' in session:
+        if username == "user":
+            username = session['username']
+    else:
+        return redirect('/login')
 
-        print(f'SELECT {username} FROM users;')
+    try:
+        connection = pg8000.connect(user=user,
+                                            password=password,
+                                            host=host,
+                                            port=int(port),
+                                            database=database)
+                
+        cursor = connection.cursor()
+        cursor.execute(f"SELECT watchlist FROM users WHERE username = '{username}';")
+        watchlist = cursor.fetchone()
+        print(watchlist)
+    
+    except (Exception) as error:
+        print ("Error while querying database", error)
 
-        if len(username) <= 2 or len(username) > 20:
-            flash("Username must be between 3-20 characters")
-        if username.count(" ") > 0:
-            flash("Username can not have spaces")
-        if len(password) <= 2 or len(password) > 20:
-            flash("Password must be between 3-20 characters")
-        if password.count(" ") > 0:
-            flash("Password can not have spaces")
-        if password != verify:
-            flash("Passwords do not match")
+    return render_template("profile.html", watchlist=watchlist, username=username)
 
-        else:
-            cursor.execute(f"SELECT username FROM users WHERE username = '{username}';")
-            existing_user = cursor.fetchone()
-            
-            print(existing_user)
+@application.route('/watchlist/<movie_id>', methods=['POST', 'GET'])
+def watchlist(movie_id):
+    try:
+        connection = pg8000.connect(user=user,
+                                            password=password,
+                                            host=host,
+                                            port=int(port),
+                                            database=database)
+                
+        cursor = connection.cursor()
+        cursor.execute(f"SELECT title FROM movie_list WHERE movie_id = '{movie_id}';")
+        movie = cursor.fetchone()[0]
+        movie = movie.replace(",", ",,")
+        movie = movie.replace("'", "''")
+        username = session["username"]
+        print(movie)
+        print(session['username'])
+        cursor.execute('BEGIN TRANSACTION;')
+        cursor.execute(f"UPDATE users SET watchlist = array_append(watchlist, '{movie}') WHERE username = '{username}';")
+        cursor.execute('COMMIT;')
+        cursor.execute(f"SELECT watchlist FROM users WHERE username = '{username}';")
+        watchlist = cursor.fetchone()
+        print(watchlist)
+        
+    except (Exception) as error:
+        print ("Error while querying database", error)
 
-            if not existing_user:
-                insert = """ INSERT INTO users (username, password) VALUES (%s,%s)"""
-                record = (username, password)
-                cursor.execute(insert, record)
-                connection.commit()
-                session['username'] = username
-                flash('You now have a Movie Match user account')
-                return redirect('/')
-            else:
-                flash('Username already in use')
-                return render_template('signup.html')
+    return ('', 204)
 
-     return render_template('signup.html')
+@application.route('/remove/<movie>', methods=['POST', 'GET'])
+def remove(movie):
+        print(f"this is the movie to be removed: {movie}")
+        movie = movie.replace(",", ",,")
+        movie = movie.replace("'", "''")
+        try:
+            connection = pg8000.connect(user=user,
+                                            password=password,
+                                            host=host,
+                                            port=int(port),
+                                            database=database)
+                    
+            cursor = connection.cursor()
+            username = session["username"]
+            cursor.execute('BEGIN TRANSACTION;')
+            cursor.execute(f"UPDATE users SET watchlist = array_remove(watchlist, '{movie}') WHERE username = '{username}';")
+            cursor.execute('COMMIT;')
+        except (Exception) as error:
+            print ("Error while querying database", error)
+        return redirect(f'/profile/{username}')
+
 
 
 

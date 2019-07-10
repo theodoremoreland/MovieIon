@@ -1,23 +1,35 @@
 {% extends "base.html" %}
 
 {% block content %}
-<h1>Log in</h1>
-<p>If you don't have an account, you may <a href="/signup">register</a> for one</p>
-<form action="/login" method="post">
-    <table>
-        <tr>
-            <td><label for="username">Username</label></td>
-            <td>
-                <input name="username" type="text" value="{{ username }}">
-            </td>
-        </tr>
-        <tr>
-            <td><label for="password">Password</label></td>
-            <td>
-                <input name="password" type="password">
-            </td>
-        </tr>
-    </table>
-    <input type="submit" value="Login">
-</form>
+
+
+
+<div class="row justify-content-center" >
+{% with messages = get_flashed_messages() %}
+<ul>
+{% for message in messages %}
+    <li id="flash">{{message}}</li>
+{% endfor %}
+</ul>
+{% endwith %}
+</div>
+
+    <div class="row">
+      <div class="col-sm-9 col-md-7 col-lg-5 mx-auto">
+        <div class="card card-signin my-5">
+          <div class="card-body">
+            <h5 class="card-title text-center">Welcome Back!</h5>
+            <form action="/login" method="post">
+              <div class="form-label-group">
+                <input name="username" type="text" value="{{ username }}" class="form-control" required autofocus>
+                <label for="username">Username</label>
+              </div>
+              <button class="btn btn-lg btn-primary btn-block text-uppercase" type="submit">Log in</button>
+              <hr class="my-4">
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  
 {% endblock %}
