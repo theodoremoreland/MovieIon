@@ -12,3 +12,6 @@ ratings.csv
 tags.csv
 *.joblib
 .vscode/
+movie_filtered.csv
+movie_filtered.csv.zip
+
