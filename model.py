@@ -74,8 +74,42 @@ def make_recommendation(model_knn, data, fav_movie, mapper, n_recommendations):
 #     mapper=movie_title_index,
 #     n_recommendations=10)
 
+def worst_recommendations(model_knn, data, fav_movie, mapper, n_recommendations):
+    # Choose a movie
+    model_knn.fit(data)
+    print('You have input movie:', fav_movie)
+    # Searching for similar movies
+    print('Recommendation system is looking to find worst matches')
+    print('...............\n')
+    # Idx equals the function defined by the similarnamesearch above
+    idx = similar_name_search(movie_title_index, fav_movie)
+    distances ,indices = model_knn.kneighbors(data[idx], n_neighbors=n_recommendations+2000)
+    # a list of the index without the titles of movie
+    raw_recommends = \
+        sorted(list(zip(indices.squeeze().tolist(), distances.squeeze().tolist())), key=lambda x:x[1])[:0:-91] 
+    # get reverse mapper
+    reverse_mapper = {v: k for k, v in mapper.items()}
+    # print recommendations
+    movies = []
+    distance = []
+    print('Recommendations for {}:'.format(fav_movie))
+    for i, (idx, dist) in enumerate(raw_recommends):
+        print('{0}: {1}, with distance of {2}'.format(i+1, reverse_mapper[idx], dist))
+   #sorted(iterable, key=None, reverse=False)
+        movies.append(reverse_mapper[idx])
+        distance.append(dist)
+    return movies, distance
+
+
 
 #%%
+# my_favorite= 'Toy Story 2'
 
+# worst_recommendations(
+#     model_knn=model_knn,
+#     data=movie_matrix,
+#     fav_movie= my_favorite,
+#     mapper=movie_title_index,
+#     n_recommendations=100)
 
 

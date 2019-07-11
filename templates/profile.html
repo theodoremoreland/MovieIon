@@ -13,11 +13,12 @@
         <div class="row justify-content-center" >
             <p class="lead">Watchlist</p>
         </div>
-        <div class="row justify-content-center" >
+        <div class="row justify-content-center">
+          <div class="col">
             <div class="list-group">
               {% if watchlist[0] != None and watchlist[0][0] != list %}
                 {%for movie in watchlist[0] %} 
-                  <a href="/remove/{{movie}}" class="list-group-item list-group-item-action">{{movie}}</a>
+                  <a href="/info/{{movie}}" class="list-group-item list-group-item-action">{{movie}}</a>
                 {%endfor%}
               {% else %}
                   <p>You don't have any movies in your watchlist</p>
@@ -25,8 +26,20 @@
             </div>
           </div>
 
+          <div class="col-1">
+              <div class="list-group">
+                {% if watchlist[0] != None and watchlist[0][0] != list %}
+                  {%for movie in watchlist[0] %} 
+                    <a href="/remove/{{movie}}" id="del" class="list-group-item list-group-item-action">x</a>
+                  {%endfor%}
+                {% endif %}
+              </div>
+            </div>
+
+        </div>
+
         <div style="height: 700px"></div>
-        <p class="lead mb-0">Back to top</p>
+        <a href="#" target><p class="lead mb-0">Back to top</p></a>
       </div>
     </div>
   </div>

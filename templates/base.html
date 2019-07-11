@@ -22,18 +22,22 @@
     <!-- <span id="page2"></span> -->
     
       {% block header %}
-      <header class="text-center py-5 mb-0">
+      <header class="text-center pt-5 mb-0">
         <div class="container">
           <h1 class="font-weight-light text-white"><a href="/">Movie Matchmaker</a></h1>
           <div class="row justify-content-center" >
           <h5>
             <a href="/instructions" id="one">Instructions</a>
             <span> - </span>
-            <a href="/login" id="two">Log in</a>
-            <span> - </span>
-            <a href="/logout" id="three">Log out</a>
+            {% if 'username' in session %}
+                <a href="/logout" id="three">Log out</a>
+            {% else %}
+                <a href="/login" id="two">Log in</a>
+            {% endif %}
             <span> - </span>
             <a href="/profile/user" id="four">Profile</a>
+            <span> - </span>
+            <a href="/about" id="five">About Us</a>
           </h5>
           </div>
         </div>

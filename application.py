@@ -3,7 +3,7 @@ import ast
 import pg8000
 from flask import (Flask, render_template, request, redirect, session, flash, jsonify)
 from config import (user, password, host, port, database, secret_key)
-from model import make_recommendation
+from model import (make_recommendation, worst_recommendations)
 from model import (model_knn, movie_matrix, movie_title_index)
 
 
@@ -182,9 +182,15 @@ def info(movie_id):
                                     database = database)
 
             cursor = connection.cursor()
+    try:
+        cursor.execute(f"SELECT * FROM metadata WHERE id = '{movie_id}';")
+    except:
+        cursor.execute(f"ROLLBACK;")
+        cursor.execute(f"SELECT movie_id FROM movie_list WHERE title = '{movie_id}';")
+        movie_id = cursor.fetchone()[0]
     cursor.execute(f"SELECT * FROM metadata WHERE id = '{movie_id}';")
     metadata = cursor.fetchone()
-    print(metadata)
+    #print(metadata)
     _id = metadata[0]
     title = metadata[1]
     overview = metadata[2]
@@ -296,12 +302,14 @@ def watchlist(movie_id):
         cursor.execute('COMMIT;')
         cursor.execute(f"SELECT watchlist FROM users WHERE username = '{username}';")
         watchlist = cursor.fetchone()
+        flash("Movie successfully added to watchlist!")
         print(watchlist)
+        return redirect(f"/info/{movie_id}")
         
     except (Exception) as error:
         print ("Error while querying database", error)
-
-    return ('', 204)
+        flash("There was an error when attempting to add to watchlist!")
+        return redirect(f"/info/{movie_id}")
 
 @application.route('/remove/<movie>', methods=['POST', 'GET'])
 def remove(movie):
@@ -327,6 +335,99 @@ def remove(movie):
 @application.route('/about')
 def about():
     return render_template("about.html")
+
+
+@application.route('/worst', methods=['POST', 'GET'])
+def worst():
+
+    #(title, dist)
+    recommendations1 = []
+    recommendations2 = []
+    recommendations3 = []
+
+    if request.method == 'POST':
+        movies = request.get_json() 
+        print(movies)
+
+        recommendations1.append(
+        worst_recommendations(
+            model_knn=model_knn,
+            data=movie_matrix,
+            fav_movie = movies[0],
+            mapper=movie_title_index,
+            n_recommendations=100)
+        )
+
+        recommendations2.append(
+        worst_recommendations(
+            model_knn=model_knn,
+            data=movie_matrix,
+            fav_movie = movies[1],
+            mapper=movie_title_index,
+            n_recommendations=100)
+        )
+
+        recommendations3.append(
+        worst_recommendations(
+            model_knn=model_knn,
+            data=movie_matrix,
+            fav_movie = movies[2],
+            mapper=movie_title_index,
+            n_recommendations=100)
+        )
+
+        #titles
+        mix1 = []
+        mix2 = []
+        mix3 = []
+
+        #dist
+        dist1 = []
+        dist2 = []
+        dist3 = []
+
+        print(recommendations1)
+        #for each set of recommedations (3), pick a random recommendation and append to "mix" list
+        for i in range(3):
+            j = str(i + 1)
+            recommendations = eval("recommendations" + j)
+            mix = eval("mix" + j)
+            dist = eval("dist" + j)
+            for x in range(5):
+                scramble = random.randint(0, 9)
+                while recommendations[0][0][scramble] in mix or recommendations[0][0][scramble] in movies:
+                    scramble = random.randint(0, 9)
+                mix.append(recommendations[0][0][scramble])
+                dist.append(recommendations[0][1][scramble])
+        
+        list1 = []
+        list2 = []
+        list3 = []
+
+        for i in range(3):
+            j = str(i + 1)
+            mix = eval("mix" + j)
+            for movie in mix:
+                movie = movie.replace(",", "").lower()
+                for i, title in enumerate(id_index["title"]):
+                    title_l = title.lower()
+                    #if movie[-5:] in title and movie[:4] in title:
+                        # print ("Comparing '%r' with '%r'" % (movie, title))
+                        # print(movie == title)
+                    if movie in title_l:
+                        movie_id = id_index["id"][i]
+                        eval("list" + j).append([title, movie_id])
+        print(list3, dist3)
+        return jsonify({'data': render_template('worst.html',
+                                                 list1=list1, 
+                                                 list2=list2,
+                                                 list3=list3,
+                                                 dist1=dist1,
+                                                 dist2=dist2,
+                                                 dist3=dist3,
+                                                 movies=movies)})
+    
+    return redirect("/")
 
 
 

@@ -31,9 +31,15 @@
   }
 
 </style>
+
 <!-- Tiles -->
 <div class="container">
-
+    <div class="row justify-content-center mb-2">
+        <label class="switch">
+            <input type="checkbox" id="reverse">
+            <span class="slider round"></span>
+        </label>
+    </div>
     <div class="row justify-content-center" >
       <!-- Tile 1 -->
       <div class="col-xl-3 col-sm-6 mb-4">
@@ -86,12 +92,16 @@
     </div>
   </div>
 
+  <div id="loading" style="display:none;"><img src="../static/images/load3.gif" alt="" /></div>
+
 </div>
 <!-- /.container -->
 
 <script type="text/javascript">
   var all_movies = {{ all_movies | tojson }};
 </script>
+
+
 
 <script
 src="https://code.jquery.com/jquery-3.4.1.js"

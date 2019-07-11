@@ -1,6 +1,31 @@
 var all_movies = all_movies;
 id_index = {"id": [], "index": [], "title": []};
+var reverse = false;
 
+$('#reverse').click(function() {
+    if (reverse == false) {
+        $('body').css({
+            'background-image': 'url("/static/images/bg12.gif")',
+        });
+
+        $('a').css({
+            'color': 'black',
+        });
+
+        reverse = true;
+    }
+    else {
+        $('body').css({
+            'background-image': 'url("/static/images/bg8.gif")',
+        });
+
+        $('a').css({
+            'color': 'white',
+        });
+
+        reverse = false;
+    }
+});
 
 // console.log(all_movies);
 
@@ -119,15 +144,20 @@ function random() {
                 document.getElementById("movie_name3").innerHTML = "Selection 3";
             }
         };
-
+        var hey = "'#loading'";
         movies = document.getElementById("filter").selectedOptions;
         if (movies.length == 3) {
-            document.getElementById("button").innerHTML = '<button type="submit" class="btn btn-success" id="submit" >Submit</button>';
+            document.getElementById("button").innerHTML = `<button type="submit" class="btn btn-success" id="submit" onclick="$(${hey}).show();" >Submit</button>`;
             $('#submit').click(function() {
+
+
+
+
                 movies = document.getElementById("filter").selectedOptions;
                 console.log(movies);
                 list = [];
-            
+                var route;
+                if (reverse == true) {route = "/worst"} else {route = "/choices"}
                 for (var i = 0; i < movies.length; i++) {
                     index = i + 1;
                     movie = movies[i].text
@@ -137,7 +167,7 @@ function random() {
                 $.ajax({
                   type: "POST",
                   contentType: "application/json;charset=utf-8",
-                  url: "/choices",
+                  url: route,
                   traditional: "true",
                   data: JSON.stringify(list),
                   dataType: "json",

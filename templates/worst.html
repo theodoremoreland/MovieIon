@@ -1,0 +1,269 @@
+{% extends 'base.html' %}
+
+
+{% block header %}
+
+<style>
+    h1 {
+        color: black;
+    }
+
+    h2 {
+        color: black;
+    }
+
+    body {
+        background-image: url("/static/images/bg12.gif");
+    }
+
+    a {
+        color: black;
+    }
+
+    #mv1:hover #cs1,
+#mv2:hover #cs2,
+#mv3:hover #cs3,
+#mv4:hover #cs4,
+#mv5:hover #cs5,
+#mv6:hover #cs6,
+#mv7:hover #cs7,
+#mv8:hover #cs8,
+#mv9:hover #cs9,
+#mv10:hover #cs10,
+#mv11:hover #cs11,
+#mv12:hover #cs12,
+#mv13:hover #cs13,
+#mv14:hover #cs14,
+#mv15:hover #cs15 {
+  visibility: visible;
+  color: black;
+}
+</style>
+
+<header class="text-center py-5 mb-0">
+  <div class="container">
+    <h1 class="font-weight-light">NOT YOUR RECOMMENDATIONS:</h1>
+  </div>
+  <div class="row justify-content-center">
+      <div class="col-3">
+            <a href="/profile/user"><button type="button" class="btn btn-dark btn-lg btn-block">Profile</button></a>
+      </div>
+      <div class="col-3">
+          <a href="/"><button type="button" class="btn btn-warning btn-lg btn-block">Reset Recommendations</button></a>
+     </div>
+  </div>
+</header>
+{% endblock %}
+
+
+{% block content %}
+<script type="text/javascript">
+    var movies = {{ movies | safe }};
+    var list1 = {{ list1 | safe }};
+    var list2 = {{ list2 | safe }};
+    var list3 = {{ list3 | safe }};
+    var dist1 = {{ dist1 | safe }};
+    var dist1 = {{ dist2 | safe }};
+    var dist1 = {{ dist3 | safe }};
+</script>
+
+<div class="container">
+        <div class="row justify-content-center" >
+          <h2>Because you chose {{movies[0]}}:</h2>
+        </div>
+        <div class="row justify-content-center" >
+             <!-- Col 1 -->
+            <div class="col mb-4" id="mv1">
+              <a href="/info/{{list1[0][1]}}" target="_blank">
+                <div class="card border-0 shadow" id="tiles15" title='{{list1[0][0]}}, with a distance of {{dist1[0]}}'>
+                  <img src="https://movie-posters-project3.s3.us-east-2.amazonaws.com/images/{{list1[0][1]}}.jpg" class="img-fluid" alt="Image not found" onerror="this.onerror=null;this.src='static/images/notfound.jpg';">
+                  <div class="card-body text-center">
+                    <h5 class="card-title mb-0">{{list1[0][0]}}</h5>
+                  </div>
+                </div>
+                </a>
+                <div id="cs1">{{list1[0][0]}}, with a distance of {{dist1[0]}}</div>
+              </div>
+               <!-- Col 2 -->
+              <div class="col mb-4" id="mv2">
+                <a href="/info/{{list1[1][1]}}" target="_blank">
+                <div class="card border-0 shadow" id="tiles15" title='{{list1[1][0]}}, with a distance of {{dist1[1]}}'>
+                  <img src="https://movie-posters-project3.s3.us-east-2.amazonaws.com/images/{{list1[1][1]}}.jpg" class="img-fluid" alt="Image not found" onerror="this.onerror=null;this.src='static/images/notfound.jpg';">
+                  <div class="card-body text-center">
+                    <h5 class="card-title mb-0">{{list1[1][0]}}</h5>
+                  </div>
+               </div>
+              </a>
+              <div id="cs2">{{list1[1][0]}}, with a distance of {{dist1[1]}}</div>
+              </div>
+              <!-- Col 3 -->
+              <div class="col mb-4" id="mv3">
+                <a href="/info/{{list1[2][1]}}" target="_blank">
+                <div class="card border-0 shadow" id="tiles15" title='{{list1[2][0]}}, with a distance of {{dist1[2]}}'>
+                  <img src="https://movie-posters-project3.s3.us-east-2.amazonaws.com/images/{{list1[2][1]}}.jpg" class="img-fluid" alt="Image not found" onerror="this.onerror=null;this.src='static/images/notfound.jpg';">
+                  <div class="card-body text-center">
+                    <h5 class="card-title mb-0">{{list1[2][0]}}</h5>
+                  </div>
+                </div>
+              </a>
+              <div id="cs3">{{list1[2][0]}}, with a distance of {{dist1[2]}}</div>
+              </div>
+              <!-- Col 4 -->
+              <div class="col mb-4" id="mv4">
+                <a href="/info/{{list1[3][1]}}" target="_blank">
+                <div class="card border-0 shadow" id="tiles15" title='{{list1[3][0]}}, with a distance of {{dist1[3]}}'>
+                  <img src="https://movie-posters-project3.s3.us-east-2.amazonaws.com/images/{{list1[3][1]}}.jpg" class="img-fluid" alt="Image not found" onerror="this.onerror=null;this.src='static/images/notfound.jpg';">
+                  <div class="card-body text-center">
+                    <h5 class="card-title mb-0">{{list1[3][0]}}</h5>
+                  </div>
+                </div>
+              </a>
+              <div id="cs4">{{list1[3][0]}}, with a distance of {{dist1[3]}}</div>
+              </div>
+              <!-- Col 5 -->
+              <div class="col mb-4" id="mv5">
+                <a href="/info/{{list1[4][1]}}" target="_blank">
+                <div class="card border-0 shadow" id="tiles15" title='{{list1[4][0]}}, with a distance of {{dist1[4]}}'>
+                  <img src="https://movie-posters-project3.s3.us-east-2.amazonaws.com/images/{{list1[4][1]}}.jpg" class="img-fluid" alt="Image not found" onerror="this.onerror=null;this.src='static/images/notfound.jpg';">
+                  <div class="card-body text-center">
+                    <h5 class="card-title mb-0">{{list1[4][0]}}</h5>
+                  </div>
+                </div>
+              </a>
+              <div id="cs5">{{list1[4][0]}}, with a distance of {{dist1[4]}}</div>
+              </div>
+        </div>
+        <div class="row justify-content-center" >
+            <h2>Because you chose {{movies[1]}}:</h2>
+        </div>
+        <div class="row justify-content-center" >
+               <!-- Col 6 -->
+              <div class="col mb-4" id="mv6">
+                <a href="/info/{{list2[0][1]}}" target="_blank">
+                <div class="card border-0 shadow" id="tiles15" title='{{list2[0][0]}}, with a distance of {{dist2[0]}}'>
+                  <img src="https://movie-posters-project3.s3.us-east-2.amazonaws.com/images/{{list2[0][1]}}.jpg" class="img-fluid" alt="Image not found" onerror="this.onerror=null;this.src='static/images/notfound.jpg';">
+                  <div class="card-body text-center">
+                    <h5 class="card-title mb-0">{{list2[0][0]}}</h5>
+                  </div>
+                </div>
+              </a>
+              <div id="cs6">{{list2[0][0]}}, with a distance of {{dist2[0]}}</div>
+              </div>
+              <!-- Col 7 -->
+              <div class="col mb-4" id="mv7">
+                <a href="/info/{{list2[1][1]}}" target="_blank">
+                <div class="card border-0 shadow" id="tiles15" title='{{list2[1][0]}}, with a distance of {{dist2[1]}}'>
+                  <img src="https://movie-posters-project3.s3.us-east-2.amazonaws.com/images/{{list2[1][1]}}.jpg" class="img-fluid" alt="Image not found" onerror="this.onerror=null;this.src='static/images/notfound.jpg';">
+                  <div class="card-body text-center">
+                    <h5 class="card-title mb-0">{{list2[1][0]}}</h5>
+                  </div>
+                </div>
+              </a>
+              <div id="cs7">{{list2[1][0]}}, with a distance of {{dist2[1]}}</div>
+              </div>
+              <!-- Col 8 -->
+              <div class="col mb-4" id="mv8">
+                <a href="/info/{{list2[2][1]}}" target="_blank">
+                <div class="card border-0 shadow" id="tiles15" title='{{list2[2][0]}}, with a distance of {{dist2[2]}}'>
+                  <img src="https://movie-posters-project3.s3.us-east-2.amazonaws.com/images/{{list2[2][1]}}.jpg" class="img-fluid" alt="Image not found" onerror="this.onerror=null;this.src='static/images/notfound.jpg';">
+                  <div class="card-body text-center">
+                    <h5 class="card-title mb-0">{{list2[2][0]}}</h5>
+                  </div>
+                </div>
+              </a>
+              <div id="cs8">{{list2[2][0]}}, with a distance of {{dist2[2]}}</div>
+              </div>
+              <!-- Col 9 -->
+              <div class="col mb-4" id="mv9">
+                <a href="/info/{{list2[3][1]}}" target="_blank">
+                <div class="card border-0 shadow" id="tiles15" title='{{list2[3][0]}}, with a distance of {{dist2[3]}}'>
+                  <img src="https://movie-posters-project3.s3.us-east-2.amazonaws.com/images/{{list2[3][1]}}.jpg" class="img-fluid" alt="Image not found" onerror="this.onerror=null;this.src='static/images/notfound.jpg';">
+                  <div class="card-body text-center">
+                    <h5 class="card-title mb-0">{{list2[3][0]}}</h5>
+                  </div>
+                </div>
+              </a>
+              <div id="cs9">{{list2[3][0]}}, with a distance of {{dist2[3]}}</div>
+              </div>
+              <!-- Col 10 -->
+              <div class="col mb-4" id="mv10">
+                <a href="/info/{{list2[4][1]}}" target="_blank">
+                <div class="card border-0 shadow" id="tiles15" title='{{list2[4][0]}}, with a distance of {{dist2[4]}}'>
+                  <img src="https://movie-posters-project3.s3.us-east-2.amazonaws.com/images/{{list2[4][1]}}.jpg" class="img-fluid" alt="Image not found" onerror="this.onerror=null;this.src='static/images/notfound.jpg';">
+                  <div class="card-body text-center">
+                    <h5 class="card-title mb-0">{{list2[4][0]}}</h5>
+                  </div>
+                </div>
+              </a>
+              <div id="cs10">{{list2[4][0]}}, with a distance of {{dist2[4]}}</div>
+              </div>
+        </div>
+              <!-- Col 11 -->
+        <div class="row justify-content-center" >
+            <h2>Because you chose {{movies[2]}}:</h2>
+        </div>
+        <div class="row justify-content-center" >
+              <div class="col mb-4" id="mv11">
+                <a href="/info/{{list3[0][1]}}" target="_blank">
+                <div class="card border-0 shadow" id="tiles15" title='{{list3[0][0]}}, with a distance of {{dist3[0]}}'>
+                  <img src="https://movie-posters-project3.s3.us-east-2.amazonaws.com/images/{{list3[0][1]}}.jpg" class="img-fluid" alt="Image not found" onerror="this.onerror=null;this.src='static/images/notfound.jpg';">
+                  <div class="card-body text-center">
+                    <h5 class="card-title mb-0">{{list3[0][0]}}</h5>
+                  </div>
+                </div>
+              </a>
+              <div id="cs11">{{list3[0][0]}}, with a distance of {{dist3[0]}}</div>
+              </div>
+              <!-- Col 12 -->
+              <div class="col mb-4" id="mv12">
+                <a href="/info/{{list3[1][1]}}" target="_blank">
+                <div class="card border-0 shadow" id="tiles15" title='{{list3[1][0]}}, with a distance of {{dist3[1]}}'>
+                  <img src="https://movie-posters-project3.s3.us-east-2.amazonaws.com/images/{{list3[1][1]}}.jpg" class="img-fluid" alt="Image not found" onerror="this.onerror=null;this.src='static/images/notfound.jpg';">
+                  <div class="card-body text-center">
+                    <h5 class="card-title mb-0">{{list3[1][0]}}</h5>
+                  </div>
+                </div>
+              </a>
+              <div id="cs12">{{list3[1][0]}}, with a distance of {{dist3[1]}}</div>
+              </div>
+              <!-- Col 13 -->
+              <div class="col mb-4" id="mv13">
+                <a href="/info/{{list3[2][1]}}" target="_blank">
+                <div class="card border-0 shadow" id="tiles15" title='{{list3[2][0]}}, with a distance of {{dist3[2]}}'>
+                  <img src="https://movie-posters-project3.s3.us-east-2.amazonaws.com/images/{{list3[2][1]}}.jpg" class="img-fluid" alt="Image not found" onerror="this.onerror=null;this.src='static/images/notfound.jpg';">
+                  <div class="card-body text-center">
+                    <h5 class="card-title mb-0">{{list3[2][0]}}</h5>
+                  </div>
+                </div>
+              </a>
+              <div id="cs13">{{list3[2][0]}}, with a distance of {{dist3[2]}}</div>
+              </div>
+              <!-- Col 14 -->
+              <div class="col mb-4" id="mv14">
+                <a href="/info/{{list3[3][1]}}" target="_blank">
+                <div class="card border-0 shadow" id="tiles15" title='{{list3[3][0]}}, with a distance of {{dist3[3]}}'>
+                  <img src="https://movie-posters-project3.s3.us-east-2.amazonaws.com/images/{{list3[3][1]}}.jpg" class="img-fluid" alt="Image not found" onerror="this.onerror=null;this.src='static/images/notfound.jpg';">
+                  <div class="card-body text-center">
+                    <h5 class="card-title mb-0">{{list3[3][0]}}</h5>
+                  </div>
+                </div>
+              </a>
+              <div id="cs14">{{list3[3][0]}}, with a distance of {{dist3[3]}}</div>
+              </div>
+              <!-- Col 15 -->
+              <div class="col mb-4" id="mv15">
+                <a href="/info/{{list3[4][1]}}" target="_blank">
+                <div class="card border-0 shadow" id="tiles15" title='{{list3[4][0]}}, with a distance of {{dist3[4]}}'>
+                  <img src="https://movie-posters-project3.s3.us-east-2.amazonaws.com/images/{{list3[4][1]}}.jpg" class="img-fluid" alt="Image not found" onerror="this.onerror=null;this.src='static/images/notfound.jpg';">
+                  <div class="card-body text-center">
+                    <h5 class="card-title mb-0">{{list3[4][0]}}</h5>
+                  </div>
+                </div>
+              </a>
+              <div id="cs15">{{list3[4][0]}}, with a distance of {{dist3[4]}}</div>
+              </div>
+      
+          </div>
+        </div>
+
+{% endblock %}
