@@ -4,10 +4,26 @@
 
 <script type="text/javascript">
     var movie_id = {{ movie_id | safe }};
+    var title = {{ title | safe }};
+    var overview = {{ overview | safe }};
+    var crew = {{ crew | safe }};
+    var cast = {{ cast | safe }};
+    var genres = {{ genres | safe }};
+    var language = {{ language | safe }};
+    var runtime = {{ runtime | safe }};
+    var budget = {{ budget | safe }};
+    var revenue = {{ revenue | safe }};
   </script>
 
-  {{movie_id}}
-
   <a class="btn btn-primary" href="/watchlist/{{movie_id}}" role="button">Add movie to watchlist</a>
+  {{title}}
+  {{overview}}
+  {{crew}}
+  {{cast}}
+  {{genres}}
+  {{language}}
+  {{runtime}}
+  {{budget}}
+  {{revenue}}
 
 {% endblock %}
