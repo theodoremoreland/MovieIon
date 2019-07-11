@@ -1,4 +1,5 @@
 import random
+import ast
 import pg8000
 from flask import (Flask, render_template, request, redirect, session, flash, jsonify)
 from config import (user, password, host, port, database, secret_key)
@@ -158,9 +159,44 @@ def choices():
 
 @application.route('/info/<movie_id>')
 def info(movie_id):
-    movie_id = movie_id
+    try:
+        connection = pg8000.connect(user=user,
+                                    password=password,
+                                    host=host,
+                                    port=int(port),
+                                    database=database)
+        
+        cursor = connection.cursor()
 
-    return render_template("info.html", movie_id=movie_id)
+        # Print PostgreSQL version
+        cursor.execute("SELECT version();")
+        record = cursor.fetchone()
+        print("You are connected to - ", record, "\n")
+
+    except (Exception) as error:
+            print ("Error while connecting to PostgreSQL database", error)
+            connection = pg8000.connect(user = user,
+                                    password = password,
+                                    host = host,
+                                    port = int(port),
+                                    database = database)
+
+            cursor = connection.cursor()
+    cursor.execute(f"SELECT * FROM metadata WHERE id = '{movie_id}';")
+    metadata = cursor.fetchone()
+    print(metadata)
+    _id = metadata[0]
+    title = metadata[1]
+    overview = metadata[2]
+    crew = ast.literal_eval(metadata[3]) #list of tuples
+    cast = ast.literal_eval(metadata[4]) #list
+    genres = ast.literal_eval(metadata[5]) #list
+    language = metadata[6]
+    runtime = metadata[7]
+    budget = metadata[8]
+    revenue = metadata[9]
+
+    return render_template("info.html", movie_id=movie_id, title=title, overview=overview, crew=crew, cast=cast, genres=genres, language=language, runtime=runtime, budget=budget, revenue=revenue)
 
 @application.route('/logout')
 def logout():
