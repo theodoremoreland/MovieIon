@@ -324,6 +324,9 @@ def remove(movie):
             print ("Error while querying database", error)
         return redirect(f'/profile/{username}')
 
+@application.route('/about')
+def about():
+    return render_template("about.html")
 
 
 
