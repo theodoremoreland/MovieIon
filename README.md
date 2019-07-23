@@ -1,7 +1,7 @@
 
 
 # Introduction
-Movie Matchmaker is a group project for Washington Univeristy's Data Analytics Boot Camp. For this project, we created a web app that uses a machine learning model to recommend movies. For a short while, the app will be available online at www.movieion.com. Below is an overview and demostration of the app.
+Movie Matchmaker is a group project for Washington Univeristy's Data Analytics Boot Camp. For this project, we created a web app that uses a machine learning model to recommend movies. For a short while, the app will be available online at www.movieion.com. Below is an overview and demonstration of the app.
 
 
 # Technologies used:
