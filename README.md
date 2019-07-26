@@ -14,6 +14,15 @@ Movie Matchmaker is a group project for Washington Univeristy's Data Analytics B
    - Backend (Python-Flask)
    - Frontend (JavaScript, Bootstrap 4, HTML5/CSS3, jQuery, ajax)
    - Web Host (AWS)
+   
+# Unforeseen Challenges:
+
+   - Learning a new database management system  (PostgreSQL & pgAdmin)
+   - Certain libraries were incompatible with web host, namely psycopg
+   - Data formatting required new libraries to properly clean and use
+   - Machine learning model required more RAM than standard web app, therefore sustainability, price, and processing speed were issues
+   - Bootstrap library for UI required ajax and jQuery to properly pass data between frontend and backend
+   - Bootstrap library was transforming data, therefore data had to be converted once passed to backend
 
 # Demonstration:
 
@@ -42,15 +51,6 @@ Movie Matchmaker is a group project for Washington Univeristy's Data Analytics B
 <img src="static/images2/step23.PNG" width="900">
 <img src="static/images2/step24.PNG" width="900">
 
-
-# Challenges:
-
-Learning a new database management system  (PostgreSQL & pgAdmin)
-Certain libraries were incompatible with web host (psycorpg)
-Data formatting required new libraries to properly clean and use
-Machine learning model required more RAM than standard web app, therefore sustainability, price, and processing speed were issues
-Bootstrap library for UI required ajax and jQuery to properly pass data between frontend and backend
-Bootstrap library was formatting data
 
 
 
