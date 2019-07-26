@@ -16,7 +16,31 @@ Movie Matchmaker is a group project for Washington Univeristy's Data Analytics B
    - Web Host (AWS)
 
 # Demonstration:
+
 <img src="static/images2/step1.PNG" width="900">
+<img src="static/images2/step2.PNG" width="900">
+<img src="static/images2/step3.PNG" width="900">
+<img src="static/images2/step4.PNG" width="900">
+<img src="static/images2/step5.PNG" width="900">
+<img src="static/images2/step6.PNG" width="900">
+<img src="static/images2/step7.PNG" width="900">
+<img src="static/images2/step8.PNG" width="900">
+<img src="static/images2/step9.PNG" width="900">
+<img src="static/images2/step10.PNG" width="900">
+<img src="static/images2/step11.PNG" width="900">
+<img src="static/images2/step12.PNG" width="900">
+<img src="static/images2/step13.PNG" width="900">
+<img src="static/images2/step14.PNG" width="900">
+<img src="static/images2/step15.PNG" width="900">
+<img src="static/images2/step16.PNG" width="900">
+<img src="static/images2/step17.PNG" width="900">
+<img src="static/images2/step18.PNG" width="900">
+<img src="static/images2/step19.PNG" width="900">
+<img src="static/images2/step20.PNG" width="900">
+<img src="static/images2/step21.PNG" width="900">
+<img src="static/images2/step22.PNG" width="900">
+<img src="static/images2/step23.PNG" width="900">
+<img src="static/images2/step24.PNG" width="900">
 
 
 # Challenges:
