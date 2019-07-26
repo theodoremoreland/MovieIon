@@ -3,6 +3,13 @@
 # Introduction
 Movie Matchmaker is a group project for Washington Univeristy's Data Analytics Boot Camp. For this project, we created a web app that uses a machine learning model to recommend movies. For a short while, the app will be available online at www.movieion.com. Below is an overview and demonstration of the app.
 
+# Description
+Users submit three movies then the app will give 5 recommendations for each movie submitted. Users can toggle/invert the webpage's background image which will tell the app to either recommend movies that the user will likely enjoy or to recommend movies that they will probably dislike. The default background image will return likeable recommendations and the inverted image will return unlikeable recommendations.
+
+Upon recieving recommendations, users can hover over a movie poster to view its cosine distance. Users can also click on a movie poster to view information about the movie.
+
+In addition to providing recommendations, the app also allows users to save movies to a watchlist after viewing information about a movie. Currently, the watchlist doesn't have third party functionality (e.g. integrating to Netflix, Hulu, etc), but it is a potential update.
+
 
 # Technologies used:
 
