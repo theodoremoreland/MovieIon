@@ -21,13 +21,16 @@ In addition to providing recommendations, the app also allows users to save movi
    - Web Host (AWS)
    
 # Unforeseen Challenges:
-
-   - Learning a new database management system  (PostgreSQL & pgAdmin)
-   - Certain libraries were incompatible with web host, namely psycopg
-   - Data formatting required new libraries to properly clean and use
-   - Machine learning model required more RAM than standard web app, therefore sustainability, price, and processing speed were issues
-   - Bootstrap library for UI required ajax and jQuery to properly pass data between frontend and backend
-   - Bootstrap library was transforming data, therefore data had to be converted once passed to backend
+   - Certain libraries were incompatible with web host, namely psycopg2.
+   Solution: Luckily found an alternative (pg8000)
+   - A dataset required a new library to properly clean and use.
+   Solution: import ast
+   - Machine learning model required more RAM than standard web app, therefore sustainability, price, and processing speed were issues.
+   Solution: Limit certain features and upgrade server, but ony keep website live for a limited time.
+   - Bootstrap library was not compatible with familiar Flask and JavaScript techniques.
+   Solution: Learn minimal ajax and JQuery
+   - Bootstrap library was transforming data.
+   Solution: Identify conversion pattern then re-convert affected data.
 
 # DEMONSTRATION:
 # Home Screen
