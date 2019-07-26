@@ -21,7 +21,7 @@ In addition to providing recommendations, the app also allows users to save movi
    - Web Host (AWS)
    
 # Unforeseen Challenges:
-   - Certain libraries were incompatible with web host, namely psycopg2.
+   - Certain libraries were incompatible with web host, namely psycopg2. <br/>
    Solution: Luckily found an alternative (pg8000)
    - A dataset required a new library to properly clean and use.
    Solution: import ast
