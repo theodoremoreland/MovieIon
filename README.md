@@ -16,7 +16,8 @@ Movie Matchmaker is a group project for Washington Univeristy's Data Analytics B
    - Web Host (AWS)
 
 # Demonstration:
-...coming soon
+<img src="static/images2/step1.PNG" width="900">
+
 
 # Challenges:
 
