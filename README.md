@@ -19,18 +19,6 @@ In addition to providing recommendations, the app also allows users to save movi
    - Backend (Python-Flask)
    - Frontend (JavaScript, Bootstrap 4, HTML5/CSS3, jQuery, ajax)
    - Web Host (AWS)
-   
-# Unforeseen Challenges:
-   - Certain libraries were incompatible with web host, namely psycopg2. <br/>
-   Solution: Luckily found an alternative (pg8000)
-   - A dataset required a new library to properly clean and use. <br/>
-   Solution: import ast
-   - Machine learning model required more RAM than standard web app, therefore sustainability, price, and processing speed were issues. <br/>
-   Solution: Limit certain features and upgrade server, but ony keep website live for a limited time.
-   - Bootstrap library was not compatible with familiar Flask and JavaScript techniques. <br/>
-   Solution: Learn minimal ajax and JQuery
-   - Bootstrap library was transforming data. <br/>
-   Solution: Identify conversion pattern then re-convert affected data.
 
 # DEMONSTRATION:
 # Home Screen
