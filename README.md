@@ -20,7 +20,8 @@ In addition to providing recommendations, the app also allows users to save movi
    - Frontend (JavaScript, Bootstrap 4, HTML5/CSS3, jQuery, ajax)
    - Web Host (AWS)
 
-# DEMONSTRATION:
+# DEMONSTRATION (<a href="https://www.youtube.com/watch?v=q6B4qf9lTgw" target="_blank">click here for video</a>):
+
 # Home Screen
 <img src="static/images2/step1.PNG" width="900">
 
