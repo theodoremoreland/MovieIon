@@ -56,8 +56,7 @@ def index():
         all_movies = cursor.fetchall()
         id_index["title"] = [x[0] for x in all_movies]
         id_index["id"] = [x[1] for x in all_movies]
-        # print(id_index["title"])
-        # print(id_index["id"])
+
     except (Exception) as error:
         print ("Error while selecting rows(title, movie_id)", error)  
     return render_template("index.html", all_movies=all_movies)
@@ -143,7 +142,7 @@ def choices():
                     if movie in title_l:
                         movie_id = id_index["id"][i]
                         eval("list" + j).append([title, movie_id])
-        print(list3, dist3)
+
         return jsonify({'data': render_template('recommended.html',
                                                  list1=list1, 
                                                  list2=list2,
@@ -189,7 +188,8 @@ def info(movie_id):
         movie_id = cursor.fetchone()[0]
     cursor.execute(f"SELECT * FROM metadata WHERE id = '{movie_id}';")
     metadata = cursor.fetchone()
-    #print(metadata)
+
+
     _id = metadata[0]
     title = metadata[1]
     overview = metadata[2]
@@ -313,6 +313,7 @@ def watchlist(movie_id):
         print ("Error while querying database", error)
         flash("There was an error when attempting to add to watchlist!")
         return redirect(f"/info/{movie_id}")
+
 
 @application.route('/remove/<movie>', methods=['POST', 'GET'])
 def remove(movie):
