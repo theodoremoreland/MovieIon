@@ -66,14 +66,6 @@ def make_recommendation(model_knn, data, fav_movie, mapper, n_recommendations):
     return movies, distance
 
 
-# my_favorite= "Ghostbust"
-# make_recommendation(
-#     model_knn=model_knn,
-#     data=movie_matrix,
-#     fav_movie= my_favorite,
-#     mapper=movie_title_index,
-#     n_recommendations=10)
-
 def worst_recommendations(model_knn, data, fav_movie, mapper, n_recommendations):
     # Choose a movie
     model_knn.fit(data)
@@ -99,17 +91,3 @@ def worst_recommendations(model_knn, data, fav_movie, mapper, n_recommendations)
         movies.append(reverse_mapper[idx])
         distance.append(dist)
     return movies, distance
-
-
-
-#%%
-# my_favorite= 'Toy Story 2'
-
-# worst_recommendations(
-#     model_knn=model_knn,
-#     data=movie_matrix,
-#     fav_movie= my_favorite,
-#     mapper=movie_title_index,
-#     n_recommendations=100)
-
-
