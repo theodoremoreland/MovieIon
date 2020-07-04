@@ -1,25 +1,23 @@
-import random
+# Native library
 import ast
+import random
+
+# Third party
 import pg8000
 from flask import (Flask, render_template, request, redirect, session, flash, jsonify)
-from config import (user, password, host, port, database, secret_key)
-from model import (make_recommendation, worst_recommendations)
-from model import (model_knn, movie_matrix, movie_title_index)
 
+# Custom
+from scripts.model import (make_recommendation, worst_recommendations)
+from scripts.model import (model_knn, movie_matrix, movie_title_index)
+from scripts.config import (user, password, host, port, database, secret_key)
 
 
 application = Flask(__name__)
-# Remember to change this when deploying
 application.config['DEBUG'] = True
 application.secret_key = secret_key
 
 id_index = {"id": [], "title": []}
 
-# @application.before_request
-# def require_login():
-#     allowed_routes = ['login', 'signup', "index", "instructions"]
-#     if request.endpoint not in allowed_routes and 'username' not in session:
-#         return redirect('/login')
 
 @application.route("/instructions")
 def instructions():
@@ -115,7 +113,7 @@ def choices():
         dist3 = []
 
         print(recommendations1)
-        #for each set of recommedations (3), pick a random recommendation and append to "mix" list
+        # For each set of recommedations (3), pick a random recommendation and append to "mix" list
         for i in range(3):
             j = str(i + 1)
             recommendations = eval("recommendations" + j)
@@ -156,6 +154,7 @@ def choices():
                                                  movies=movies)})
     
     return redirect("/")
+
 
 @application.route('/info/<movie_id>')
 def info(movie_id):
@@ -204,6 +203,7 @@ def info(movie_id):
 
     return render_template("info.html", movie_id=movie_id, title=title, overview=overview, crew=crew, cast=cast, genres=genres, language=language, runtime=runtime, budget=budget, revenue=revenue)
 
+
 @application.route('/logout')
 def logout():
     if 'username' in session:
@@ -213,6 +213,7 @@ def logout():
     else:
         flash("You need to log in before you can log out")
     return redirect("/login")
+
 
 @application.route('/login', methods=['POST', 'GET'])
 def login():
@@ -255,6 +256,7 @@ def login():
             flash('invalid username')
     return render_template('login.html')
 
+
 @application.route('/profile/<username>', methods=['POST', 'GET'])
 def profile(username):
     if 'username' in session:
@@ -279,6 +281,7 @@ def profile(username):
         print ("Error while querying database", error)
 
     return render_template("profile.html", watchlist=watchlist, username=username)
+
 
 @application.route('/watchlist/<movie_id>', methods=['POST', 'GET'])
 def watchlist(movie_id):

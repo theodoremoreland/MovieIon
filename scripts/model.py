@@ -11,9 +11,9 @@ from fuzzywuzzy import fuzz
 
 from joblib import load
 
-model_knn = load('knn_model.joblib') 
-movie_matrix = load("movie_matrix.joblib")
-movie_title_index = load("movie_title_index.joblib")
+model_knn = load('models/knn_model.joblib') 
+movie_matrix = load("models/movie_matrix.joblib")
+movie_title_index = load("models/movie_title_index.joblib")
 
 from sklearn.neighbors import NearestNeighbors
 model_knn = NearestNeighbors(metric='cosine', algorithm='brute', n_neighbors=20, n_jobs=-1)
