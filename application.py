@@ -278,9 +278,6 @@ def recommend_positive_movies():
                 movie = movie.replace(",", "").lower()
                 for i, title in enumerate(id_index["title"]):
                     title_l = title.lower()
-                    #if movie[-5:] in title and movie[:4] in title:
-                        # print ("Comparing '%r' with '%r'" % (movie, title))
-                        # print(movie == title)
                     if movie in title_l:
                         movie_id = id_index["id"][i]
                         eval("list" + j).append([title, movie_id])
@@ -303,7 +300,6 @@ def recommend_negative_movies():
     global cursor, id_index
 
     
-    #(title, dist)
     recommendations1 = []
     recommendations2 = []
     recommendations3 = []
@@ -374,9 +370,6 @@ def recommend_negative_movies():
                 movie = movie.replace(",", "").lower()
                 for i, title in enumerate(id_index["title"]):
                     title_l = title.lower()
-                    #if movie[-5:] in title and movie[:4] in title:
-                        # print ("Comparing '%r' with '%r'" % (movie, title))
-                        # print(movie == title)
                     if movie in title_l:
                         movie_id = id_index["id"][i]
                         eval("list" + j).append([title, movie_id])
