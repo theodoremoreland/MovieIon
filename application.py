@@ -18,7 +18,7 @@ application.secret_key = secret_key
 
 
 
-@application.before_request
+@application.before_first_request
 def setup():
 
     global cursor, id_index
