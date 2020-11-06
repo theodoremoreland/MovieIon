@@ -1,5 +1,5 @@
 # Introduction:
-Movie Ion is a group project for Washington Univeristy's Data Analytics Boot Camp. For this project, we created a web application that uses a machine learning model to recommend movies. For a short while, the app will be available online at www.movieion.com. Below is an overview and demonstration of the application.
+Movie Ion is a group project for Washington Univeristy's Data Analytics Boot Camp. For this project, we created a web application that uses a machine learning model to recommend movies. Below is an overview and demonstration of the application.
 
 # Description:
 Users submit three movies then the app will give 5 recommendations for each movie submitted. Prior to movie submission, users can toggle/invert the webpage's background image which will tell the app to either recommend movies that the user will likely enjoy or to recommend movies that they will probably dislike. The default background image will return likeable recommendations and the inverted image will return unlikeable recommendations.
@@ -10,10 +10,8 @@ In addition to providing recommendations, the app also allows users to save movi
 
 
 # Technologies used:
-
-   - IDEs (VS Code and Jupyter Notebook)
    - Web Scraping (Python-Splinter)
-   - Data Wrangling (Pandas, pgAdmin)
+   - Data Wrangling (Pandas, SQL)
    - Machine Learning (sklearn, scipy, and joblib)
    - Storage (PostgreSQL and S3 Bucket)
    - Backend (Python-Flask)
