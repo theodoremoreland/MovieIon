@@ -4,30 +4,15 @@ import random
 
 # Third party
 import pg8000
-from flask import (
-    Flask
-    , render_template
-    , request
-    , redirect
-    , session
-    , flash
-    , jsonify
-)
+from flask import Flask, render_template, request, redirect, session, flash, jsonify
 
 # Custom
-from scripts.model import (make_recommendation, worst_recommendations)
-from scripts.model import (model_knn, movie_matrix, movie_title_index)
-from scripts.config import (
-    user
-    , password
-    , host
-    , port
-    , database
-    , secret_key
-)
+from scripts.model import make_recommendation, worst_recommendations
+from scripts.model import model_knn, movie_matrix, movie_title_index
+from scripts.config import user, password, host, port, database, secret_key
 
 application = Flask(__name__)
-application.config['DEBUG'] = True
+application.config["DEBUG"] = True
 application.secret_key = secret_key
 
 
@@ -38,11 +23,9 @@ def setup():
     id_index = {"id": [], "title": []}
 
     try:
-        connection = pg8000.connect(user=user,
-                                    password=password,
-                                    host=host,
-                                    port=int(port),
-                                    database=database)
+        connection = pg8000.connect(
+            user=user, password=password, host=host, port=int(port), database=database
+        )
         cursor = connection.cursor()
 
         # Print PostgreSQL version
@@ -50,29 +33,27 @@ def setup():
         record = cursor.fetchone()
         print("You are connected to - ", record, "\n")
 
-    except (Exception) as error:
-        print ("Error while connecting to PostgreSQL database", error)
-        connection = pg8000.connect(user = user,
-                                password = password,
-                                host = host,
-                                port = int(port),
-                                database = database)
+    except Exception as error:
+        print("Error while connecting to PostgreSQL database", error)
+        connection = pg8000.connect(
+            user=user, password=password, host=host, port=int(port), database=database
+        )
 
         cursor = connection.cursor()
 
 
-@application.route("/", methods=['POST', 'GET'])
+@application.route("/", methods=["POST", "GET"])
 def index():
     global cursor, id_index
 
     try:
-        cursor.execute('SELECT title, movie_id FROM movie_list;')
+        cursor.execute("SELECT title, movie_id FROM movie_list;")
         all_movies = cursor.fetchall()
         id_index["title"] = [x[0] for x in all_movies]
         id_index["id"] = [x[1] for x in all_movies]
 
-    except (Exception) as error:
-        print ("Error while selecting rows(title, movie_id)", error)  
+    except Exception as error:
+        print("Error while selecting rows(title, movie_id)", error)
 
     return render_template("index.html", all_movies=all_movies)
 
@@ -82,40 +63,42 @@ def instructions():
     return render_template("instructions.html")
 
 
-@application.route('/about')
+@application.route("/about")
 def about():
     return render_template("about.html")
 
 
-@application.route('/login', methods=['POST', 'GET'])
+@application.route("/login", methods=["POST", "GET"])
 def login():
     global cursor
 
-    if request.method == 'POST':
-        username = request.form['username']
-        cursor.execute('BEGIN TRANSACTION;')
-        cursor.execute(f"SELECT user_id, username, watchlist FROM users WHERE username = '{username}';") # postgres can only interpret single quoted strings
+    if request.method == "POST":
+        username = request.form["username"]
+        cursor.execute("BEGIN TRANSACTION;")
+        cursor.execute(
+            f"SELECT user_id, username, watchlist FROM users WHERE username = '{username}';"
+        )  # postgres can only interpret single quoted strings
         user_info = cursor.fetchone()
         print(user_info)
 
         if user_info:
             if user_info[1] == username:
-                session['username'] = username
+                session["username"] = username
 
                 return redirect(f"/profile/{username}")
             else:
-                flash('invalid username')
+                flash("invalid username")
         else:
-            flash('invalid username')
+            flash("invalid username")
 
-    return render_template('login.html')
+    return render_template("login.html")
 
 
-@application.route('/logout')
+@application.route("/logout")
 def logout():
-    if 'username' in session:
-        username = session['username']
-        del session['username']
+    if "username" in session:
+        username = session["username"]
+        del session["username"]
         flash(f"{username} is now logged out")
     else:
         flash("You need to log in before you can log out")
@@ -123,19 +106,21 @@ def logout():
     return redirect("/login")
 
 
-@application.route('/profile/<username>', methods=['POST', 'GET'])
+@application.route("/profile/<username>", methods=["POST", "GET"])
 def render_profile(username):
     global cursor
 
-    if 'username' in session:
+    if "username" in session:
         if username == "user":
-            username = session['username']
+            username = session["username"]
     else:
-        return redirect('/login')
+        return redirect("/login")
 
     try:
         cursor.execute(f"SELECT watchlist FROM users WHERE username = '{username}';")
-        watchlist = cursor.fetchone() # Returns 2d array wherein first and singular element contains actual data.
+        watchlist = (
+            cursor.fetchone()
+        )  # Returns 2d array wherein first and singular element contains actual data.
         movieIDs = []
 
         for movie in watchlist[0]:
@@ -143,37 +128,53 @@ def render_profile(username):
             movieID = cursor.fetchone()[0]
             movieIDs.append(movieID)
 
-        return render_template("profile.html", movieIDs=movieIDs, watchlist=watchlist, username=username)
+        return render_template(
+            "profile.html", movieIDs=movieIDs, watchlist=watchlist, username=username
+        )
 
-    except (Exception) as error:
-        print ("Error while querying database", error)
+    except Exception as error:
+        print("Error while querying database", error)
 
-    return render_template("profile.html", movieIDs=[[]], watchlist=[[]], username=username) # 2d arrays simulate a null return from queries
+    return render_template(
+        "profile.html", movieIDs=[[]], watchlist=[[]], username=username
+    )  # 2d arrays simulate a null return from queries
 
 
-@application.route('/info/<movie_id>')
+@application.route("/info/<movie_id>")
 def display_movie_info(movie_id):
     global cursor
 
-    cursor.execute('BEGIN TRANSACTION;')
+    cursor.execute("BEGIN TRANSACTION;")
     cursor.execute(f"SELECT * FROM metadata WHERE id = '{movie_id}';")
     metadata = cursor.fetchone()
 
     _id = metadata[0]
     title = metadata[1]
     overview = metadata[2]
-    crew = ast.literal_eval(metadata[3]) #list of tuples
-    cast = ast.literal_eval(metadata[4]) #list
-    genres = ast.literal_eval(metadata[5]) #list
+    crew = ast.literal_eval(metadata[3])  # list of tuples
+    cast = ast.literal_eval(metadata[4])  # list
+    genres = ast.literal_eval(metadata[5])  # list
     language = metadata[6]
     runtime = metadata[7]
     budget = metadata[8]
     revenue = metadata[9]
 
-    return render_template("info.html", movie_id=movie_id, title=title, overview=overview, crew=crew, cast=cast, genres=genres, language=language, runtime=runtime, budget=budget, revenue=revenue)
+    return render_template(
+        "info.html",
+        movie_id=movie_id,
+        title=title,
+        overview=overview,
+        crew=crew,
+        cast=cast,
+        genres=genres,
+        language=language,
+        runtime=runtime,
+        budget=budget,
+        revenue=revenue,
+    )
 
 
-@application.route('/watchlist/<movie_id>', methods=['POST', 'GET'])
+@application.route("/watchlist/<movie_id>", methods=["POST", "GET"])
 def add_to_watchlist(movie_id):
     global cursor
 
@@ -183,91 +184,98 @@ def add_to_watchlist(movie_id):
         movie = movie.replace(",", ",,")
         movie = movie.replace("'", "''")
         username = session["username"]
-        cursor.execute('BEGIN TRANSACTION;')
-        cursor.execute(f"UPDATE users SET watchlist = array_append(watchlist, '{movie}') WHERE username = '{username}';")
-        cursor.execute('COMMIT;')
+        cursor.execute("BEGIN TRANSACTION;")
+        cursor.execute(
+            f"UPDATE users SET watchlist = array_append(watchlist, '{movie}') WHERE username = '{username}';"
+        )
+        cursor.execute("COMMIT;")
         cursor.execute(f"SELECT watchlist FROM users WHERE username = '{username}';")
         recently_added_to_watchlist = cursor.fetchone()[0][-1]
         flash(f"{recently_added_to_watchlist} successfully added to watchlist!")
 
         return redirect(f"/info/{movie_id}")
-        
-    except (Exception) as error:
-        print ("Error while querying database", error)
+
+    except Exception as error:
+        print("Error while querying database", error)
         flash("There was an error when attempting to add to watchlist!")
 
         return redirect(f"/info/{movie_id}")
 
 
-@application.route('/remove/<movie>', methods=['POST', 'GET'])
+@application.route("/remove/<movie>", methods=["POST", "GET"])
 def remove_from_watchlist(movie):
-        global cursor
+    global cursor
 
-        movie = movie.replace(",", ",,")
-        movie = movie.replace("'", "''")
+    movie = movie.replace(",", ",,")
+    movie = movie.replace("'", "''")
 
-        try:
-            username = session["username"]
-            cursor.execute('BEGIN TRANSACTION;')
-            cursor.execute(f"UPDATE users SET watchlist = array_remove(watchlist, '{movie}') WHERE username = '{username}';")
-            cursor.execute('COMMIT;')
-        except (Exception) as error:
-            print ("Error while querying database", error)
+    try:
+        username = session["username"]
+        cursor.execute("BEGIN TRANSACTION;")
+        cursor.execute(
+            f"UPDATE users SET watchlist = array_remove(watchlist, '{movie}') WHERE username = '{username}';"
+        )
+        cursor.execute("COMMIT;")
+    except Exception as error:
+        print("Error while querying database", error)
 
-        return redirect(f'/profile/{username}')
+    return redirect(f"/profile/{username}")
 
 
-@application.route('/choices', methods=['POST', 'GET'])
+@application.route("/choices", methods=["POST", "GET"])
 def recommend_positive_movies():
     global cursor, id_index
 
-    #(title, dist)
+    # (title, dist)
     recommendations1 = []
     recommendations2 = []
     recommendations3 = []
 
-    if request.method == 'POST':
-        movies = request.get_json() 
+    if request.method == "POST":
+        movies = request.get_json()
         print(movies)
 
         recommendations1.append(
             make_recommendation(
                 model_knn=model_knn,
                 data=movie_matrix,
-                fav_movie = movies[0],
+                fav_movie=movies[0],
                 mapper=movie_title_index,
-                n_recommendations=10)
+                n_recommendations=10,
+            )
         )
 
         recommendations2.append(
             make_recommendation(
                 model_knn=model_knn,
                 data=movie_matrix,
-                fav_movie = movies[1],
+                fav_movie=movies[1],
                 mapper=movie_title_index,
-                n_recommendations=10)
+                n_recommendations=10,
+            )
         )
 
         recommendations3.append(
             make_recommendation(
                 model_knn=model_knn,
                 data=movie_matrix,
-                fav_movie = movies[2],
+                fav_movie=movies[2],
                 mapper=movie_title_index,
-                n_recommendations=10)
+                n_recommendations=10,
+            )
         )
 
-        #titles
+        # titles
         mix1 = []
         mix2 = []
         mix3 = []
 
-        #dist
+        # dist
         dist1 = []
         dist2 = []
         dist3 = []
 
-        # For each set of recommedations (3), pick a random recommendation and append to "mix" list
+        # For each set of recommendations (3), pick a random recommendation and append to "mix" list
         for i in range(3):
             j = str(i + 1)
             recommendations = eval("recommendations" + j)
@@ -277,12 +285,15 @@ def recommend_positive_movies():
             for _ in range(5):
                 scramble = random.randint(0, 9)
 
-                while recommendations[0][0][scramble] in mix or recommendations[0][0][scramble] in movies:
+                while (
+                    recommendations[0][0][scramble] in mix
+                    or recommendations[0][0][scramble] in movies
+                ):
                     scramble = random.randint(0, 9)
 
                 mix.append(recommendations[0][0][scramble])
                 dist.append(recommendations[0][1][scramble])
-        
+
         list1 = []
         list2 = []
         list3 = []
@@ -300,19 +311,25 @@ def recommend_positive_movies():
                         movie_id = id_index["id"][i]
                         eval("list" + j).append([title, movie_id])
 
-        return jsonify({'data': render_template('recommended.html',
-                                                 list1=list1, 
-                                                 list2=list2,
-                                                 list3=list3,
-                                                 dist1=dist1,
-                                                 dist2=dist2,
-                                                 dist3=dist3,
-                                                 movies=movies)})
-    
+        return jsonify(
+            {
+                "data": render_template(
+                    "recommended.html",
+                    list1=list1,
+                    list2=list2,
+                    list3=list3,
+                    dist1=dist1,
+                    dist2=dist2,
+                    dist3=dist3,
+                    movies=movies,
+                )
+            }
+        )
+
     return redirect("/")
 
 
-@application.route('/worst', methods=['POST', 'GET'])
+@application.route("/worst", methods=["POST", "GET"])
 def recommend_negative_movies():
     global cursor, id_index
 
@@ -320,50 +337,53 @@ def recommend_negative_movies():
     recommendations2 = []
     recommendations3 = []
 
-    if request.method == 'POST':
-        movies = request.get_json() 
+    if request.method == "POST":
+        movies = request.get_json()
         print(movies)
 
         recommendations1.append(
             worst_recommendations(
                 model_knn=model_knn,
                 data=movie_matrix,
-                fav_movie = movies[0],
+                fav_movie=movies[0],
                 mapper=movie_title_index,
-                n_recommendations=100)
+                n_recommendations=100,
+            )
         )
 
         recommendations2.append(
             worst_recommendations(
                 model_knn=model_knn,
                 data=movie_matrix,
-                fav_movie = movies[1],
+                fav_movie=movies[1],
                 mapper=movie_title_index,
-                n_recommendations=100)
+                n_recommendations=100,
+            )
         )
 
         recommendations3.append(
             worst_recommendations(
                 model_knn=model_knn,
                 data=movie_matrix,
-                fav_movie = movies[2],
+                fav_movie=movies[2],
                 mapper=movie_title_index,
-                n_recommendations=100)
+                n_recommendations=100,
+            )
         )
 
-        #titles
+        # titles
         mix1 = []
         mix2 = []
         mix3 = []
 
-        #dist
+        # dist
         dist1 = []
         dist2 = []
         dist3 = []
 
         print(recommendations1)
 
-        #for each set of recommedations (3), pick a random recommendation and append to "mix" list
+        # for each set of recommedations (3), pick a random recommendation and append to "mix" list
         for i in range(3):
             j = str(i + 1)
             recommendations = eval("recommendations" + j)
@@ -373,12 +393,15 @@ def recommend_negative_movies():
             for _ in range(5):
                 scramble = random.randint(0, 9)
 
-                while recommendations[0][0][scramble] in mix or recommendations[0][0][scramble] in movies:
+                while (
+                    recommendations[0][0][scramble] in mix
+                    or recommendations[0][0][scramble] in movies
+                ):
                     scramble = random.randint(0, 9)
 
                 mix.append(recommendations[0][0][scramble])
                 dist.append(recommendations[0][1][scramble])
-        
+
         list1 = []
         list2 = []
         list3 = []
@@ -399,15 +422,21 @@ def recommend_negative_movies():
 
         print(list3, dist3)
 
-        return jsonify({'data': render_template('worst.html',
-                                                 list1=list1, 
-                                                 list2=list2,
-                                                 list3=list3,
-                                                 dist1=dist1,
-                                                 dist2=dist2,
-                                                 dist3=dist3,
-                                                 movies=movies)})
-    
+        return jsonify(
+            {
+                "data": render_template(
+                    "worst.html",
+                    list1=list1,
+                    list2=list2,
+                    list3=list3,
+                    dist1=dist1,
+                    dist2=dist2,
+                    dist3=dist3,
+                    movies=movies,
+                )
+            }
+        )
+
     return redirect("/")
 
 
