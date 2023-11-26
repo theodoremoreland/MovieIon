@@ -1,10 +1,12 @@
 CREATE TABLE movie_list(
-   movie_id                                    INTEGER  NOT NULL PRIMARY KEY 
-  ,title                                       VARCHAR(121) NOT NULL
-  ,title_2                                     VARCHAR(84) NOT NULL
-  ,year                                        INTEGER  NOT NULL
-  ,genre                                       VARCHAR(77) NOT NULL
+  movie_id INTEGER NOT NULL PRIMARY KEY 
+  , title VARCHAR(121) NOT NULL
+  , title_2 VARCHAR(84) NOT NULL
+  , year INTEGER  NOT NULL
+  , genre VARCHAR(77) NOT NULL
 );
+
+BEGIN;
 INSERT INTO movie_list(movie_id,title,title_2,year,genre) VALUES (2,'Jumanji (1995)','Jumanji',1995,'Adventure|Children|Fantasy');
 INSERT INTO movie_list(movie_id,title,title_2,year,genre) VALUES (3,'Grumpier Old Men (1995)','Grumpier Old Men',1995,'Comedy|Romance');
 INSERT INTO movie_list(movie_id,title,title_2,year,genre) VALUES (4,'Waiting to Exhale (1995)','Waiting to Exhale',1995,'Comedy|Drama|Romance');
@@ -8028,3 +8030,4 @@ INSERT INTO movie_list(movie_id,title,title_2,year,genre) VALUES (114494,'Who Am
 INSERT INTO movie_list(movie_id,title,title_2,year,genre) VALUES (114554,'Tale of Princess Kaguya the (Kaguyahime no monogatari) (2013)','Tale of Princess Kaguya the',2013,'Animation|Drama|Fantasy');
 INSERT INTO movie_list(movie_id,title,title_2,year,genre) VALUES (114847,'Autómata (Automata) (2014)','Autómata',2014,'Sci-Fi|Thriller');
 INSERT INTO movie_list(movie_id,title,title_2,year,genre) VALUES (139655,'Goodnight Mommy (Ich seh ich seh) (2014)','Goodnight Mommy',2014,'Drama|Fantasy|Horror|Thriller');
+COMMIT;
