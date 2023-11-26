@@ -35,7 +35,6 @@
   color: white;
 }
 
-
 /* switch */
 /* The switch - the box around the slider */
 .switch {
@@ -59,10 +58,10 @@
   top: 0;
   left: 0;
   right: 0;
-  bottom: 0; 
+  bottom: 0;
   background-color: rgb(255, 245, 202);
-  -webkit-transition: .4s;
-  transition: .4s;
+  -webkit-transition: 0.4s;
+  transition: 0.4s;
 }
 
 .slider:before {
@@ -73,8 +72,8 @@
   left: 4px;
   bottom: 4px;
   background-color: white;
-  -webkit-transition: .4s;
-  transition: .4s;
+  -webkit-transition: 0.4s;
+  transition: 0.4s;
 }
 
 input:checked + .slider {
@@ -82,7 +81,7 @@ input:checked + .slider {
 }
 
 input:focus + .slider {
-  box-shadow: 0 0 1px #2196F3;
+  box-shadow: 0 0 1px #2196f3;
 }
 
 input:checked + .slider:before {
@@ -109,9 +108,8 @@ input:checked + .slider:before {
 html,
 body {
   height: 100%;
-  font-family: 'Permanent Marker', cursive;
+  font-family: "Permanent Marker", cursive;
 }
-
 
 /* #one,#two,#three,#four,#five {
   
@@ -123,7 +121,7 @@ h2 {
 }
 
 h4 {
-  color: #FFF;
+  color: #fff;
 }
 
 span {
@@ -133,8 +131,6 @@ span {
 #flash {
   color: white;
 }
-
-
 
 /* tooltip */
 
@@ -146,20 +142,17 @@ span {
 
 a[target]:link {
   color: #000000;
-  }
-  a[target]:visited {
+}
+a[target]:visited {
   color: #3b3b3b;
-  }
-  a[target]:hover {
+}
+a[target]:hover {
   color: #8b8b8b;
-  }
+}
 
-
-  a:hover {
+a:hover {
   color: #8b8b8b;
-  }
-
-
+}
 
 /* intro */
 .intro {
@@ -168,42 +161,50 @@ a[target]:link {
   overflow: hidden;
 }
 
-.slide, #words { position: fixed; z-index: 3; top: 0; bottom: 0; left: 0; right: 0; width: 100%; height: 100%;}
+.slide,
+#words {
+  position: fixed;
+  z-index: 3;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  width: 100%;
+  height: 100%;
+}
 
 .slide {
   background-color: rgb(255, 255, 255);
-  transition: .5s cubic-bezier(0, 1, 0.5, 1);
+  transition: 0.5s cubic-bezier(0, 1, 0.5, 1);
   transform: translateY(0);
 }
 
-.slide-up, #words {
+.slide-up,
+#words {
   transform: translateY(-100%);
 }
 
 #toggleSlider {
-
-    background: transparent;
-    border: none !important;
-    font-size:0;
+  background: transparent;
+  border: none !important;
+  font-size: 0;
 }
-
 
 /* Loading screen */
 
 div#loading {
   cursor: wait;
   width: 100px;
-	height: 100px;
-	
-	
-	position: fixed;
-	top:0;
-	bottom: 0;
-	left: 0;
-	right: 0;
-  	
-	margin: auto;
-  }
+  height: 100px;
+
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+
+  margin: auto;
+}
 
 /* Slot Machine Classes */
 
@@ -214,37 +215,38 @@ div#loading {
 }
 
 .slottt-machine-recipe__mask {
-    width: 100%;
-    height: 150px;
-    overflow: hidden; 
-    position: relative;
-    display: inline-block;
-    margin-bottom: -40px;
+  width: 100%;
+  height: 150px;
+  overflow: hidden;
+  position: relative;
+  display: inline-block;
+  margin-bottom: -40px;
 }
 
 .slottt-machine-recipe__items_container {
-    position: absolute;
-    
+  position: absolute;
 }
 
 .slottt-machine-recipe__item {
-    min-height: 150px;
-    max-height: 150px;
-    margin: 0px;
-    padding: 0px;
-    
-    background-size: contain;
+  min-height: 150px;
+  max-height: 150px;
+  margin: 0px;
+  padding: 0px;
+
+  background-size: contain;
 }
 
 /* Typography */
 
-.recipe_if, .recipe_then {
-    font-weight: bold;
-    font-size: 100px;
+.recipe_if,
+.recipe_then {
+  font-weight: bold;
+  font-size: 100px;
 }
 
 @media (max-width: 320px) {
-  .recipe_if, .recipe_then {
+  .recipe_if,
+  .recipe_then {
     font-weight: bold;
     font-size: 28px;
   }
@@ -256,17 +258,12 @@ div#loading {
 }
 
 a {
- font-weight: bold;
- text-decoration: none;
- color: rgb(255, 255, 255);
+  font-weight: bold;
+  text-decoration: none;
+  color: rgb(255, 255, 255);
 }
 
-
-
-
 /* Sticky Footer Classes */
-
-
 
 #page-content {
   flex: 1 0 auto;
@@ -280,143 +277,139 @@ a {
 
 body {
   background: #007bff;
-  background: linear-gradient(to right, #0062E6, #33AEFF);
+  background: linear-gradient(to right, #0062e6, #33aeff);
   background-image: url("../images/bg8.gif");
   background-attachment: fixed;
   background-size: cover;
-  
 }
 
 #tile1:hover,
 #tile2:hover,
 #tile3:hover,
 #tiles15:hover {
-    padding: 1%;
-    border: inset;
-    border-color: rgb(255, 255, 255);
+  padding: 1%;
+  border: inset;
+  border-color: rgb(255, 255, 255);
 }
 
 /* Search and scroll bar */
 
 :root {
-    --input-padding-x: 1.5rem;
-    --input-padding-y: .75rem;
-  }
+  --input-padding-x: 1.5rem;
+  --input-padding-y: 0.75rem;
+}
 
-  .card-signin {
-    border: 0;
-    border-radius: 1rem;
-    box-shadow: 0 0.5rem 1rem 0 rgba(0, 0, 0, 0.1);
+.card-signin {
+  border: 0;
+  border-radius: 1rem;
+  box-shadow: 0 0.5rem 1rem 0 rgba(0, 0, 0, 0.1);
+}
+
+.card-signin .card-title {
+  margin-bottom: 2rem;
+  font-weight: 300;
+  font-size: 1.5rem;
+}
+
+.card-signin .card-body {
+  padding: 2rem;
+}
+
+.form-signin {
+  width: 100%;
+}
+
+.form-signin .btn {
+  font-size: 80%;
+  border-radius: 5rem;
+  letter-spacing: 0.1rem;
+  font-weight: bold;
+  padding: 1rem;
+  transition: all 0.2s;
+}
+
+.form-label-group {
+  position: relative;
+  margin-bottom: 1rem;
+}
+
+.form-label-group input {
+  height: auto;
+  border-radius: 2rem;
+}
+
+.form-label-group > input,
+.form-label-group > label {
+  padding: var(--input-padding-y) var(--input-padding-x);
+}
+
+.form-label-group > label {
+  position: absolute;
+  top: 0;
+  left: 0;
+  display: block;
+  width: 100%;
+  margin-bottom: 0;
+  /* Override default `<label>` margin */
+  line-height: 1.5;
+  color: #495057;
+  border: 1px solid transparent;
+  border-radius: 0.25rem;
+  transition: all 0.1s ease-in-out;
+}
+
+.form-label-group input::-webkit-input-placeholder {
+  color: transparent;
+}
+
+.form-label-group input:-ms-input-placeholder {
+  color: transparent;
+}
+
+.form-label-group input::-ms-input-placeholder {
+  color: transparent;
+}
+
+.form-label-group input::-moz-placeholder {
+  color: transparent;
+}
+
+.form-label-group input::placeholder {
+  color: transparent;
+}
+
+.form-label-group input:not(:placeholder-shown) {
+  padding-top: calc(var(--input-padding-y) + var(--input-padding-y) * (2 / 3));
+  padding-bottom: calc(var(--input-padding-y) / 3);
+}
+
+.form-label-group input:not(:placeholder-shown) ~ label {
+  padding-top: calc(var(--input-padding-y) / 3);
+  padding-bottom: calc(var(--input-padding-y) / 3);
+  font-size: 12px;
+  color: #777;
+}
+
+/* Fallback for Edge
+  -------------------------------------------------- */
+
+@supports (-ms-ime-align: auto) {
+  .form-label-group > label {
+    display: none;
   }
-  
-  .card-signin .card-title {
-    margin-bottom: 2rem;
-    font-weight: 300;
-    font-size: 1.5rem;
-  }
-  
-  .card-signin .card-body {
-    padding: 2rem;
-  }
-  
-  .form-signin {
-    width: 100%;
-  }
-  
-  .form-signin .btn {
-    font-size: 80%;
-    border-radius: 5rem;
-    letter-spacing: .1rem;
-    font-weight: bold;
-    padding: 1rem;
-    transition: all 0.2s;
-  }
-  
-  .form-label-group {
-    position: relative;
-    margin-bottom: 1rem;
-  }
-  
-  .form-label-group input {
-    height: auto;
-    border-radius: 2rem;
-  }
-  
-  .form-label-group>input,
-  .form-label-group>label {
-    padding: var(--input-padding-y) var(--input-padding-x);
-  }
-  
-  .form-label-group>label {
-    position: absolute;
-    top: 0;
-    left: 0;
-    display: block;
-    width: 100%;
-    margin-bottom: 0;
-    /* Override default `<label>` margin */
-    line-height: 1.5;
-    color: #495057;
-    border: 1px solid transparent;
-    border-radius: .25rem;
-    transition: all .1s ease-in-out;
-  }
-  
-  .form-label-group input::-webkit-input-placeholder {
-    color: transparent;
-  }
-  
-  .form-label-group input:-ms-input-placeholder {
-    color: transparent;
-  }
-  
   .form-label-group input::-ms-input-placeholder {
-    color: transparent;
-  }
-  
-  .form-label-group input::-moz-placeholder {
-    color: transparent;
-  }
-  
-  .form-label-group input::placeholder {
-    color: transparent;
-  }
-  
-  .form-label-group input:not(:placeholder-shown) {
-    padding-top: calc(var(--input-padding-y) + var(--input-padding-y) * (2 / 3));
-    padding-bottom: calc(var(--input-padding-y) / 3);
-  }
-  
-  .form-label-group input:not(:placeholder-shown)~label {
-    padding-top: calc(var(--input-padding-y) / 3);
-    padding-bottom: calc(var(--input-padding-y) / 3);
-    font-size: 12px;
     color: #777;
   }
-  
+}
 
-  
-  /* Fallback for Edge
+/* Fallback for IE
   -------------------------------------------------- */
-  
-  @supports (-ms-ime-align: auto) {
-    .form-label-group>label {
-      display: none;
-    }
-    .form-label-group input::-ms-input-placeholder {
-      color: #777;
-    }
+
+@media all and (-ms-high-contrast: none), (-ms-high-contrast: active) {
+  .form-label-group > label {
+    display: none;
   }
-  
-  /* Fallback for IE
-  -------------------------------------------------- */
-  
-  @media all and (-ms-high-contrast: none),
-  (-ms-high-contrast: active) {
-    .form-label-group>label {
-      display: none;
-    }
-    .form-label-group input:-ms-input-placeholder {
-      color: #777;
-    }
+  .form-label-group input:-ms-input-placeholder {
+    color: #777;
   }
+}
