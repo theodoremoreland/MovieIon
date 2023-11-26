@@ -1,6 +1,6 @@
 # Introduction:
 
-Movie Ion is a group project for Washington Univeristy's Data Analytics Boot Camp. For this project, we created a web application that uses a machine learning model to recommend movies. Below is an overview and demonstration of the application.
+Movie Ion (originally named Movie Matchmaker) is a group project for Washington University's Data Analytics Boot Camp (2019). For this project, we created a web application that uses a machine learning model to recommend movies. Below is an overview and demonstration of the application.
 
 # Team (by GitHub username)
 
@@ -31,6 +31,18 @@ In addition to providing recommendations, the app also allows users to save movi
 
 - Some movies don't play well with the ML model and will silently fail on the UI, only made evident by an infinite loading animation. This can be remedied by refreshing the page and avoiding the selection of movies that previously caused the failure. Movies known to cause issues include:
   - Terminator 3
+
+# Note to developers:
+
+If intending to run this codebase locally, here are a few things to note.
+
+- joblib models can only be used by the same version of joblib, sklearn, scikit-learn that created them.
+- Certain versions of joblib, sklearn, scikit-learn are not compatible with newer versions of Python.
+- Certain versions of joblib, sklearn, scikit-learn are not compatible with each other nor this codebase.
+- The requirements.txt file contains the last versions of joblib, sklearn, scikit-learn that are compatible with each other and this codebase.
+- As of this writing, Python 3.9 and above are not compatible with versions listed in requirements.txt and thus Python 3.8 is being used.
+- The joblib models are very large in size (relative to a standard GitHub repo), approx 700MB in total. Because of their large file size, they are not being tracked by git/GitHub. Copies of the models had to be shared manually to get the project running on other machines (plain ole' copy-paste vai hard-disk, USB, etc). Although I cannot recall the last time it was tested, the `scripts/create_ML_models.py` should be able to create new models.
+- I do not recall why files necessary for model creation are missing from the repo for the aforementioned `scripts/create_ML_models.py` script, I assume it is due to file size. The data needed to create the models was web scraped from various websites using the files in `notebooks/`.
 
 # DEMONSTRATION:
 
