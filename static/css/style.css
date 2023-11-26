@@ -154,6 +154,26 @@ a:hover {
   color: #8b8b8b;
 }
 
+.title:hover {
+  text-decoration: none;
+  color: initial;
+  filter: brightness(1.2);
+}
+
+.navigation a {
+  margin: 0 10px;
+}
+
+.navigation a:hover {
+  color: whitesmoke;
+  scale: 1.2;
+  text-decoration: none;
+}
+
+.movie-info > div {
+  font-family: "Courier New", Courier, monospace;
+}
+
 /* intro */
 .intro {
   width: 100%;
@@ -388,6 +408,14 @@ body {
   padding-bottom: calc(var(--input-padding-y) / 3);
   font-size: 12px;
   color: #777;
+}
+
+.instructions {
+  font-family: "Courier New", Courier, monospace;
+}
+
+.instructions > li {
+  margin: 15px 0;
 }
 
 /* Fallback for Edge
