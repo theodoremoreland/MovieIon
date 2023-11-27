@@ -41,8 +41,8 @@ If intending to run this codebase locally, here are a few things to note.
 - Certain versions of joblib, sklearn, scikit-learn are not compatible with each other nor this codebase.
 - The requirements.txt file contains the last versions of joblib, sklearn, scikit-learn that are compatible with each other and this codebase.
 - As of this writing, Python 3.9 and above are not compatible with versions listed in requirements.txt and thus Python 3.8 is being used.
-- The joblib models are very large in size (relative to a standard GitHub repo), approx 700MB in total. Because of their large file size, they are not being tracked by git/GitHub. Copies of the models had to be shared manually to get the project running on other machines (plain ole' copy-paste vai hard-disk, USB, etc). Although I cannot recall the last time it was tested, the `scripts/create_ML_models.py` should be able to create new models.
-- I do not recall why files necessary for model creation are missing from the repo for the aforementioned `scripts/create_ML_models.py` script, I assume it is due to file size. The data needed to create the models was web scraped from various websites using the files in `notebooks/`.
+- The joblib models are very large in size (relative to a standard GitHub repo), approx 700MB in total. Because of their large file size, they are not being tracked by git/GitHub. The models will be available via AWS s3 soon.
+- The `scripts/create_ML_models.py` script can be used to create new models, however much of the data needed for model creation have to first be web scraped and created via files in the `notebooks/` folder which have been deprecated for years and thus is likely not worth the effort.
 
 # DEMONSTRATION:
 
