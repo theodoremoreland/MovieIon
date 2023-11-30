@@ -91,12 +91,12 @@ def worst_recommendations(model_knn, data, fav_movie, mapper, n_recommendations)
     # get reverse mapper
     reverse_mapper = {v: k for k, v in mapper.items()}
     # print recommendations
-    movies = []
-    distance = []
+
+    unraw_recommends = []
     print("Recommendations for {}:".format(fav_movie))
     for i, (idx, dist) in enumerate(raw_recommends):
         print("{0}: {1}, with distance of {2}".format(i + 1, reverse_mapper[idx], dist))
         # sorted(iterable, key=None, reverse=False)
-        movies.append(reverse_mapper[idx])
-        distance.append(dist)
-    return movies, distance
+        unraw_recommends.append((reverse_mapper[idx], dist))
+
+    return unraw_recommends

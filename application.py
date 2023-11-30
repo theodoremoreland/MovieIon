@@ -1,6 +1,7 @@
 # Native library
 import ast
 import random
+from pprint import pprint
 
 # Third party
 import pg8000
@@ -280,16 +281,26 @@ def recommend_positive_movies():
             dist = eval("dist" + j)
 
             for _ in range(5):
-                scramble = random.randint(0, 9)
+                random_number_between_0_and_9 = random.randint(0, 9)
+                is_recommendation_a_duplicate = (
+                    recommendations[0][0][random_number_between_0_and_9] in mix
+                )
+                is_recommendation_same_as_movie_selection = (
+                    recommendations[0][0][random_number_between_0_and_9] in movies
+                )
+
+                print(
+                    f"-------------------- {is_recommendation_a_duplicate} -------------------- & {is_recommendation_same_as_movie_selection}"
+                )
 
                 while (
-                    recommendations[0][0][scramble] in mix
-                    or recommendations[0][0][scramble] in movies
+                    recommendations[0][0][random_number_between_0_and_9] in mix
+                    or recommendations[0][0][random_number_between_0_and_9] in movies
                 ):
-                    scramble = random.randint(0, 9)
+                    random_number_between_0_and_9 = random.randint(0, 9)
 
-                mix.append(recommendations[0][0][scramble])
-                dist.append(recommendations[0][1][scramble])
+                mix.append(recommendations[0][0][random_number_between_0_and_9])
+                dist.append(recommendations[0][1][random_number_between_0_and_9])
 
         list1 = []
         list2 = []
@@ -330,84 +341,67 @@ def recommend_positive_movies():
 def recommend_negative_movies():
     global cursor, id_index
 
-    recommendations1 = []
-    recommendations2 = []
-    recommendations3 = []
+    recommendations = {
+        "based_on_movie_1": [],
+        "based_on_movie_2": [],
+        "based_on_movie_3": [],
+    }
 
     if request.method == "POST":
-        movies = request.get_json()
-        print(movies)
+        movies = (
+            request.get_json()
+        )  # example value: ['Georgia (1995)', 'Two if by Sea (1996)', 'Screamers (1995)']
 
-        recommendations1.append(
-            worst_recommendations(
-                model_knn=model_knn,
-                data=movie_matrix,
-                fav_movie=movies[0],
-                mapper=movie_title_index,
-                n_recommendations=100,
-            )
+        recommendations["based_on_movie_1"] = worst_recommendations(
+            model_knn=model_knn,
+            data=movie_matrix,
+            fav_movie=movies[0],
+            mapper=movie_title_index,
+            n_recommendations=100,
+        )  # example value: [('Screamers (1995)', 0.0), ('Two if by Sea (1996)', 0.0), ('Georgia (1995)', 0.0)]
+
+        recommendations["based_on_movie_2"] = worst_recommendations(
+            model_knn=model_knn,
+            data=movie_matrix,
+            fav_movie=movies[1],
+            mapper=movie_title_index,
+            n_recommendations=100,
         )
 
-        recommendations2.append(
-            worst_recommendations(
-                model_knn=model_knn,
-                data=movie_matrix,
-                fav_movie=movies[1],
-                mapper=movie_title_index,
-                n_recommendations=100,
-            )
+        recommendations["based_on_movie_3"] = worst_recommendations(
+            model_knn=model_knn,
+            data=movie_matrix,
+            fav_movie=movies[2],
+            mapper=movie_title_index,
+            n_recommendations=100,
         )
 
-        recommendations3.append(
-            worst_recommendations(
-                model_knn=model_knn,
-                data=movie_matrix,
-                fav_movie=movies[2],
-                mapper=movie_title_index,
-                n_recommendations=100,
-            )
+        pprint(recommendations)
+
+        # Select 5 random recommendations from each movie
+        recommendation_sample_movie_1 = random.sample(
+            recommendations["based_on_movie_1"], 5
         )
-
-        # titles
-        mix1 = []
-        mix2 = []
-        mix3 = []
-
-        # dist
-        dist1 = []
-        dist2 = []
-        dist3 = []
-
-        print(recommendations1)
-
-        # for each set of recommendations (3), pick a random recommendation and append to "mix" list
-        for i in range(3):
-            j = str(i + 1)
-            recommendations = eval("recommendations" + j)
-            mix = eval("mix" + j)
-            dist = eval("dist" + j)
-
-            for _ in range(5):
-                scramble = random.randint(0, 9)
-
-                while (
-                    recommendations[0][0][scramble] in mix
-                    or recommendations[0][0][scramble] in movies
-                ):
-                    scramble = random.randint(0, 9)
-
-                mix.append(recommendations[0][0][scramble])
-                dist.append(recommendations[0][1][scramble])
+        recommendation_sample_movie_2 = random.sample(
+            recommendations["based_on_movie_2"], 5
+        )
+        recommendation_sample_movie_3 = random.sample(
+            recommendations["based_on_movie_3"], 5
+        )
 
         list1 = []
         list2 = []
         list3 = []
 
+        dist1 = []
+        dist2 = []
+        dist3 = []
+
         for i in range(3):
             j = str(i + 1)
-            mix = eval("mix" + j)
+            mix = eval("recommendation_sample_movie_" + j)
 
-            for movie in mix:
+            for i, (movie, distance) in enumerate(mix):
                 movie = movie.replace(",", "").lower()
 
                 for i, title in enumerate(id_index["title"]):
@@ -416,6 +410,7 @@ def recommend_negative_movies():
                     if movie in title_l:
                         movie_id = id_index["id"][i]
                         eval("list" + j).append([title, movie_id])
+                        eval("dist" + j).append(distance)
 
         print(list3, dist3)
 

@@ -31,6 +31,7 @@ In addition to providing recommendations, the app also allows users to save movi
 
 - Some movies don't play well with the ML model and will silently fail on the UI, only made evident by an infinite loading animation. This can be remedied by refreshing the page and avoiding the selection of movies that previously caused the failure. Movies known to cause issues include:
   - Terminator 3
+  - Clueless (1995)
 
 # Note to developers:
 
