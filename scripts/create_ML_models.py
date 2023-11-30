@@ -5,18 +5,13 @@
 # Note: As of this writing, Python 3.9 and above are not compatible with versions listed in requirements.txt.
 
 # %%
-from joblib import dump, load
-from sklearn.neighbors import NearestNeighbors
-import os
+
 import numpy as np
 import pandas as pd
-
-import matplotlib.pyplot as plt
+from joblib import dump, load
+from sklearn.neighbors import NearestNeighbors
 from scipy.sparse import csr_matrix
-from sklearn.neighbors import KNeighborsClassifier
-
 from fuzzywuzzy import fuzz
-import pickle
 
 
 # %%

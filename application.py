@@ -74,7 +74,6 @@ def login():
 
     if request.method == "POST":
         username = request.form["username"]
-        cursor.execute("BEGIN TRANSACTION;")
         cursor.execute(
             f"SELECT user_id, username, watchlist FROM users WHERE username = '{username}';"
         )  # postgres can only interpret single quoted strings
@@ -144,11 +143,9 @@ def render_profile(username):
 def display_movie_info(movie_id):
     global cursor
 
-    cursor.execute("BEGIN TRANSACTION;")
     cursor.execute(f"SELECT * FROM metadata WHERE id = '{movie_id}';")
     metadata = cursor.fetchone()
 
-    _id = metadata[0]
     title = metadata[1]
     overview = metadata[2]
     crew = ast.literal_eval(metadata[3])  # list of tuples
@@ -383,7 +380,7 @@ def recommend_negative_movies():
 
         print(recommendations1)
 
-        # for each set of recommedations (3), pick a random recommendation and append to "mix" list
+        # for each set of recommendations (3), pick a random recommendation and append to "mix" list
         for i in range(3):
             j = str(i + 1)
             recommendations = eval("recommendations" + j)
