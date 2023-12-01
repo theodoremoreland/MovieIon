@@ -30,7 +30,7 @@ In addition to providing recommendations, the app also allows users to save movi
 # Known bugs
 
 - Some movies don't play well with the ML model and will silently fail on the UI, only made evident by an infinite loading animation. This can be remedied by refreshing the page and avoiding the selection of movies that previously caused the failure. Movies known to cause issues include:
-  - Terminator 3
+  - Terminator 3: Rise of the Machines (2003)
   - Clueless (1995)
   - Sabrina (1995)
 - Most movies that start with words such as "A" or "The" erroneously have the word at the end of the movie title preceded by a comma (e.g. `Ref, The (1994)` or `Walk in the Clouds, A (1995)`). Unfortunately, a fix isn't as simple as formatting the data in the database or web server. The issue stems from the source data and would most likely have to be transformed prior to being added to the model.

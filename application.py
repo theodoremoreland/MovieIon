@@ -67,7 +67,6 @@ def index():
 
         for _, (movie_title, movie_id) in enumerate(all_movies):
             movie_title_to_id_mapping[movie_title] = movie_id
-            # pprint(movie_title_to_id_mapping)
 
     except Exception as error:
         print("Error while selecting rows(title, movie_id)", error)

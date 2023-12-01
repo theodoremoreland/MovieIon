@@ -92,33 +92,63 @@ $("#filter").on(
 
     if (!poster_present) {
       if (space1) {
+        const movieLink1 = document.getElementById("link1");
+
         document.getElementById("image1").setAttribute("src", poster);
         document.getElementById("movie_name1").innerHTML = title;
+
+        movieLink1?.setAttribute("href", `/info/${id}`);
+        movieLink1?.setAttribute("target", "_blank");
       } else if (space2) {
+        const movieLink2 = document.getElementById("link2");
+
         document.getElementById("image2").setAttribute("src", poster);
         document.getElementById("movie_name2").innerHTML = title;
+
+        movieLink2?.setAttribute("href", `/info/${id}`);
+        movieLink2?.setAttribute("target", "_blank");
       } else if (space3) {
+        const movieLink3 = document.getElementById("link3");
+
         document.getElementById("image3").setAttribute("src", poster);
         document.getElementById("movie_name3").innerHTML = title;
+
+        movieLink3?.setAttribute("href", `/info/${id}`);
+        movieLink3?.setAttribute("target", "_blank");
       }
     }
 
     if (poster_present) {
       if (image1.includes(`/${id}.jpg`) || movie_name1 == title) {
+        const movieLink1 = document.getElementById("link1");
+
         document
           .getElementById("image1")
           .setAttribute("src", "static/images/random1.gif");
+
+        movieLink1?.removeAttribute("href");
+        movieLink1?.removeAttribute("target");
         document.getElementById("movie_name1").innerHTML = "Selection 1";
       } else if (image2.includes(`/${id}.jpg`) || movie_name2 == title) {
+        const movieLink2 = document.getElementById("link2");
+
         document
           .getElementById("image2")
           .setAttribute("src", "static/images/random2.gif");
         document.getElementById("movie_name2").innerHTML = "Selection 2";
+
+        movieLink2?.removeAttribute("href");
+        movieLink2?.removeAttribute("target");
       } else if (image3.includes(`/${id}.jpg`) || movie_name3 == title) {
+        const movieLink3 = document.getElementById("link3");
+
         document
           .getElementById("image3")
           .setAttribute("src", "static/images/random3.gif");
         document.getElementById("movie_name3").innerHTML = "Selection 3";
+
+        movieLink3?.removeAttribute("href");
+        movieLink3?.removeAttribute("target");
       }
     }
 
@@ -133,7 +163,6 @@ $("#filter").on(
         var route;
         list = [];
         movies = document.getElementById("filter").selectedOptions;
-        console.log("aijdaohdiuhdiuehfiuehfiuh ->>", movies);
 
         if (reverse == true) {
           route = "/worst";
