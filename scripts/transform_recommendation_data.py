@@ -10,7 +10,11 @@ def transform_recommendation_data(recommendation, movie_title_to_id_mapping):
 
     movie_title = recommendation[0]
     movie_distance = recommendation[1]
-    movie_id = movie_title_to_id_mapping.get(movie_title)
+    movie_id = (
+        movie_title_to_id_mapping.get(movie_title)
+        if movie_title_to_id_mapping.get(movie_title) != None
+        else movie_title_to_id_mapping.get(movie_title.replace(",", ""))
+    )
 
     return {
         "movie_title": movie_title,

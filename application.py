@@ -146,6 +146,7 @@ def render_profile(username):
     """
 
     global cursor
+    watchlist = []
 
     if "username" in session:
         if username == "user":
@@ -155,25 +156,24 @@ def render_profile(username):
 
     try:
         cursor.execute(f"SELECT watchlist FROM users WHERE username = '{username}';")
-        watchlist = (
+        watchlist_ids = (
             cursor.fetchone()
         )  # Returns 2d array wherein first and singular element contains actual data.
-        movie_ids = []
 
-        for movie in watchlist[0]:
-            cursor.execute(f"SELECT movie_id FROM movie_list WHERE title = '{movie}';")
-            movie_id = cursor.fetchone()[0]
-            movie_ids.append(movie_id)
+        for movie_id in watchlist_ids[0]:
+            cursor.execute(
+                f"SELECT title FROM movie_list WHERE movie_id = '{movie_id}';"
+            )
+            movie_title = cursor.fetchone()[0]
+            watchlist.append({"movie_id": movie_id, "movie_title": movie_title})
 
-        return render_template(
-            "profile.html", movieIDs=movie_ids, watchlist=watchlist, username=username
-        )
+        return render_template("profile.html", watchlist=watchlist, username=username)
 
     except Exception as error:
         print("Error while querying database", error)
 
     return render_template(
-        "profile.html", movieIDs=[[]], watchlist=[[]], username=username
+        "profile.html", watchlist=watchlist, username=username
     )  # 2d arrays simulate a null return from queries
 
 
@@ -215,6 +215,7 @@ def display_movie_info(movie_id):
     )
 
 
+# ! Having this route handle POST and GET is no beuno.
 @application.route("/watchlist/<movie_id>", methods=["POST", "GET"])
 def add_to_watchlist(movie_id):
     """
@@ -228,17 +229,13 @@ def add_to_watchlist(movie_id):
     try:
         cursor.execute(f"SELECT title FROM movie_list WHERE movie_id = '{movie_id}';")
         movie = cursor.fetchone()[0]
-        movie = movie.replace(",", ",,")
-        movie = movie.replace("'", "''")
         username = session["username"]
         cursor.execute("BEGIN TRANSACTION;")
         cursor.execute(
-            f"UPDATE users SET watchlist = array_append(watchlist, '{movie}') WHERE username = '{username}';"
+            f"UPDATE users SET watchlist = array_append(watchlist, '{movie_id}') WHERE username = '{username}';"
         )
         cursor.execute("COMMIT;")
-        cursor.execute(f"SELECT watchlist FROM users WHERE username = '{username}';")
-        recently_added_to_watchlist = cursor.fetchone()[0][-1]
-        flash(f"{recently_added_to_watchlist} successfully added to watchlist!")
+        flash(f"{movie} successfully added to watchlist!")
 
         return redirect(f"/info/{movie_id}")
 
@@ -249,24 +246,22 @@ def add_to_watchlist(movie_id):
         return redirect(f"/info/{movie_id}")
 
 
-@application.route("/remove/<movie>", methods=["POST", "GET"])
-def remove_from_watchlist(movie):
+# ! Having this route handle POST and GET is no beuno.
+@application.route("/remove/<movie_id>", methods=["POST", "GET"])
+def remove_from_watchlist(movie_id):
     """
     Handles request to remove a movie from the user's watchlist.
 
-    Args: movie (str): The movie to be removed from the user's watchlist.
+    Args: movie_id (str): The movie to be removed from the user's watchlist.
     """
 
     global cursor
-
-    movie = movie.replace(",", ",,")
-    movie = movie.replace("'", "''")
 
     try:
         username = session["username"]
         cursor.execute("BEGIN TRANSACTION;")
         cursor.execute(
-            f"UPDATE users SET watchlist = array_remove(watchlist, '{movie}') WHERE username = '{username}';"
+            f"UPDATE users SET watchlist = array_remove(watchlist, '{movie_id}') WHERE username = '{username}';"
         )
         cursor.execute("COMMIT;")
     except Exception as error:
