@@ -8031,3 +8031,17 @@ INSERT INTO movie_list(movie_id,title,title_2,year,genre) VALUES (114554,'Tale o
 INSERT INTO movie_list(movie_id,title,title_2,year,genre) VALUES (114847,'Autómata (Automata) (2014)','Autómata',2014,'Sci-Fi|Thriller');
 INSERT INTO movie_list(movie_id,title,title_2,year,genre) VALUES (139655,'Goodnight Mommy (Ich seh ich seh) (2014)','Goodnight Mommy',2014,'Drama|Fantasy|Horror|Thriller');
 COMMIT;
+
+UPDATE 
+   movie_list
+SET 
+   title = REPLACE(title, ' a (', ', A (')
+WHERE title LIKE '% a (%'
+;
+
+UPDATE 
+   movie_list
+SET 
+   title = REPLACE(title, ' the (', ', The (')
+WHERE title LIKE '% the (%'
+;

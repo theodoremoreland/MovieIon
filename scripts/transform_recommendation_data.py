@@ -8,8 +8,6 @@ def transform_recommendation_data(recommendation, movie_title_to_id_mapping):
     Returns: list: The transformed recommendation data (e.g. ['Screamers (1995)', 0.0, 1])
     """
 
-    # pprint(list(movie_title_to_id_mapping.keys())[0:5])
-
     movie_title = recommendation[0]
     movie_distance = recommendation[1]
     movie_id = movie_title_to_id_mapping.get(movie_title)
