@@ -33,7 +33,7 @@ In addition to providing recommendations, the app also allows users to save movi
   - Terminator 3
   - Clueless (1995)
   - Sabrina (1995)
-- Most movies that start with words such as "A" or "The" erroneously have the word at the end of the movie title preceded by a comma (e.g. `Ref, The (1994)` or `Walk in the Clouds, A (1995)`). Unfortunately, a fix isn't a simple as formatting the data in the database or web server. The issue stems from the source data and would most likely have to be transformed prior to being added to the model.
+- Most movies that start with words such as "A" or "The" erroneously have the word at the end of the movie title preceded by a comma (e.g. `Ref, The (1994)` or `Walk in the Clouds, A (1995)`). Unfortunately, a fix isn't as simple as formatting the data in the database or web server. The issue stems from the source data and would most likely have to be transformed prior to being added to the model.
 - Some (relatively few) movies don't have posters such as `Jurassic Park (1993)`
 
 # Note to developers:
