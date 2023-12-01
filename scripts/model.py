@@ -40,7 +40,7 @@ def similar_name_search(mapper, fav_movie):
 
 # %%
 # Function to make recommendation based on fav_movie or movie choice
-def make_recommendation(model_knn, data, fav_movie, mapper, n_recommendations):
+def best_recommendations(model_knn, data, fav_movie, mapper, n_recommendations):
     # Choose a movie
     model_knn.fit(data)
     print("You have input movie:", fav_movie)
@@ -59,16 +59,13 @@ def make_recommendation(model_knn, data, fav_movie, mapper, n_recommendations):
     )[:0:-1]
     # get reverse mapper
     reverse_mapper = {v: k for k, v in mapper.items()}
-    # print recommendations
-    # print('Recommendations for {}:'.format(fav_movie))
-    movies = []
-    distance = []
+    final_recommendations = []
+
     for i, (idx, dist) in enumerate(raw_recommends):
         print("{0}: {1}, with distance of {2}".format(i + 1, reverse_mapper[idx], dist))
-        # movies.append('{0}: {1}, with distance of {2}'.format(i+1, reverse_mapper[idx], dist))
-        movies.append(reverse_mapper[idx])
-        distance.append(dist)
-    return movies, distance
+        final_recommendations.append((reverse_mapper[idx], dist))
+
+    return final_recommendations
 
 
 def worst_recommendations(model_knn, data, fav_movie, mapper, n_recommendations):
@@ -90,13 +87,13 @@ def worst_recommendations(model_knn, data, fav_movie, mapper, n_recommendations)
     )[:0:-91]
     # get reverse mapper
     reverse_mapper = {v: k for k, v in mapper.items()}
-    # print recommendations
+    final_recommendations = []
 
-    unraw_recommends = []
     print("Recommendations for {}:".format(fav_movie))
+
     for i, (idx, dist) in enumerate(raw_recommends):
         print("{0}: {1}, with distance of {2}".format(i + 1, reverse_mapper[idx], dist))
-        # sorted(iterable, key=None, reverse=False)
-        unraw_recommends.append((reverse_mapper[idx], dist))
 
-    return unraw_recommends
+        final_recommendations.append((reverse_mapper[idx], dist))
+
+    return final_recommendations

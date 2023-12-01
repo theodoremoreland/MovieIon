@@ -1,36 +1,8 @@
-#cs1,
-#cs2,
-#cs3,
-#cs4,
-#cs5,
-#cs6,
-#cs7,
-#cs8,
-#cs9,
-#cs10,
-#cs11,
-#cs12,
-#cs13,
-#cs14,
-#cs15 {
+.cs {
   visibility: hidden;
 }
 
-#mv1:hover #cs1,
-#mv2:hover #cs2,
-#mv3:hover #cs3,
-#mv4:hover #cs4,
-#mv5:hover #cs5,
-#mv6:hover #cs6,
-#mv7:hover #cs7,
-#mv8:hover #cs8,
-#mv9:hover #cs9,
-#mv10:hover #cs10,
-#mv11:hover #cs11,
-#mv12:hover #cs12,
-#mv13:hover #cs13,
-#mv14:hover #cs14,
-#mv15:hover #cs15 {
+.mv:hover .cs {
   visibility: visible;
   color: white;
 }
@@ -306,7 +278,7 @@ body {
 #tile1:hover,
 #tile2:hover,
 #tile3:hover,
-#tiles15:hover {
+.tiles15:hover {
   padding: 1%;
   border: inset;
   border-color: rgb(255, 255, 255);

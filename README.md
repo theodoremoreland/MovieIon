@@ -13,7 +13,7 @@ Movie Ion (originally named Movie Matchmaker) is a group project for Washington 
 
 Users submit three movies then the app will give 5 recommendations for each movie submitted. Prior to movie submission, users can toggle/invert the webpage's background image which will tell the app to either recommend movies that the user will likely enjoy or to recommend movies that they will probably dislike. The default background image will return likeable recommendations and the inverted image will return unlikeable recommendations.
 
-Upon recieving recommendations, users can hover over a movie poster to view its cosine distance. Users can also click on a movie poster to view information about the movie.
+Upon receiving recommendations, users can hover over a movie poster to view its cosine distance. Users can also click on a movie poster to view information about the movie.
 
 In addition to providing recommendations, the app also allows users to save movies to a watchlist after viewing information about a movie. Currently, the watchlist doesn't have third party functionality (e.g. integrating to Netflix, Hulu, etc), but it is a potential update.
 
@@ -32,6 +32,9 @@ In addition to providing recommendations, the app also allows users to save movi
 - Some movies don't play well with the ML model and will silently fail on the UI, only made evident by an infinite loading animation. This can be remedied by refreshing the page and avoiding the selection of movies that previously caused the failure. Movies known to cause issues include:
   - Terminator 3
   - Clueless (1995)
+  - Sabrina (1995)
+- Most movies that start with words such as "A" or "The" erroneously have the word at the end of the movie title preceded by a comma (e.g. `Ref, The (1994)` or `Walk in the Clouds, A (1995)`). Unfortunately, a fix isn't a simple as formatting the data in the database or web server. The issue stems from the source data and would most likely have to be transformed prior to being added to the model.
+- Some (relatively few) movies don't have posters such as `Jurassic Park (1993)`
 
 # Note to developers:
 
