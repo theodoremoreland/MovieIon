@@ -9,6 +9,14 @@ Movie Ion (originally named Movie Matchmaker) is a group project for Washington 
 - @dperkins2315
 - @theodoremoreland
 
+## Table of Contents
+
+- [Description](#description)
+- [Technologies Used](#technologies-used)
+- [Known bugs](#known-bugs)
+- [How to run locally (WIP)](#how-to-run-locally)
+- [Screenshots](#screenshots)
+
 # Description:
 
 Users submit three movies then the app will give 5 recommendations for each movie submitted. Prior to movie submission, users can toggle/invert the webpage's background image which will tell the app to either recommend movies that the user will likely enjoy or to recommend movies that they will probably dislike. The default background image will return likeable recommendations and the inverted image will return unlikeable recommendations.
@@ -26,6 +34,18 @@ In addition to providing recommendations, the app also allows users to save movi
 - Backend (Python-Flask)
 - Frontend (JavaScript, Bootstrap 4, HTML5/CSS3, jQuery, ajax)
 - Web Host (AWS)
+
+# How to run locally
+
+You must have your own PostgreSQL database instance and Python 3.8 to run this app locally.
+
+- Create config.py file in application folder (using config.py.example as example) with your PostgreSQL database credentials.
+- Execute SQL in .sql files in resources folder.
+- Download joblib files from here (link available soon) and place in application/models folder (must create models folder).
+- Create venv folder in application folder using Python 3.8
+- Activate venv
+- pip install python packages to venv via application/requirements.txt
+- Start application via executing application/application.py with Python.
 
 # Known bugs
 
@@ -48,7 +68,7 @@ If intending to run this codebase locally, here are a few things to note.
 - The joblib models are very large in size (relative to a standard GitHub repo), approx 700MB in total. Because of their large file size, they are not being tracked by git/GitHub. The models will be available via AWS s3 soon.
 - The `scripts/create_ML_models.py` script can be used to create new models, however much of the data needed for model creation have to first be web scraped and created via files in the `notebooks/` folder which have been deprecated for years and thus is likely not worth the effort.
 
-# DEMONSTRATION:
+# Screenshots:
 
 # Home Screen
 
