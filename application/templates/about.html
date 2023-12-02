@@ -1,0 +1,45 @@
+{% extends 'base.html' %} {% block content %}
+<style>
+    #github {
+        color: aliceblue;
+    }
+</style>
+
+<div class="container">
+    <div class="row justify-content-center">
+        <h1 id="about">About Us!</h1>
+    </div>
+    <div class="row justify-content-center mb-4">
+        <a href="https://github.com/dperkins2315/project_3" id="github"
+            target="_blank">https://github.com/dperkins2315/project_3</a>
+    </div>
+    <div class="row justify-content-center">
+        <div class="col mb-3">
+            <h2>Adam Feldstein</h2>
+        </div>
+        <div class="col mb-3">
+            <h2>Theodore Moreland</h2>
+        </div>
+        <div class="col mb-3">
+            <h2>Kami Whitehurst-Levy</h2>
+        </div>
+        <div class="col mb-3">
+            <h2>Danielle Perkins</h2>
+        </div>
+    </div>
+    <div class="row justified-content-center">
+        <div class="col mb-3">
+            <img src="../static/images/Adam.jpg" class="img-fluid" />
+        </div>
+        <div class="col mb-3">
+            <img src="../static/images/Theo.jpg" class="img-fluid" />
+        </div>
+        <div class="col mb-3">
+            <img src="../static/images/Kami.jpg" class="img-fluid" />
+        </div>
+        <div class="col mb-3">
+            <img src="../static/images/Dani.jpg" class="img-fluid" />
+        </div>
+    </div>
+</div>
+{% endblock %}

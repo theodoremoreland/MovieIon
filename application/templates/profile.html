@@ -1,0 +1,55 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="container">
+  <div class="card border-0 shadow my-5">
+    <div class="card-body p-5">
+      <h1 class="font-weight-light">{{username}}'s Profile</h1>
+      <div class="row justify-content-center">
+        <p class="lead">Watchlist</p>
+      </div>
+      <div class="row justify-content-center">
+        <div class="col">
+          <div class="list-group">
+            {% if watchlist|length > 0 %}
+            {% for movie in watchlist %}
+            <a href="/info/{{movie['movie_id']}}"
+              class="list-group-item list-group-item-action">{{movie['movie_title']}}</a>
+            {% endfor %}
+            {% else %}
+            <p>You don't have any movies in your watchlist</p>
+            {% endif %}
+          </div>
+        </div>
+        <div class="col-1">
+          <div class="list-group">
+            {% if watchlist|length > 0 %}
+            {% for movie in watchlist %}
+            <a href="/remove/{{movie['movie_id']}}" id="del" class="list-group-item list-group-item-action">x</a>
+            {% endfor %}
+            {% endif %}
+          </div>
+        </div>
+      </div>
+      <div style="height: 700px"></div>
+      <a href="#" target>
+        <p class="lead mb-0">Back to top</p>
+      </a>
+    </div>
+  </div>
+</div>
+<div class="row justify-content-center">
+  {% with messages = get_flashed_messages() %}
+  <ul>
+    {% for message in messages %}
+    <li>{{message | safe}}</li>
+    {% endfor %}
+  </ul>
+  {% endwith %}
+</div>
+
+<script type="text/javascript">
+  let username = "{{ username | safe }}";
+  let watchlist = {{ watchlist | safe }};
+</script>
+{% endblock %}

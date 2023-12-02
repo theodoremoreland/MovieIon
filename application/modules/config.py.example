@@ -1,0 +1,6 @@
+user = ""
+password = ""
+host = ""
+port = ""
+database = ""
+secret_key = ""
