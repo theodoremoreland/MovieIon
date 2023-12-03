@@ -1,23 +1,26 @@
-# Introduction:
+# Movie Ion
 
-Movie Ion (originally named Movie Matchmaker) is a group project for Washington University's Data Analytics Boot Camp (2019). For this project, we created a web application that uses a machine learning model to recommend movies. Below is an overview and demonstration of the application.
-
-# Team (by GitHub username)
-
-- @feldsteina
-- @kamilevy
-- @dperkins2315
-- @theodoremoreland
+_Movie Ion_ (originally named _Movie Matchmaker_) was a group project for _Washington University's Data Analytics Boot Camp (2019)_. For this project, we created a web application that uses machine learning to recommend movies in terms of what the user will likely enjoy or movies the user is least likely to enjoy.
 
 ## Table of Contents
 
-- [Description](#description)
+- [The team](#the-team-by-github-username)
+- [Overview](#overview)
 - [Technologies Used](#technologies-used)
 - [Known bugs](#known-bugs)
 - [How to run locally (WIP)](#how-to-run-locally)
+  - [Run on Windows](#run-on-windows)
+  - [Run on Docker](#run-on-docker)
 - [Screenshots](#screenshots)
 
-# Description:
+# The team (by GitHub username)
+
+- [@kamilevy](https://github.com/kamilevy)
+- [@feldsteina](https://github.com/feldsteina)
+- [@dperkins2315](https://github.com/dperkins2315)
+- @theodoremoreland (me)
+
+# Overview:
 
 Users submit three movies then the app will give 5 recommendations for each movie submitted. Prior to movie submission, users can toggle/invert the webpage's background image which will tell the app to either recommend movies that the user will likely enjoy or to recommend movies that they will probably dislike. The default background image will return likeable recommendations and the inverted image will return unlikeable recommendations.
 
@@ -27,25 +30,53 @@ In addition to providing recommendations, the app also allows users to save movi
 
 # Technologies used:
 
-- Web Scraping (Python-Splinter)
+- Web Scraping (Python, Splinter)
 - Data Wrangling (Pandas, SQL)
 - Machine Learning (sklearn, scipy, and joblib)
-- Storage (PostgreSQL and S3 Bucket)
-- Backend (Python-Flask)
+- Storage (PostgreSQL, S3 Bucket)
+- Backend (Python, Flask)
 - Frontend (JavaScript, Bootstrap 4, HTML5/CSS3, jQuery, ajax)
+- Containerization (Docker)
 - Web Host (AWS)
 
 # How to run locally
 
-You must have your own PostgreSQL database instance and Python 3.8 to run this app locally.
+Whether you are running the app directly on a Windows OS or indirectly via Docker, there are a few things you need to do in order to setup the application:
 
-- Create config.py file in application folder (using config.py.example as example) with your PostgreSQL database credentials.
-- Execute SQL in .sql files in resources folder.
-- Download joblib files from here (link available soon) and place in application/models folder (must create models folder).
+- You need your own PostgreSQL database instance.
+- You need to create a file in `application/modules/` called `config.py` mimicking the template provided in `application/modules/config.py.example` wherein the empty strings are replaced with values relating to a connection to your PostgreSQL database instance.
+- You need to execute the SQL code found in the `resources/` folder to create the tables and insert the data needed to run the app, the order of which does not matter.
+- Download `.joblib` files from here (link available soon) and place in `application/models/` folder (folder must be created).
+
+- If you are trying to run this application directly on a Windows OS, you will need to install `Python 3.8`.
+- Otherwise, you will need to install Docker so you can run the application through Docker.
+
+## Run on Windows
+
+Assumes you are using a modern Windows client OS such as Windows 11 or Windows 10 and that Python 3.8 is installed.
+
 - Create venv folder in application folder using Python 3.8
 - Activate venv
 - pip install python packages to venv via application/requirements.txt
 - Start application via executing application/application.py with Python.
+
+## Run on Docker
+
+Firstly, confirm that Docker is installed and running. Next confirm that no other application is using port `5000` as port `5000` is needed for the Flask server. If you need to run Flask on an alternative port, you can modify the last line in the `application/application.py` file.
+
+Open terminal at root of this project then move into /docker directory:
+
+```
+cd /docker
+```
+
+Build Docker image and start Docker container:
+
+```
+docker compose up --build
+```
+
+Visit: http://localhost:5000 to use the application.
 
 # Known bugs
 
@@ -54,7 +85,8 @@ You must have your own PostgreSQL database instance and Python 3.8 to run this a
   - Clueless (1995)
   - Sabrina (1995)
 - Most movies that start with words such as "A" or "The" erroneously have the word at the end of the movie title preceded by a comma (e.g. `Ref, The (1994)` or `Walk in the Clouds, A (1995)`). Unfortunately, a fix isn't as simple as formatting the data in the database or web server. The issue stems from the source data and would most likely have to be transformed prior to being added to the model.
-- Some (relatively few) movies don't have posters such as `Jurassic Park (1993)`
+- Some (relatively few) movies don't have posters such as `Jurassic Park (1993)`.
+- The application's intro view wherein animated text appears before presenting the home page appears upon every visit to the home page.
 
 # Note to developers:
 
@@ -65,8 +97,7 @@ If intending to run this codebase locally, here are a few things to note.
 - Certain versions of joblib, sklearn, scikit-learn are not compatible with each other nor this codebase.
 - The requirements.txt file contains the last versions of joblib, sklearn, scikit-learn that are compatible with each other and this codebase.
 - As of this writing, Python 3.9 and above are not compatible with versions listed in requirements.txt and thus Python 3.8 is being used.
-- The joblib models are very large in size (relative to a standard GitHub repo), approx 700MB in total. Because of their large file size, they are not being tracked by git/GitHub. The models will be available via AWS s3 soon.
-- The `scripts/create_ML_models.py` script can be used to create new models, however much of the data needed for model creation have to first be web scraped and created via files in the `notebooks/` folder which have been deprecated for years and thus is likely not worth the effort.
+- The `scripts/create_ML_models.py` script can be used to create new models, however much of the data needed for model creation have to first be web scraped and created via files in the `notebooks/` folder which have been deprecated for years.
 
 # Screenshots:
 
