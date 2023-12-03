@@ -55,10 +55,10 @@ Whether you are running the app directly on a Windows OS or indirectly via Docke
 
 Assumes you are using a modern Windows client OS such as Windows 11 or Windows 10 and that Python 3.8 is installed.
 
-Open terminal at root of this project then move into /application directory:
+Open terminal at root of this project then move into application/ directory:
 
 ```
-cd /application
+cd application/
 ```
 
 Create venv folder in application folder using Python 3.8:
@@ -89,10 +89,10 @@ python application.py
 
 Firstly, confirm that Docker is installed and running. Next confirm that no other application is using port `5000` as port `5000` is needed for the Flask server. If you need to run Flask on an alternative port, you can modify the last line in the `application/application.py` file.
 
-Open terminal at root of this project then move into /docker directory:
+Open terminal at root of this project then move into docker/ directory:
 
 ```
-cd /docker
+cd docker/
 ```
 
 Build Docker image and start Docker container:
