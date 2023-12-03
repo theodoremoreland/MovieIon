@@ -55,10 +55,35 @@ Whether you are running the app directly on a Windows OS or indirectly via Docke
 
 Assumes you are using a modern Windows client OS such as Windows 11 or Windows 10 and that Python 3.8 is installed.
 
-- Create venv folder in application folder using Python 3.8
-- Activate venv
-- pip install python packages to venv via application/requirements.txt
-- Start application via executing application/application.py with Python.
+Open terminal at root of this project then move into /application directory:
+
+```
+cd /application
+```
+
+Create venv folder in application folder using Python 3.8:
+
+```
+python3.8 -m venv venv
+```
+
+Activate venv:
+
+```
+source venv/Scripts/activate
+```
+
+Install python packages to venv:
+
+```
+pip install -r requirements.txt
+```
+
+Start application:
+
+```
+python application.py
+```
 
 ## Run on Docker
 
