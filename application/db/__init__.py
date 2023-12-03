@@ -54,6 +54,7 @@ def get_all_movies():
             movie_title_to_id_mapping[movie_title] = movie_id
 
         # TODO returning both values is redundant. Just return movie_title_to_id_mapping and refactor index.html.
+        # TODO ...this doesn't seem to effect performance by much though.
         return [all_movies, movie_title_to_id_mapping]
 
     except Exception as error:
