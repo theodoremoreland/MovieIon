@@ -1,0 +1,11 @@
+# docker compose up --build
+version: '3'
+
+services:
+  movieion-dev-service:
+    container_name: movieion-dev-container
+    build:
+      context: ..
+      dockerfile: ./docker/dev.Dockerfile
+    ports:
+      - 5000:5000
