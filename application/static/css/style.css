@@ -442,7 +442,7 @@ body {
 
 .repo-links a,
 .repo-links a:visited {
-  color: rgb(252, 252, 252);
+  color: rgb(64, 86, 255);
 }
 
 .repo-links a:hover {
@@ -467,9 +467,10 @@ body {
 }
 
 .about .headshot {
-  width: clamp(100px, 20vw, 150px);
+  width: clamp(85px, 18vw, 140px);
   height: clamp(100px, 20vw, 150px);
   border-radius: 50%;
+  border: 1px solid whitesmoke;
 }
 /* Fallback for Edge
   -------------------------------------------------- */
