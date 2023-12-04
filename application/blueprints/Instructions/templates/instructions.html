@@ -1,9 +1,4 @@
 {% extends 'base.html' %} {% block content %}
-<style>
-    #a {
-        color: black;
-    }
-</style>
 <div class="container instructions-container">
     <div class="card border-0 shadow my-5">
         <div class="card-body p-5">
@@ -13,56 +8,35 @@
                         Use a machine learning for movie recommendations!
                     </h2>
                     <br />
-                    <ol class="instructions">
+                    <ul class="instructions">
                         <li>
-                            To leave this page and start the app, locate and click the words
-                            "Movie Ion" at the top of the page.
+                            At the Home screen, select three of your favorite movies from the dropdown menu
+                            (select a movie a second time to remove the selection).
+                            Once your movies are selected, click the green "Submit" button to process your selections.
                         </li>
                         <li>
-                            To access all features, log in using one of six preset usernames
-                            (user1, user2, user3, etc...)
+                            By default, the application will recommend movies that you are likely to enjoy.
+                            Alternatively, by toggling the slider above the movie posters (on the Home screen),
+                            the application will recommend movies that you are likely to dislike.
                         </li>
                         <li>
-                            To choose the kind of recommendation (either best or worst
-                            matches), toggle the tan button above the movie posters. A black
-                            background (i.e. the default background) indicates search for best
-                            matches, a tan background indicates a search for worst matches.
-                        </li>
-                        <li>Select dropdown form located below movie posters.</li>
-                        <li>Type to search for desired movie.</li>
-                        <li>
-                            Once movie title appears in dropdown menu, click on desired movie
-                            title.
+                            Upon receiving your recommendations, you can click on the movie posters to view information
+                            about the movie, including the movie's title, release date, a brief synopsis, and more. This
+                            feature is also available via clicking posters selected on the Home screen.
                         </li>
                         <li>
-                            Repeat the last three steps until three movies are selected.
+                            When viewing a movie's information, you can click the "Add to Watchlist" button to add the
+                            movie to your watchlist. You must be logged in as <i>user1</i>, <i>user2</i>, <i>user3</i>,
+                            <i>user4</i>, <i>user5</i>, or <i>user6</i>
+                            to add movies to your watchlist. There is no password for any of these accounts as they are
+                            for
+                            demonstration purposes only.
                         </li>
-                        <li>
-                            To remove a movie selection, type the movie title in search form
-                            and click title again to remove.
-                        </li>
-                        <li>
-                            Once three movies are selected, a green submit button will appear
-                            above dropdown menu.
-                        </li>
-                        <li>
-                            Find and click the green "submit" button to process your
-                            selections.
-                        </li>
-                        <li>
-                            Hover mouse over recommended movies to view their distance (hold
-                            your finger over movie if using touchscreen).
-                        </li>
-                        <li>Click on desired movie to view movie information.</li>
-                        <li>
-                            Click "add movie to watchlist" to track movie on your user profile
-                            (will need to be logged in).
-                        </li>
-                        <li>
-                            Click "Profile" to view watchlist. Click on the "x" located to the
-                            right of each movie to remove from list.
-                        </li>
-                    </ol>
+                        <i><small>Note: Watchlist and user accounts were implemented to exercise and demonstrate
+                                authentication, user sessions, and database functionality. It serves no practical
+                                purpose
+                                beyond that.</small></i>
+                    </ul>
                 </div>
             </div>
         </div>
