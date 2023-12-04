@@ -194,57 +194,6 @@ div#loading {
   margin: auto;
 }
 
-/* Slot Machine Classes */
-
-.slottt-machine-recipe {
-  margin: 0px auto;
-  width: 7000px;
-  margin-top: 50px;
-}
-
-.slottt-machine-recipe__mask {
-  width: 100%;
-  height: 150px;
-  overflow: hidden;
-  position: relative;
-  display: inline-block;
-  margin-bottom: -40px;
-}
-
-.slottt-machine-recipe__items_container {
-  position: absolute;
-}
-
-.slottt-machine-recipe__item {
-  min-height: 150px;
-  max-height: 150px;
-  margin: 0px;
-  padding: 0px;
-
-  background-size: contain;
-}
-
-/* Typography */
-
-.recipe_if,
-.recipe_then {
-  font-weight: bold;
-  font-size: 100px;
-}
-
-@media (max-width: 320px) {
-  .recipe_if,
-  .recipe_then {
-    font-weight: bold;
-    font-size: 28px;
-  }
-}
-
-.tagline {
-  font-weight: normal;
-  font-size: 24px;
-}
-
 a {
   font-weight: bold;
   text-decoration: none;
