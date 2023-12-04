@@ -1,45 +1,56 @@
 {% extends 'base.html' %} {% block content %}
-<style>
-    #github {
-        color: aliceblue;
-    }
-</style>
-
-<div class="container">
-    <div class="row justify-content-center">
-        <h1 id="about">About Us!</h1>
-    </div>
-    <div class="row justify-content-center mb-4">
-        <a href="https://github.com/dperkins2315/project_3" id="github"
-            target="_blank">https://github.com/dperkins2315/project_3</a>
-    </div>
-    <div class="row justify-content-center">
-        <div class="col mb-3">
-            <h2>Adam Feldstein</h2>
-        </div>
-        <div class="col mb-3">
-            <h2>Theodore Moreland</h2>
-        </div>
-        <div class="col mb-3">
-            <h2>Kami Whitehurst-Levy</h2>
-        </div>
-        <div class="col mb-3">
-            <h2>Danielle Perkins</h2>
-        </div>
-    </div>
-    <div class="row justified-content-center">
-        <div class="col mb-3">
-            <img src="../static/images/Adam.jpg" class="img-fluid" />
-        </div>
-        <div class="col mb-3">
-            <img src="../static/images/Theo.jpg" class="img-fluid" />
-        </div>
-        <div class="col mb-3">
-            <img src="../static/images/Kami.jpg" class="img-fluid" />
-        </div>
-        <div class="col mb-3">
-            <img src="../static/images/Dani.jpg" class="img-fluid" />
-        </div>
-    </div>
+<div class="container about">
+    <h1 id="title">About</h1>
+    <p class="details">
+        Movie Ion (originally titled Movie Matchmaker) was a group project for
+        Washington University in Saint Louis' Data Analytics Bootcamp (2019). For this
+        project, we were tasked with creating an application that leveraged the various
+        skills we had learned throughout the course. We decided to create a web application
+        that used machine learning (via Python, scikit-learn, scipy, and joblib) to recommend movies to users based on
+        their preferences.
+        In addition to creating a machine learning model, we also needed to create a database,
+        each of which required data sources. To get the data needed, we built web scraping
+        scripts (Python, beautiful soup, and splinter) to pull data from various websites alongside CSVs found online
+        that we later transformed.
+        We also utilized AWS for storage (S3, RDS) and web hosting (Elastic Beanstalk, Route 53).
+    </p>
+    <p class="details">
+        To learn more about the project, please visit our GitHub repository at the links below:
+    </p>
+    <ul class="repo-links">
+        <li>
+            <a target="_blank" href="https://github.com/dperkins2315/project_3">Original repository</a>
+        </li>
+        <li>
+            <a target="_blank" href="https://github.com/theodoremoreland/MovieIon">Modern fork (most up-to-date)</a>
+        </li>
+    </ul>
+    <h3>The Team</h3>
+    <ul class="the-team">
+        <li>
+            <p class="name">Adam Feldstein</p>
+            <a target="_blank" href="https://github.com/feldsteina">
+                <img src="../static/images/Adam.jpg" class="headshot" />
+            </a>
+        </li>
+        <li>
+            <p class="name">Danielle Perkins</p>
+            <a target="_blank" href="https://github.com/dperkins2315">
+                <img src="../static/images/Dani.jpg" class="headshot" />
+            </a>
+        </li>
+        <li>
+            <p class="name">Kami Whitehurst-Levy</p>
+            <a target="_blank" href="https://github.com/kamilevy">
+                <img src="../static/images/Kami.jpg" class="headshot" />
+            </a>
+        </li>
+        <li>
+            <p class="name">Theodore Moreland</p>
+            <a target="_blank" href="https://github.com/theodoremoreland">
+                <img src="../static/images/Theo.jpg" class="headshot" />
+            </a>
+        </li>
+    </ul>
 </div>
 {% endblock %}
