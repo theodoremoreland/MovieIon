@@ -83,10 +83,6 @@ body {
   font-family: "Permanent Marker", cursive;
 }
 
-/* #one,#two,#three,#four,#five {
-  
-} */
-
 h2 {
   color: rgb(255, 255, 255);
   opacity: 0.82;
@@ -382,14 +378,99 @@ body {
   color: #777;
 }
 
+.instructions-container {
+  color: rgb(252, 252, 252);
+  background-color: #242424;
+  border-radius: 15px;
+}
+
+.instructions-container .title {
+  color: inherit !important;
+}
+
+.instructions-container .card {
+  background-color: inherit !important;
+}
+
 .instructions {
-  font-family: "Courier New", Courier, monospace;
+  font-family: Arial;
+  font-size: 16px;
 }
 
 .instructions > li {
   margin: 15px 0;
 }
 
+/* ----------------------- About view ----------------------- */
+.about {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  font-size: 16px;
+  color: rgb(252, 252, 252);
+  background-color: #242424;
+  padding: 25px;
+  margin-top: 3rem;
+  margin-bottom: 3rem;
+  border-radius: 15px;
+}
+
+.about ul {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  list-style: none;
+}
+
+.about .details {
+  width: 75%;
+  font-family: Arial;
+  text-align: left;
+}
+
+.about .repo-links {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  align-items: center;
+  width: 100%;
+  font-size: 20px;
+  margin-top: -5px;
+}
+
+.repo-links a,
+.repo-links a:visited {
+  color: rgb(252, 252, 252);
+}
+
+.repo-links a:hover {
+  color: rgb(0, 149, 255);
+}
+
+.about .the-team {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+  align-items: center;
+  width: 100%;
+  font-size: 16px;
+}
+
+.about li {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.about .headshot {
+  width: clamp(100px, 20vw, 150px);
+  height: clamp(100px, 20vw, 150px);
+  border-radius: 50%;
+}
 /* Fallback for Edge
   -------------------------------------------------- */
 
