@@ -304,19 +304,37 @@ body {
 }
 
 .about .details {
-  width: 75%;
+  width: 100%;
   font-family: Arial;
-  text-align: left;
+  text-align: center;
+}
+
+@media (min-width: 700px) {
+  .about .details {
+    width: 75%;
+    text-align: left;
+  }
 }
 
 .about .repo-links {
   display: flex;
-  flex-direction: row;
-  justify-content: space-evenly;
+  flex-direction: column;
+  justify-content: flex-start;
   align-items: center;
+  gap: 15px;
   width: 100%;
-  font-size: 20px;
   margin-top: -5px;
+  padding: 0;
+  font-size: 20px;
+  text-align: center;
+}
+
+@media (min-width: 700px) {
+  .about .repo-links {
+    flex-direction: row;
+    justify-content: space-evenly;
+    align-items: center;
+  }
 }
 
 .repo-links a,
@@ -330,12 +348,24 @@ body {
 
 .about .the-team {
   display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-  justify-content: space-evenly;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  justify-content: flex-start;
   align-items: center;
+  padding: 0;
+  gap: 15px;
   width: 100%;
   font-size: 16px;
+}
+
+@media (min-width: 700px) {
+  .about .the-team {
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+    align-items: center;
+    gap: 0;
+  }
 }
 
 .about li {
