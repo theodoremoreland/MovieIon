@@ -40,7 +40,7 @@ def make_positive_recommendations():
         return jsonify(
             {
                 "data": render_template(
-                    "recommended.html",
+                    "best.html",
                     recommendation_sample_movie_1=list(recommendation_sample_movie_1),
                     recommendation_sample_movie_2=list(recommendation_sample_movie_2),
                     recommendation_sample_movie_3=list(recommendation_sample_movie_3),
