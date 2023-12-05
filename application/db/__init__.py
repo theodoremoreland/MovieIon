@@ -1,6 +1,32 @@
+import json
 import pg8000
 
 from modules.config import user, password, host, port, database
+
+PATH = "db/movie_title_to_id_mapping.json"
+
+
+def get_movies_json():
+    try:
+        f = open(PATH)
+
+        print(f"SUCCESS: Loaded {PATH}!\n")
+
+        return json.load(f)
+    except Exception as e:
+        print(e)
+
+        return None
+
+
+def create_movies_json(movie_title_to_id_mapping):
+    try:
+        with open(PATH, "w") as outfile:
+            json.dump(movie_title_to_id_mapping, outfile)
+
+            print(f"SUCCESS: {PATH} created!\n")
+    except Exception as e:
+        print(f"ERROR: Failed to create {PATH} - {e}\n")
 
 
 def database_cursor():
@@ -27,15 +53,11 @@ def database_cursor():
         print("Error while connecting to PostgreSQL database", error)
 
 
-cursor = database_cursor()
-
-
-def get_all_movies():
+def get_all_movies(cursor, movies_json):
     """
     Gets all movies from database.
 
     Returns:
-        all_movies (list): List of tuples containing movie title and movie id.
         movie_title_to_id_mapping (dict): Dictionary mapping movie titles to their respective movie ids.
     """
 
@@ -44,21 +66,27 @@ def get_all_movies():
 
     Example: movie_title_to_id_mapping = { "Toy Story (1995)": 1, "Jumanji (1995)": 2, ... }
     """
-    movie_title_to_id_mapping = {}
+    movie_title_to_id_mapping = movies_json if movies_json != None else {}
 
-    try:
-        cursor.execute("SELECT title, movie_id FROM movie_list;")
-        all_movies = cursor.fetchall()
+    if movie_title_to_id_mapping == False:
+        try:
+            cursor.execute("SELECT title, movie_id FROM movie_list;")
+            all_movies = cursor.fetchall()
 
-        for _, (movie_title, movie_id) in enumerate(all_movies):
-            movie_title_to_id_mapping[movie_title] = movie_id
+            for _, (movie_title, movie_id) in enumerate(all_movies):
+                movie_title_to_id_mapping[movie_title] = movie_id
 
-        # TODO returning both values is redundant. Just return movie_title_to_id_mapping and refactor index.html.
-        # TODO ...this doesn't seem to effect performance by much though.
-        return [all_movies, movie_title_to_id_mapping]
+            return movie_title_to_id_mapping
 
-    except Exception as error:
-        print("Error while selecting rows(title, movie_id)", error)
+        except Exception as error:
+            print("Error while selecting rows(title, movie_id)", error)
+    else:
+        return movie_title_to_id_mapping
 
 
-[all_movies, movie_title_to_id_mapping] = get_all_movies()
+cursor = database_cursor()
+movies_json = get_movies_json()
+movie_title_to_id_mapping = get_all_movies(cursor, movies_json)
+
+if movies_json == None and movie_title_to_id_mapping != None:
+    create_movies_json(movie_title_to_id_mapping)

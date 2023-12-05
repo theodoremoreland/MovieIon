@@ -1,3 +1,8 @@
+:root {
+  --input-padding-x: 1.5rem;
+  --input-padding-y: 0.75rem;
+}
+
 .cs {
   visibility: hidden;
 }
@@ -7,13 +12,13 @@
   color: white;
 }
 
-/* switch */
 /* The switch - the box around the slider */
 .switch {
   position: relative;
   display: inline-block;
   width: 60px;
   height: 34px;
+  margin: 0.7rem 0;
 }
 
 /* Hide default HTML checkbox */
@@ -71,12 +76,6 @@ input:checked + .slider:before {
   border-radius: 50%;
 }
 
-/* text */
-
-#about {
-  color: rgb(255, 255, 255);
-}
-
 html,
 body {
   height: 100%;
@@ -100,14 +99,7 @@ span {
   color: white;
 }
 
-/* tooltip */
-
-#tiles15 {
-  font-size: 90%;
-}
-
 /* links */
-
 a[target]:link {
   color: #000000;
 }
@@ -142,55 +134,16 @@ a:hover {
   font-family: "Courier New", Courier, monospace;
 }
 
-/* intro */
-.intro {
-  width: 100%;
-  padding: 70px 0px 70px 0px;
-  overflow: hidden;
-}
-
-.slide,
-#words {
-  position: fixed;
-  z-index: 3;
-  top: 0;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  width: 100%;
-  height: 100%;
-}
-
-.slide {
-  background-color: rgb(255, 255, 255);
-  transition: 0.5s cubic-bezier(0, 1, 0.5, 1);
-  transform: translateY(0);
-}
-
-.slide-up,
-#words {
-  transform: translateY(-100%);
-}
-
-#toggleSlider {
-  background: transparent;
-  border: none !important;
-  font-size: 0;
-}
-
 /* Loading screen */
-
 div#loading {
   cursor: wait;
   width: 100px;
   height: 100px;
-
   position: fixed;
   top: 0;
   bottom: 0;
   left: 0;
   right: 0;
-
   margin: auto;
 }
 
@@ -201,7 +154,6 @@ a {
 }
 
 /* Sticky Footer Classes */
-
 #page-content {
   flex: 1 0 auto;
 }
@@ -211,7 +163,6 @@ a {
 }
 
 /* Other Classes for Page Styling */
-
 body {
   background: #007bff;
   background: linear-gradient(to right, #0062e6, #33aeff);
@@ -220,22 +171,7 @@ body {
   background-size: cover;
 }
 
-#tile1:hover,
-#tile2:hover,
-#tile3:hover,
-.tiles15:hover {
-  padding: 1%;
-  border: inset;
-  border-color: rgb(255, 255, 255);
-}
-
 /* Search and scroll bar */
-
-:root {
-  --input-padding-x: 1.5rem;
-  --input-padding-y: 0.75rem;
-}
-
 .card-signin {
   border: 0;
   border-radius: 1rem;
@@ -327,6 +263,8 @@ body {
   color: #777;
 }
 
+/* ----------------------- Instructions view ----------------------- */
+
 .instructions-container {
   color: rgb(252, 252, 252);
   background-color: #242424;
@@ -351,6 +289,7 @@ body {
 }
 
 /* ----------------------- About view ----------------------- */
+
 .about {
   display: flex;
   flex-direction: column;
@@ -419,8 +358,156 @@ body {
   width: clamp(85px, 18vw, 140px);
   height: clamp(100px, 20vw, 150px);
   border-radius: 50%;
-  border: 1px solid whitesmoke;
 }
+
+/* ----------------------- Home view ----------------------- */
+
+.home {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+main.content {
+  position: relative;
+  width: 95%;
+}
+
+@media (min-width: 700px) {
+  main.content {
+    width: 95%;
+  }
+}
+
+@media (min-width: 991px) {
+  main.content {
+    width: 85%;
+  }
+}
+
+@media (min-width: 1200px) {
+  main.content {
+    width: 65%;
+  }
+}
+
+.posters-group {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  width: 100%;
+  gap: 0;
+}
+
+@media (min-width: 700px) {
+  .posters-group {
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: flex-start;
+  }
+}
+
+.poster-container {
+  position: relative;
+  width: 200px;
+  border: none;
+  border-radius: 10px;
+  margin-bottom: 1.5rem;
+}
+
+@media (min-width: 700px) {
+  .poster-container {
+    width: 160px;
+  }
+}
+
+.poster-container:hover {
+  scale: 1.1;
+}
+
+.poster-container:active {
+  opacity: 0.75;
+}
+
+.poster-image {
+  width: 100%;
+  aspect-ratio: 2/3;
+  border: none;
+}
+
+.movie-title {
+  width: 100%;
+  margin: 0;
+  padding: 10px;
+  font-size: 0.85rem;
+  text-align: center;
+  text-wrap: wrap;
+  background-color: #fff;
+}
+
+.select-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
+
+.filter-option-inner-inner {
+  font-size: 1rem !important;
+}
+
+.dropdown-menu {
+  font-size: 0.7rem !important;
+}
+
+.because {
+  width: 100%;
+  text-align: center;
+}
+
+@media (min-width: 700px) {
+  .because {
+    width: auto;
+    text-align: initial;
+  }
+}
+
+.results-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.results-container > div {
+  width: 80% !important;
+}
+
+@media (min-width: 700px) {
+  .results-container {
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .results-container > div {
+    width: initial;
+  }
+}
+
+#tiles15 {
+  font-size: 90%;
+}
+
+.tiles15:hover {
+  padding: 1%;
+  border: inset;
+  border-color: rgb(255, 255, 255);
+}
+
 /* Fallback for Edge
   -------------------------------------------------- */
 

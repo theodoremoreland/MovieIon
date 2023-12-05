@@ -27,14 +27,14 @@
 
 <div class="container">
   <div class="row justify-content-center">
-    <h2>Because you chose {{movies[0]['movie_title']}}:</h2>
+    <h2 class="because">Because you chose {{movies[0]['movie_title']}}:</h2>
   </div>
-  <div class="row justify-content-center">
+  <div class="results-container">
     {% for movie in recommendation_sample_movie_1 %}
     {% set movie_id = movie["movie_id"] %}
     {% set movie_title = movie["movie_title"] %}
     {% set movie_distance = movie["movie_distance"] %}
-    <div class="col mb-4 mv">
+    <div class="mb-4 mv">
       <a href="/info/{{movie_id}}" target="_blank">
         <div class="card border-0 shadow titles15" title='{{movie_title}}, with a distance of {{movie_distance}}'>
           <img src="https://movie-posters-project3.s3.us-east-2.amazonaws.com/images/{{movie_id}}.jpg" class="img-fluid"
@@ -49,14 +49,14 @@
     {% endfor %}
   </div>
   <div class="row justify-content-center">
-    <h2>Because you chose {{movies[1]['movie_title']}}:</h2>
+    <h2 class="because">Because you chose {{movies[1]['movie_title']}}:</h2>
   </div>
-  <div class="row justify-content-center">
+  <div class="results-container">
     {% for movie in recommendation_sample_movie_2 %}
     {% set movie_id = movie["movie_id"] %}
     {% set movie_title = movie["movie_title"] %}
     {% set movie_distance = movie["movie_distance"] %}
-    <div class="col mb-4 mv">
+    <div class="mb-4 mv">
       <a href="/info/{{movie_id}}" target="_blank">
         <div class="card border-0 shadow titles15" title='{{movie_title}}, with a distance of {{movie_distance}}'>
           <img src="https://movie-posters-project3.s3.us-east-2.amazonaws.com/images/{{movie_id}}.jpg" class="img-fluid"
@@ -71,14 +71,14 @@
     {% endfor %}
   </div>
   <div class="row justify-content-center">
-    <h2>Because you chose {{movies[2]['movie_title']}}:</h2>
+    <h2 class="because">Because you chose {{movies[2]['movie_title']}}:</h2>
   </div>
-  <div class="row justify-content-center">
+  <div class="results-container">
     {% for movie in recommendation_sample_movie_3 %}
     {% set movie_id = movie["movie_id"] %}
     {% set movie_title = movie["movie_title"] %}
     {% set movie_distance = movie["movie_distance"] %}
-    <div class="col mb-4 mv">
+    <div class="mb-4 mv">
       <a href="/info/{{movie_id}}" target="_blank">
         <div class="card border-0 shadow titles15" title='{{movie_title}}, with a distance of {{movie_distance}}'>
           <img src="https://movie-posters-project3.s3.us-east-2.amazonaws.com/images/{{movie_id}}.jpg" class="img-fluid"
