@@ -1,33 +1,10 @@
 {% extends 'base.html' %}
 
 {% block header %}
-<style>
-  h1 {
-    color: black;
-  }
-
-  h2 {
-    color: black;
-  }
-
-  body {
-    background-image: url("/static/images/bg12.gif");
-  }
-
-  a {
-    color: black;
-  }
-
-  .mv:hover .cs {
-    visibility: visible;
-    color: black;
-  }
-</style>
-
 <header class="text-center py-5 mb-0">
   <div class="button-container">
-    <a href="/profile/user"><button type="button" class="btn btn-dark btn-lg">Profile</button></a>
-    <a href="/"><button type="button" class="btn btn-warning btn-lg">Reset</button></a>
+    <a href="/profile/user"><button type="button" class="btn btn-dark btn-lg nav-btn">Profile</button></a>
+    <a href="/"><button type="button" class="btn btn-primary btn-lg nav-btn">Reset</button></a>
   </div>
 </header>
 {% endblock %}
@@ -40,9 +17,9 @@
   var recommendation_sample_movie_3 = {{ recommendation_sample_movie_3 | safe }};
 </script>
 
-<div class="worst">
+<div class="best">
   <div class="container">
-    <h1 class="font-weight-light text-white text-center mb-5">Negative Recommendations</h1>
+    <h1 class="font-weight-light text-white text-center mb-5">Positive Recommendations</h1>
   </div>
   <div class="row justify-content-center">
     <h2 class="because">Because you chose {{movies[0]['movie_title']}}:</h2>

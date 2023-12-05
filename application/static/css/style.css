@@ -3,15 +3,6 @@
   --input-padding-y: 0.75rem;
 }
 
-.cs {
-  visibility: hidden;
-}
-
-.mv:hover .cs {
-  visibility: visible;
-  color: white;
-}
-
 /* The switch - the box around the slider */
 .switch {
   position: relative;
@@ -99,7 +90,7 @@ span {
   color: white;
 }
 
-/* links */
+/* Links */
 a[target]:link {
   color: #000000;
 }
@@ -369,30 +360,64 @@ body {
   align-items: center;
 }
 
+.button-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: start;
+  align-items: center;
+  gap: 15px;
+}
+
+.button-container {
+  button {
+    min-width: 250px !important;
+  }
+}
+
+@media (min-width: 700px) {
+  .button-container {
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+  }
+}
+
+.best h1,
+.worst h1 {
+  font-size: 1.75rem;
+}
+
+@media (min-width: 700px) {
+  .best h1,
+  .worst h1 {
+    font-size: 2.2rem;
+  }
+}
+
 main.content {
   position: relative;
-  width: 95%;
+  width: 85%;
 }
 
 @media (min-width: 700px) {
   main.content {
-    width: 95%;
+    width: 80%;
   }
 }
 
 @media (min-width: 991px) {
   main.content {
-    width: 85%;
+    width: 70%;
   }
 }
 
 @media (min-width: 1200px) {
   main.content {
-    width: 65%;
+    width: 60%;
   }
 }
 
-.posters-group {
+main .posters-group {
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
@@ -402,14 +427,14 @@ main.content {
 }
 
 @media (min-width: 700px) {
-  .posters-group {
+  main .posters-group {
     flex-direction: row;
     justify-content: space-between;
     align-items: flex-start;
   }
 }
 
-.poster-container {
+main .poster-container {
   position: relative;
   width: 200px;
   border: none;
@@ -417,9 +442,21 @@ main.content {
   margin-bottom: 1.5rem;
 }
 
+@media (min-width: 480px) {
+  main .poster-container {
+    width: 250px;
+  }
+}
+
 @media (min-width: 700px) {
-  .poster-container {
+  main .poster-container {
     width: 160px;
+  }
+}
+
+@media (min-width: 1200px) {
+  main .poster-container {
+    width: 190px;
   }
 }
 
@@ -464,7 +501,7 @@ main.content {
 }
 
 .because {
-  width: 100%;
+  width: 90%;
   text-align: center;
 }
 
@@ -480,32 +517,76 @@ main.content {
   flex-direction: column;
   justify-content: flex-start;
   align-items: center;
-}
-
-.results-container > div {
-  width: 80% !important;
+  gap: 20px;
+  width: 100%;
+  margin-bottom: 25px;
 }
 
 @media (min-width: 700px) {
-  .results-container {
-    flex-direction: row;
-    justify-content: center;
+  .best {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
     align-items: center;
   }
 
-  .results-container > div {
-    width: initial;
+  .results-container {
+    flex-direction: row;
+    justify-content: center;
+    align-items: flex-start;
+    gap: 15px;
+    margin-bottom: 60px;
   }
 }
 
-#tiles15 {
-  font-size: 90%;
+@media (min-width: 1200px) {
+  .results-container {
+    gap: 25px;
+  }
 }
 
-.tiles15:hover {
-  padding: 1%;
-  border: inset;
-  border-color: rgb(255, 255, 255);
+.results-container .poster-container {
+  width: 80%;
+}
+
+@media (min-width: 480px) {
+  .results-container .poster-container {
+    width: 220px;
+  }
+}
+
+@media (min-width: 700px) {
+  .results-container .poster-container {
+    width: 120px;
+  }
+}
+
+@media (min-width: 991px) {
+  .results-container .poster-container {
+    width: 170px;
+  }
+}
+
+@media (min-width: 1200px) {
+  .results-container .poster-container {
+    width: 200px;
+  }
+}
+
+.cs {
+  display: none;
+  visibility: hidden;
+  color: white;
+}
+
+.mv:hover .cs {
+  visibility: visible;
+}
+
+@media (min-width: 1200px) {
+  .cs {
+    display: initial;
+  }
 }
 
 /* Fallback for Edge
