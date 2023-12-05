@@ -1,6 +1,6 @@
 from flask import Blueprint, render_template, redirect, request, jsonify
 
-from db import all_movies, movie_title_to_id_mapping
+from db import movie_title_to_id_mapping
 from modules.create_recommendation_samples import create_recommendation_samples
 from modules.model import best_recommendations, worst_recommendations
 
@@ -8,15 +8,16 @@ home = Blueprint("home", __name__, template_folder="templates", static_folder="s
 
 
 @home.route("/", methods=["GET"])
+@home.route("/home", methods=["GET"])
 def index():
     """
     Handles request to display home page.
     """
 
-    return render_template("index.html", all_movies=all_movies)
+    return render_template("index.html", all_movies=movie_title_to_id_mapping)
 
 
-@home.route("/choices", methods=["POST", "GET"])
+@home.route("/best", methods=["POST", "GET"])
 def make_positive_recommendations():
     """
     Handles request to get positive recommendations (i.e. movies the user will enjoy)

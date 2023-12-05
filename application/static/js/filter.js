@@ -1,10 +1,9 @@
-var all_movies = all_movies;
-var reverse = false;
-id_index = { id: [], index: [], title: [] };
+let reverse = false;
+let id_index = { id: [], index: [], title: [] };
 
 screen.orientation.lock("landscape");
 
-$("#reverse").click(function () {
+$("#reverse").click(() => {
   if (reverse == false) {
     $("body").css({
       "background-image": 'url("/static/images/bg12.gif")',
@@ -28,58 +27,57 @@ $("#reverse").click(function () {
   }
 });
 
-all_movies.forEach(function (row, index) {
-  var option = document.createElement("option");
-  title = row[0];
-  movie_id = row[1].toString();
+Object.entries(all_movies)
+  .sort(([_a, movie_id_a], [_b, movie_id_b]) => movie_id_a - movie_id_b)
+  .forEach((row, index) => {
+    let option = document.createElement("option");
+    let title = row[0];
+    let movie_id = row[1].toString();
 
-  option.setAttribute("data-tokens", movie_id);
-  option.setAttribute("value", movie_id);
-  movie = document.createTextNode(title);
-  option.appendChild(movie);
-  document.getElementById("filter").appendChild(option);
+    movie = document.createTextNode(title);
 
-  id_index["id"].push(movie_id);
-  id_index["index"].push(index);
-  id_index["title"].push(title);
-});
+    option.setAttribute("data-tokens", movie_id);
+    option.setAttribute("value", movie_id);
+    option.appendChild(movie);
 
-function random() {
-  document.getElementsByTagName("option")[5].click();
-}
+    document.getElementById("filter").appendChild(option);
+
+    id_index["id"].push(movie_id);
+    id_index["index"].push(index);
+    id_index["title"].push(title);
+  });
 
 $("#filter").on(
   "changed.bs.select",
   function (e, clickedIndex, isSelected, previousValue) {
-    $('input[type="text"], textarea').val(""); // clears textbox area after selection
+    $('input[type="text"], textarea').val(""); // Clears textbox area after selection.
 
-    id = id_index["id"][clickedIndex];
-    title = id_index["title"][clickedIndex];
-    var image1 = document.getElementById(`image1`).getAttribute("src");
-    var image2 = document.getElementById(`image2`).getAttribute("src");
-    var image3 = document.getElementById(`image3`).getAttribute("src");
-    var movie_name1 = document.getElementById("movie_name1").innerHTML;
-    var movie_name2 = document.getElementById("movie_name2").innerHTML;
-    var movie_name3 = document.getElementById("movie_name3").innerHTML;
-    var poster_present = false;
-    var poster =
+    let id = id_index["id"][clickedIndex];
+    let title = id_index["title"][clickedIndex];
+    let image1 = document.getElementById(`image1`).getAttribute("src");
+    let image2 = document.getElementById(`image2`).getAttribute("src");
+    let image3 = document.getElementById(`image3`).getAttribute("src");
+    let movie_name1 = document.getElementById("movie_name1").innerHTML;
+    let movie_name2 = document.getElementById("movie_name2").innerHTML;
+    let movie_name3 = document.getElementById("movie_name3").innerHTML;
+    let isPosterPresent = false;
+    let poster =
       "https://movie-posters-project3.s3.us-east-2.amazonaws.com/images/";
     poster = poster + id + ".jpg";
 
-    // variables to determine empty spaces for posters
-    var space1;
-    var space2;
-    var space3;
-    var spaces = [space1, space2, space3];
+    // Variables to determine empty spaces for posters.
+    let space1;
+    let space2;
+    let space3;
 
-    // Checks to see if the most recent selection has already been selected and therefore poster should be present
-    for (i = 0; i < previousValue.length; i++) {
+    // Checks to see if the most recent selection has already been selected and therefore poster should be present.
+    for (let i = 0; i < previousValue.length; i++) {
       if (previousValue[i] == id) {
-        poster_present = true;
+        isPosterPresent = true;
       }
     }
 
-    // Checks if poster absent then sets space value to true
+    // Checks if poster absent then sets space value to true.
     if (image1.includes("random")) {
       space1 = true;
     }
@@ -92,7 +90,7 @@ $("#filter").on(
       space3 = true;
     }
 
-    if (!poster_present) {
+    if (!isPosterPresent) {
       if (space1) {
         const movieLink1 = document.getElementById("link1");
 
@@ -101,6 +99,7 @@ $("#filter").on(
 
         movieLink1?.setAttribute("href", `/info/${id}`);
         movieLink1?.setAttribute("target", "_blank");
+        movieLink1?.setAttribute("title", title);
       } else if (space2) {
         const movieLink2 = document.getElementById("link2");
 
@@ -109,6 +108,7 @@ $("#filter").on(
 
         movieLink2?.setAttribute("href", `/info/${id}`);
         movieLink2?.setAttribute("target", "_blank");
+        movieLink2?.setAttribute("title", title);
       } else if (space3) {
         const movieLink3 = document.getElementById("link3");
 
@@ -117,10 +117,11 @@ $("#filter").on(
 
         movieLink3?.setAttribute("href", `/info/${id}`);
         movieLink3?.setAttribute("target", "_blank");
+        movieLink3.setAttribute("title", title);
       }
     }
 
-    if (poster_present) {
+    if (isPosterPresent) {
       if (image1.includes(`/${id}.jpg`) || movie_name1 == title) {
         const movieLink1 = document.getElementById("link1");
 
@@ -130,6 +131,10 @@ $("#filter").on(
 
         movieLink1?.removeAttribute("href");
         movieLink1?.removeAttribute("target");
+        movieLink1?.setAttribute(
+          "title",
+          "Select one of your favorite movies via dropdown menu below."
+        );
         document.getElementById("movie_name1").innerHTML = "Selection 1";
       } else if (image2.includes(`/${id}.jpg`) || movie_name2 == title) {
         const movieLink2 = document.getElementById("link2");
@@ -141,6 +146,10 @@ $("#filter").on(
 
         movieLink2?.removeAttribute("href");
         movieLink2?.removeAttribute("target");
+        movieLink2?.setAttribute(
+          "title",
+          "Select one of your favorite movies via dropdown menu below."
+        );
       } else if (image3.includes(`/${id}.jpg`) || movie_name3 == title) {
         const movieLink3 = document.getElementById("link3");
 
@@ -151,32 +160,42 @@ $("#filter").on(
 
         movieLink3?.removeAttribute("href");
         movieLink3?.removeAttribute("target");
+        movieLink3?.setAttribute(
+          "title",
+          "Select one of your favorite movies via dropdown menu below."
+        );
       }
     }
 
-    var hey = "'#loading'";
-    movies = document.getElementById("filter").selectedOptions;
+    let loadingContainerId = "'#loading'";
+    let movies = document.getElementById("filter").selectedOptions;
 
     if (movies.length == 3) {
       document.getElementById(
         "button"
-      ).innerHTML = `<button type="submit" class="btn btn-success" id="submit" onclick="$(${hey}).show();" >Submit</button>`;
-      $("#submit").click(function () {
-        var route;
-        list = [];
-        movies = document.getElementById("filter").selectedOptions;
+      ).innerHTML = `<button type="submit" class="btn btn-success" id="submit" onclick="$(${loadingContainerId}).show();" >Submit</button>`;
 
-        if (reverse == true) {
+      $("#submit").click(function () {
+        let route;
+        let list = [];
+        let movies = document.getElementById("filter").selectedOptions;
+
+        if (reverse === true) {
           route = "/worst";
         } else {
-          route = "/choices";
+          route = "/best";
         }
-        for (var i = 0; i < movies.length; i++) {
+
+        for (let i = 0; i < movies.length; i++) {
           index = i + 1;
-          movie = { movie_title: movies[i].text, movie_id: movies[i].value };
+          let movie = {
+            movie_title: movies[i].text,
+            movie_id: movies[i].value,
+          };
+
           list.push(movie);
-          console.log(movie);
         }
+
         $.ajax({
           type: "POST",
           contentType: "application/json;charset=utf-8",
@@ -184,16 +203,12 @@ $("#filter").on(
           traditional: "true",
           data: JSON.stringify(list),
           dataType: "json",
-          success: function (res) {
-            console.log(res);
-
+          success: (res) => {
             document.getElementById("page").innerHTML = res.data;
-            var mix = mix;
-            console.log(mix);
           },
           // res is the response from the server
-          error: function (error) {
-            console.log(error);
+          error: (error) => {
+            console.error(error);
           },
         });
       });
