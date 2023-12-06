@@ -7,6 +7,13 @@ PATH = "db/movie_title_to_id_mapping.json"
 
 
 def get_movies_json():
+    """
+    Returns movies json file if available, else returns None.
+
+    Returns:
+        movies_json (dict of str: int): Dictionary mapping movie titles to their respective movie ids (ex: { "Toy Story (1995)": 1, "Jumanji (1995)": 2, ... }).
+    """
+
     try:
         f = open(PATH)
 
@@ -20,6 +27,15 @@ def get_movies_json():
 
 
 def create_movies_json(movie_title_to_id_mapping):
+    """
+    Creates movies json file.
+
+    Args:
+        movies_json (dict of str: int): Dictionary mapping movie titles to their respective movie ids (ex: { "Toy Story (1995)": 1, "Jumanji (1995)": 2, ... }).
+
+    Returns:
+        None
+    """
     try:
         with open(PATH, "w") as outfile:
             json.dump(movie_title_to_id_mapping, outfile)
@@ -58,14 +74,9 @@ def get_all_movies(cursor, movies_json):
     Gets all movies from database.
 
     Returns:
-        movie_title_to_id_mapping (dict): Dictionary mapping movie titles to their respective movie ids.
+        movies_json (dict of str: int): Dictionary mapping movie titles to their respective movie ids (ex: { "Toy Story (1995)": 1, "Jumanji (1995)": 2, ... }).
     """
 
-    """
-    movie_title_to_id_mapping is a dictionary that maps movie titles to their respective movie ids.
-
-    Example: movie_title_to_id_mapping = { "Toy Story (1995)": 1, "Jumanji (1995)": 2, ... }
-    """
     movie_title_to_id_mapping = movies_json if movies_json != None else {}
 
     if movie_title_to_id_mapping == False:

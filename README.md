@@ -2,6 +2,8 @@
 
 _Movie Ion_ (originally named _Movie Matchmaker_) was a group project for _Washington University's Data Analytics Boot Camp (2019)_. For this project, we created a web application that uses machine learning to recommend movies in terms of what the user will likely enjoy or movies the user is least likely to enjoy.
 
+<img src="presentation/thumbnail.png" width="600">
+
 ## Table of Contents
 
 - [The team](#the-team-by-github-username)
@@ -22,11 +24,15 @@ _Movie Ion_ (originally named _Movie Matchmaker_) was a group project for _Washi
 
 # Overview:
 
-Users submit three movies then the app will give 5 recommendations for each movie submitted. Prior to movie submission, users can toggle/invert the webpage's background image which will tell the app to either recommend movies that the user will likely enjoy or to recommend movies that they will probably dislike. The default background image will return likeable recommendations and the inverted image will return unlikeable recommendations.
+At the Home screen, select three of your favorite movies from the dropdown menu (select a movie a second time to remove the selection). Once your movies are selected, click the green "Submit" button to process your selections.
 
-Upon receiving recommendations, users can hover over a movie poster to view its cosine distance. Users can also click on a movie poster to view information about the movie.
+By default, the application will recommend movies that you are likely to enjoy. Alternatively, by toggling the slider above the movie posters (on the Home screen), the application will recommend movies that you are likely to dislike.
 
-In addition to providing recommendations, the app also allows users to save movies to a watchlist after viewing information about a movie. Currently, the watchlist doesn't have third party functionality (e.g. integrating to Netflix, Hulu, etc), but it is a potential update.
+Upon receiving your recommendations, you can click on the movie posters to view information about the movie, including the movie's title, release date, a brief synopsis, and more. This feature is also available via clicking posters selected on the Home screen.
+
+When viewing a movie's information, you can click the "Add to Watchlist" button to add the movie to your watchlist. You must be logged in as user1, user2, user3, user4, user5, or user6 to add movies to your watchlist. There is no password for any of these accounts as they are for demonstration purposes only.
+
+_Note: Watchlist and user accounts were implemented to exercise and demonstrate authentication, user sessions, and database functionality. It serves no practical purpose beyond that._
 
 # Technologies used:
 
@@ -105,13 +111,14 @@ Visit: http://localhost:5000 to use the application.
 
 # Known bugs
 
-- Some movies don't play well with the ML model and will silently fail on the UI, only made evident by an infinite loading animation. This can be remedied by refreshing the page and avoiding the selection of movies that previously caused the failure. Movies known to cause issues include:
+- Some movies don't play well with the ML model and will silently fail on the UI, only made evident by an infinite loading animation. The suspected cause is the data present in the model supports fewer movies than the movie dataset used in the database, resulting in the application presenting options that the machine learning model cannot process. Because the disparity between the two is so large, the recommendation is to avoid selecting obscure movies and upon experiencing long processing times refresh the page and avoid the selection of movies that previously caused the failure. Movies known to cause issues include:
   - Terminator 3: Rise of the Machines (2003)
   - Clueless (1995)
   - Sabrina (1995)
 - Most movies that start with words such as "A" or "The" erroneously have the word at the end of the movie title preceded by a comma (e.g. `Ref, The (1994)` or `Walk in the Clouds, A (1995)`). Unfortunately, a fix isn't as simple as formatting the data in the database or web server. The issue stems from the source data and would most likely have to be transformed prior to being added to the model.
 - Some (relatively few) movies don't have posters such as `Jurassic Park (1993)`.
 - The application's intro view wherein animated text appears before presenting the home page appears upon every visit to the home page.
+- Something went wrong when processing the original Toy Story, so it is unfortunately not supported.
 
 # Note to developers:
 
