@@ -129,6 +129,7 @@ If intending to run this codebase locally, here are a few things to note.
 - The requirements.txt file contains the last versions of joblib, sklearn, scikit-learn that are compatible with each other and this codebase.
 - As of this writing, Python 3.9 and above are not compatible with versions listed in requirements.txt and thus Python 3.8 is being used.
 - The `scripts/create_ML_models.py` script can be used to create new models, however much of the data needed for model creation have to first be web scraped and created via files in the `notebooks/` folder which have been deprecated for years.
+- Expect to need between 2.5GB - 3GB of RAM without optimizations.
 
 # Screenshots:
 
