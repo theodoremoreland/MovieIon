@@ -115,8 +115,8 @@ Visit: http://localhost:5000 to use the application.
   - Terminator 3: Rise of the Machines (2003)
   - Clueless (1995)
   - Sabrina (1995)
-- Most movies that start with words such as "A" or "The" erroneously have the word at the end of the movie title preceded by a comma (e.g. `Ref, The (1994)` or `Walk in the Clouds, A (1995)`). Unfortunately, a fix isn't as simple as formatting the data in the database or web server. The issue stems from the source data and would most likely have to be transformed prior to being added to the model.
-- Some (relatively few) movies don't have posters such as `Jurassic Park (1993)`.
+- Most movies that start with words such as "A" or "The" erroneously have the word at the end of the movie title preceded by a comma (e.g. `Ref, The (1994)`, `Toy, The (1982)` or `Walk in the Clouds, A (1995)`). Unfortunately, a fix isn't as simple as formatting the data in the database or web server. The issue stems from the source data and would most likely have to be transformed prior to being added to the model.
+- Some (relatively few) movies don't have posters such as `Jurassic Park (1993)`, `Toy Story (1995)`, and `Monsters, Inc. (2001)`.
 - Something went wrong when processing the original Toy Story, so it is unfortunately not supported.
 
 # Note to developers:
