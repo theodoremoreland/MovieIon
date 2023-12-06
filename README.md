@@ -20,7 +20,7 @@ _Movie Ion_ (originally named _Movie Matchmaker_) was a group project for _Washi
 - [@kamilevy](https://github.com/kamilevy)
 - [@feldsteina](https://github.com/feldsteina)
 - [@dperkins2315](https://github.com/dperkins2315)
-- @theodoremoreland (me)
+- [@theodoremoreland](https://github.com/theodoremoreland)
 
 # Overview:
 

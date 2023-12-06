@@ -91,18 +91,14 @@ span {
 }
 
 /* Links */
-a[target]:link {
-  color: #000000;
-}
+a[target]:link,
 a[target]:visited {
-  color: #3b3b3b;
-}
-a[target]:hover {
-  color: #8b8b8b;
+  color: rgb(64, 86, 255);
 }
 
-a:hover {
-  color: #8b8b8b;
+a[target]:hover {
+  color: rgb(0, 149, 255);
+  text-decoration: none;
 }
 
 .title:hover {
@@ -273,6 +269,8 @@ body {
 .instructions {
   font-family: Arial;
   font-size: 16px;
+  padding: 0;
+  list-style: none;
 }
 
 .instructions > li {
@@ -306,7 +304,7 @@ body {
 .about .details {
   width: 100%;
   font-family: Arial;
-  text-align: center;
+  text-align: inherit;
 }
 
 @media (min-width: 700px) {
@@ -335,15 +333,6 @@ body {
     justify-content: space-evenly;
     align-items: center;
   }
-}
-
-.repo-links a,
-.repo-links a:visited {
-  color: rgb(64, 86, 255);
-}
-
-.repo-links a:hover {
-  color: rgb(0, 149, 255);
 }
 
 .about .the-team {
@@ -510,11 +499,17 @@ main .poster-container {
   padding: 10px;
   font-size: 0.85rem;
   text-align: center;
-  text-wrap: wrap;
+  text-decoration: none;
+  color: black;
   background-color: #fff;
 }
 
+.the {
+  overflow: hidden;
+}
+
 .select-container {
+  position: relative;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -523,11 +518,13 @@ main .poster-container {
 }
 
 .filter-option-inner-inner {
-  font-size: 1rem !important;
+  font-size: 0.9rem !important;
 }
 
+.dropdown-menu .show,
 .dropdown-menu {
   font-size: 0.7rem !important;
+  width: 100% !important;
 }
 
 .because {
