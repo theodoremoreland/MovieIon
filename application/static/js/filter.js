@@ -1,8 +1,6 @@
 let reverse = false;
 let id_index = { id: [], index: [], title: [] };
 
-screen.orientation.lock("landscape");
-
 $("#reverse").click(() => {
   if (reverse == false) {
     $("body").css({
