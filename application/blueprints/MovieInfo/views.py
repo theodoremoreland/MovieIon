@@ -17,29 +17,36 @@ def display_movie_info(movie_id):
     Args: movie_id (str): Identifier of movie to be displayed.
     """
 
-    cursor.execute(f"SELECT * FROM metadata WHERE id = '{movie_id}';")
-    metadata = cursor.fetchone()
+    try:
+        movie_id = int(movie_id)
 
-    title = metadata[1]
-    overview = metadata[2]
-    crew = ast.literal_eval(metadata[3])  # list of tuples
-    cast = ast.literal_eval(metadata[4])  # list
-    genres = ast.literal_eval(metadata[5])  # list
-    language = metadata[6]
-    runtime = metadata[7]
-    budget = metadata[8]
-    revenue = metadata[9]
+        cursor.execute(f"SELECT * FROM metadata WHERE id = '{movie_id}';")
+        metadata = cursor.fetchone()
 
-    return render_template(
-        "info.html",
-        movie_id=movie_id,
-        title=title,
-        overview=overview,
-        crew=crew,
-        cast=cast,
-        genres=genres,
-        language=language,
-        runtime=runtime,
-        budget=budget,
-        revenue=revenue,
-    )
+        title = metadata[1]
+        overview = metadata[2]
+        crew = ast.literal_eval(metadata[3])  # list of tuples
+        cast = ast.literal_eval(metadata[4])  # list
+        genres = ast.literal_eval(metadata[5])  # list
+        language = metadata[6]
+        runtime = metadata[7]
+        budget = metadata[8]
+        revenue = metadata[9]
+
+        return render_template(
+            "info.html",
+            movie_id=movie_id,
+            title=title,
+            overview=overview,
+            crew=crew,
+            cast=cast,
+            genres=genres,
+            language=language,
+            runtime=runtime,
+            budget=budget,
+            revenue=revenue,
+        )
+    except Exception as e:
+        print(f"ERROR: {e}")
+
+        return render_template("error.html")

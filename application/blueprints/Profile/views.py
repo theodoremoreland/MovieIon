@@ -39,14 +39,12 @@ def render_profile(username):
         return render_template("profile.html", watchlist=watchlist, username=username)
 
     except Exception as error:
-        print("Error while querying database", error)
+        print("ERROR: Error while querying database", error)
 
-    return render_template(
-        "profile.html", watchlist=watchlist, username=username
-    )  # 2d arrays simulate a null return from queries
+        return render_template("error.html")
 
 
-# ! Having this route handle POST and GET is no beuno.
+# TODO this route should just handle POST requests, but would require a form or event listener/handler to be implemented.
 @profile.route("/watchlist/<movie_id>", methods=["POST", "GET"])
 def add_to_watchlist(movie_id):
     """
@@ -56,6 +54,7 @@ def add_to_watchlist(movie_id):
     """
 
     try:
+        movie_id = int(movie_id)  # Confirm id is an integer.
         cursor.execute(f"SELECT title FROM movie_list WHERE movie_id = '{movie_id}';")
         movie = cursor.fetchone()[0]
         username = session["username"]
@@ -75,7 +74,7 @@ def add_to_watchlist(movie_id):
         return redirect(f"/info/{movie_id}")
 
 
-# ! Having this route handle POST and GET is no beuno.
+# TODO this route should just handle POST requests, but would require a form or event listener/handler to be implemented.
 @profile.route("/remove/<movie_id>", methods=["POST", "GET"])
 def remove_from_watchlist(movie_id):
     """
@@ -85,6 +84,7 @@ def remove_from_watchlist(movie_id):
     """
 
     try:
+        movie_id = int(movie_id)  # Confirm id is an integer.
         username = session["username"]
         cursor.execute("BEGIN TRANSACTION;")
         cursor.execute(

@@ -12,21 +12,26 @@ def login():
     """
 
     if request.method == "POST":
-        username = request.form["username"]
-        cursor.execute(
-            f"SELECT user_id, username, watchlist FROM users WHERE username = '{username}';"
-        )  # postgres can only interpret single quoted strings
-        user_info = cursor.fetchone()
+        try:
+            username = request.form["username"]
+            cursor.execute(
+                f"SELECT user_id, username, watchlist FROM users WHERE username = '{username}';"
+            )  # postgres can only interpret single quoted strings
+            user_info = cursor.fetchone()
 
-        if user_info:
-            if user_info[1] == username:
-                session["username"] = username
+            if user_info:
+                if user_info[1] == username:
+                    session["username"] = username
 
-                return redirect(f"/profile/{username}")
+                    return redirect(f"/profile/{username}")
+                else:
+                    flash("Invalid username.")
             else:
-                flash("Invalid username")
-        else:
-            flash("Invalid username")
+                flash("Invalid username.")
+        except Exception as e:
+            print(f"ERROR: {e}")
+
+            return render_template("error.html")
 
     return render_template("login.html")
 
