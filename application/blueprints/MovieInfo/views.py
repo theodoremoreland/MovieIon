@@ -2,7 +2,7 @@ import ast
 
 from flask import Blueprint, render_template
 
-from db import cursor
+from db import DB
 
 movie_info = Blueprint(
     "movie_info", __name__, template_folder="templates", static_folder="static"
@@ -18,6 +18,7 @@ def display_movie_info(movie_id):
     """
 
     try:
+        cursor = DB.cursor
         movie_id = int(movie_id)
 
         cursor.execute(f"SELECT * FROM metadata WHERE id = '{movie_id}';")

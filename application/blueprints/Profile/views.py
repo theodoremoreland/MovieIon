@@ -1,6 +1,6 @@
 from flask import Blueprint, render_template, redirect, session, flash, jsonify
 
-from db import cursor
+from db import DB
 
 profile = Blueprint(
     "profile", __name__, template_folder="templates", static_folder="static"
@@ -24,6 +24,8 @@ def render_profile(username):
         return redirect("/login")
 
     try:
+        cursor = DB.cursor
+
         cursor.execute(f"SELECT watchlist FROM users WHERE username = '{username}';")
         watchlist_ids = (
             cursor.fetchone()
@@ -54,7 +56,9 @@ def add_to_watchlist(movie_id):
     """
 
     try:
+        cursor = DB.cursor
         movie_id = int(movie_id)  # Confirm id is an integer.
+
         cursor.execute(f"SELECT title FROM movie_list WHERE movie_id = '{movie_id}';")
         movie = cursor.fetchone()[0]
         username = session["username"]
@@ -84,8 +88,10 @@ def remove_from_watchlist(movie_id):
     """
 
     try:
+        cursor = DB.cursor
         movie_id = int(movie_id)  # Confirm id is an integer.
         username = session["username"]
+
         cursor.execute("BEGIN TRANSACTION;")
         cursor.execute(
             f"UPDATE users SET watchlist = array_remove(watchlist, '{movie_id}') WHERE username = '{username}';"

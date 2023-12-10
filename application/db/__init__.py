@@ -6,7 +6,49 @@ from modules.config import user, password, host, port, database
 PATH = "db/movie_title_to_id_mapping.json"
 
 
-def get_movies_json():
+class _Database:
+    def __init__(self):
+        self._cursor = None
+
+    @property
+    def cursor(self):
+        """
+        If cursor hasn't been created, establishes connection with database and reassigns cursor object
+        before returning it. Else, returns cursor object.
+
+        If connection attempt fails, tries 3 times before returning None.
+
+        Returns:
+            cursor (object): Cursor object for database.
+        """
+        if self._cursor == None:
+            for i in range(3):
+                try:
+                    connection = pg8000.connect(
+                        user=user,
+                        password=password,
+                        host=host,
+                        port=int(port),
+                        database=database,
+                    )
+                    self._cursor = connection.cursor()
+
+                    # Print PostgreSQL version
+                    self._cursor.execute("SELECT version();")
+                    record = self._cursor.fetchone()
+                    print("You are connected to - ", record, "\n")
+
+                    return self._cursor
+                except Exception as error:
+                    print(
+                        f"Error while connecting to PostgreSQL database.\nTries: {i}\n",
+                        error,
+                    )
+
+        return self._cursor
+
+
+def _get_movies_json():
     """
     Returns movies json file if available, else returns None.
 
@@ -26,7 +68,7 @@ def get_movies_json():
         return None
 
 
-def create_movies_json(movie_title_to_id_mapping):
+def _create_movies_json(movie_title_to_id_mapping):
     """
     Creates movies json file.
 
@@ -45,31 +87,7 @@ def create_movies_json(movie_title_to_id_mapping):
         print(f"ERROR: Failed to create {PATH} - {e}\n")
 
 
-def database_cursor():
-    """
-    Establishes connection with database and returns cursor object.
-
-    Returns:
-        cursor (object): Cursor object for database.
-    """
-
-    try:
-        connection = pg8000.connect(
-            user=user, password=password, host=host, port=int(port), database=database
-        )
-        cursor = connection.cursor()
-
-        # Print PostgreSQL version
-        cursor.execute("SELECT version();")
-        record = cursor.fetchone()
-        print("You are connected to - ", record, "\n")
-
-        return cursor
-    except Exception as error:
-        print("Error while connecting to PostgreSQL database", error)
-
-
-def get_all_movies(cursor, movies_json):
+def _get_all_movies(cursor, movies_json):
     """
     Gets all movies from database.
 
@@ -95,9 +113,9 @@ def get_all_movies(cursor, movies_json):
         return movie_title_to_id_mapping
 
 
-cursor = database_cursor()
-movies_json = get_movies_json()
-movie_title_to_id_mapping = get_all_movies(cursor, movies_json)
+DB = _Database()
+MOVIES_JSON = _get_movies_json()
+MOVIE_TITLE_TO_ID_MAPPING = _get_all_movies(DB.cursor, MOVIES_JSON)
 
-if movies_json == None and movie_title_to_id_mapping != None:
-    create_movies_json(movie_title_to_id_mapping)
+if MOVIES_JSON == None and MOVIE_TITLE_TO_ID_MAPPING != None:
+    _create_movies_json(MOVIE_TITLE_TO_ID_MAPPING)

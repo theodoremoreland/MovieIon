@@ -1,6 +1,6 @@
 from flask import Blueprint, render_template, redirect, request, jsonify
 
-from db import movie_title_to_id_mapping
+from db import MOVIE_TITLE_TO_ID_MAPPING
 from modules.create_recommendation_samples import create_recommendation_samples
 from modules.model import best_recommendations, worst_recommendations
 
@@ -14,7 +14,7 @@ def index():
     Handles request to display home page.
     """
 
-    return render_template("index.html", all_movies=movie_title_to_id_mapping)
+    return render_template("index.html", all_movies=MOVIE_TITLE_TO_ID_MAPPING)
 
 
 @home.route("/best", methods=["POST", "GET"])
@@ -34,7 +34,7 @@ def make_positive_recommendations():
             recommendation_sample_movie_2,
             recommendation_sample_movie_3,
         ] = create_recommendation_samples(
-            movies, movie_title_to_id_mapping, best_recommendations
+            movies, MOVIE_TITLE_TO_ID_MAPPING, best_recommendations
         )
 
         return jsonify(
@@ -69,7 +69,7 @@ def make_negative_recommendations():
             recommendation_sample_movie_2,
             recommendation_sample_movie_3,
         ] = create_recommendation_samples(
-            movies, movie_title_to_id_mapping, worst_recommendations
+            movies, MOVIE_TITLE_TO_ID_MAPPING, worst_recommendations
         )
 
         return jsonify(

@@ -1,6 +1,6 @@
 from flask import Blueprint, render_template, request, redirect, session, flash
 
-from db import cursor
+from db import DB
 
 auth = Blueprint("auth", __name__, template_folder="templates", static_folder="static")
 
@@ -13,7 +13,9 @@ def login():
 
     if request.method == "POST":
         try:
+            cursor = DB.cursor
             username = request.form["username"]
+
             cursor.execute(
                 f"SELECT user_id, username, watchlist FROM users WHERE username = '{username}';"
             )  # postgres can only interpret single quoted strings
