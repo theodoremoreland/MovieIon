@@ -1,6 +1,7 @@
 from flask import Blueprint, render_template, request, redirect, session, flash
 
 from db import DB
+from modules.logger import logger
 
 auth = Blueprint("auth", __name__, template_folder="templates", static_folder="static")
 
@@ -31,7 +32,7 @@ def login():
             else:
                 flash("Invalid username.")
         except Exception as e:
-            print(f"ERROR: {e}")
+            logger.error(f"ERROR: {e}")
 
             return render_template("error.html")
 

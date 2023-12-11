@@ -3,6 +3,7 @@ import ast
 from flask import Blueprint, render_template
 
 from db import DB
+from modules.logger import logger
 
 movie_info = Blueprint(
     "movie_info", __name__, template_folder="templates", static_folder="static"
@@ -48,6 +49,6 @@ def display_movie_info(movie_id):
             revenue=revenue,
         )
     except Exception as e:
-        print(f"ERROR: {e}")
+        logger.error(f"ERROR: {e}")
 
         return render_template("error.html")

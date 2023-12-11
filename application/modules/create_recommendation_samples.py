@@ -9,6 +9,17 @@ from modules.model import model_knn, movie_matrix, movie_title_index
 def create_recommendation_samples(
     movies, movie_title_to_id_mapping, make_recommendations
 ):
+    """
+    Creates recommendation samples for each movie selection. Each sample contains 5 random recommendations.
+
+    Args:
+        movies (list of dict): List of movie objects.
+        movie_title_to_id_mapping (dict of str: int): Dictionary mapping movie titles to their respective movie ids (ex: { "Toy Story (1995)": 1, "Jumanji (1995)": 2, ... }).
+        make_recommendations (function): Callback function that returns a list of recommendations based on a given movie.
+
+    Returns:
+        recommendations (list of list): 2d list of recommendations for each movie selection resulting in 3 lists of 5 recommendations.
+    """
     recommendations = {
         "based_on_movie_1": [],
         "based_on_movie_2": [],

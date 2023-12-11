@@ -1,6 +1,7 @@
 from flask import Blueprint, render_template, redirect, request, jsonify
 
 from db import MOVIE_TITLE_TO_ID_MAPPING
+from modules.logger import logger
 from modules.create_recommendation_samples import create_recommendation_samples
 from modules.model import best_recommendations, worst_recommendations
 
@@ -13,6 +14,7 @@ def index():
     """
     Handles request to display home page.
     """
+    logger.error("ERROR: This is an error message")
 
     return render_template("index.html", all_movies=MOVIE_TITLE_TO_ID_MAPPING)
 
@@ -25,29 +27,40 @@ def make_positive_recommendations():
     """
 
     if request.method == "POST":
-        movies = (
-            request.get_json()
-        )  # example value: [{ "movie_title": "Toy Story (1995)", "movie_id": 1 }, ...]
+        try:
+            logger.debug("Received POST request to /best")
+            movies = (
+                request.get_json()
+            )  # example value: [{ "movie_title": "Toy Story (1995)", "movie_id": 1 }, ...]
 
-        [
-            recommendation_sample_movie_1,
-            recommendation_sample_movie_2,
-            recommendation_sample_movie_3,
-        ] = create_recommendation_samples(
-            movies, MOVIE_TITLE_TO_ID_MAPPING, best_recommendations
-        )
+            [
+                recommendation_sample_movie_1,
+                recommendation_sample_movie_2,
+                recommendation_sample_movie_3,
+            ] = create_recommendation_samples(
+                movies, MOVIE_TITLE_TO_ID_MAPPING, best_recommendations
+            )
 
-        return jsonify(
-            {
-                "data": render_template(
-                    "best.html",
-                    recommendation_sample_movie_1=list(recommendation_sample_movie_1),
-                    recommendation_sample_movie_2=list(recommendation_sample_movie_2),
-                    recommendation_sample_movie_3=list(recommendation_sample_movie_3),
-                    movies=movies,
-                )
-            }
-        )
+            return jsonify(
+                {
+                    "data": render_template(
+                        "best.html",
+                        recommendation_sample_movie_1=list(
+                            recommendation_sample_movie_1
+                        ),
+                        recommendation_sample_movie_2=list(
+                            recommendation_sample_movie_2
+                        ),
+                        recommendation_sample_movie_3=list(
+                            recommendation_sample_movie_3
+                        ),
+                        movies=movies,
+                    )
+                }
+            )
+        except Exception as e:
+            logger.error(e)
+            return jsonify({"data": render_template("error.html")})
 
     return redirect("/")
 
@@ -60,28 +73,40 @@ def make_negative_recommendations():
     """
 
     if request.method == "POST":
-        movies = (
-            request.get_json()
-        )  # example value: [{ "movie_title": "Toy Story (1995)", "movie_id": 1 }, ...]
+        try:
+            logger.debug("Received POST request to /worst")
 
-        [
-            recommendation_sample_movie_1,
-            recommendation_sample_movie_2,
-            recommendation_sample_movie_3,
-        ] = create_recommendation_samples(
-            movies, MOVIE_TITLE_TO_ID_MAPPING, worst_recommendations
-        )
+            movies = (
+                request.get_json()
+            )  # example value: [{ "movie_title": "Toy Story (1995)", "movie_id": 1 }, ...]
 
-        return jsonify(
-            {
-                "data": render_template(
-                    "worst.html",
-                    recommendation_sample_movie_1=list(recommendation_sample_movie_1),
-                    recommendation_sample_movie_2=list(recommendation_sample_movie_2),
-                    recommendation_sample_movie_3=list(recommendation_sample_movie_3),
-                    movies=movies,
-                )
-            }
-        )
+            [
+                recommendation_sample_movie_1,
+                recommendation_sample_movie_2,
+                recommendation_sample_movie_3,
+            ] = create_recommendation_samples(
+                movies, MOVIE_TITLE_TO_ID_MAPPING, worst_recommendations
+            )
+
+            return jsonify(
+                {
+                    "data": render_template(
+                        "worst.html",
+                        recommendation_sample_movie_1=list(
+                            recommendation_sample_movie_1
+                        ),
+                        recommendation_sample_movie_2=list(
+                            recommendation_sample_movie_2
+                        ),
+                        recommendation_sample_movie_3=list(
+                            recommendation_sample_movie_3
+                        ),
+                        movies=movies,
+                    )
+                }
+            )
+        except Exception as e:
+            logger.error(e)
+            return jsonify({"data": render_template("error.html")})
 
     return redirect("/")

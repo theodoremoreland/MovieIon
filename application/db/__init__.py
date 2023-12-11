@@ -1,6 +1,7 @@
 import json
 import pg8000
 
+from modules.logger import logger
 from modules.config import user, password, host, port, database
 
 PATH = "db/movie_title_to_id_mapping.json"
@@ -36,13 +37,12 @@ class _Database:
                     # Print PostgreSQL version
                     self._cursor.execute("SELECT version();")
                     record = self._cursor.fetchone()
-                    print("You are connected to - ", record, "\n")
+                    logger.debug(f"You are connected to - {record}\n")
 
                     return self._cursor
                 except Exception as error:
-                    print(
-                        f"Error while connecting to PostgreSQL database.\nTries: {i}\n",
-                        error,
+                    logger.error(
+                        f"Error while connecting to PostgreSQL database.\nTries: {i}\n{error}",
                     )
 
         return self._cursor
@@ -59,11 +59,11 @@ def _get_movies_json():
     try:
         f = open(PATH)
 
-        print(f"SUCCESS: Loaded {PATH}!\n")
+        logger.debug(f"SUCCESS: Loaded {PATH}!\n")
 
         return json.load(f)
     except Exception as e:
-        print(e)
+        logger.error(e)
 
         return None
 
@@ -82,9 +82,9 @@ def _create_movies_json(movie_title_to_id_mapping):
         with open(PATH, "w") as outfile:
             json.dump(movie_title_to_id_mapping, outfile)
 
-            print(f"SUCCESS: {PATH} created!\n")
+            logger.debug(f"SUCCESS: {PATH} created!\n")
     except Exception as e:
-        print(f"ERROR: Failed to create {PATH} - {e}\n")
+        logger.error(f"ERROR: Failed to create {PATH} - {e}\n")
 
 
 def _get_all_movies(cursor, movies_json):
@@ -108,7 +108,7 @@ def _get_all_movies(cursor, movies_json):
             return movie_title_to_id_mapping
 
         except Exception as error:
-            print("Error while selecting rows(title, movie_id)", error)
+            logger.error(f"Error while selecting rows(title, movie_id):\n{error}")
     else:
         return movie_title_to_id_mapping
 

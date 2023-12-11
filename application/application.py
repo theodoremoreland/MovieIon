@@ -14,7 +14,7 @@ from blueprints.Instructions.views import instructions
 
 
 application = Flask(__name__)
-application.config["DEBUG"] = True
+application.config["DEBUG"] = False
 application.secret_key = secret_key
 application.register_blueprint(home)
 application.register_blueprint(auth)
