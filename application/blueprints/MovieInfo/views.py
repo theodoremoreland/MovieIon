@@ -49,6 +49,6 @@ def display_movie_info(movie_id):
             revenue=revenue,
         )
     except Exception as e:
-        logger.error(f"ERROR: {e}")
+        logger.error(f"ERROR @ display_movie_info: {e}")
 
         return render_template("error.html")

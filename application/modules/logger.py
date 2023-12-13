@@ -11,4 +11,4 @@ fileHandler.setFormatter(formatter)
 logger.addHandler(fileHandler)
 logger.setLevel(
     logging.DEBUG
-)  # This needs to be set. logger.error(), logger.debug(), etc. will not work without this.
+)  # This needs to be set. logger.error(), logger.debug(), etc will not work without this.

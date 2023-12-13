@@ -32,7 +32,7 @@ def login():
             else:
                 flash("Invalid username.")
         except Exception as e:
-            logger.error(f"ERROR: {e}")
+            logger.error(f"ERROR @ login: {e}")
 
             return render_template("error.html")
 

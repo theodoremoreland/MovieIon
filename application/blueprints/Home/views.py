@@ -14,7 +14,7 @@ def index():
     """
     Handles request to display home page.
     """
-    logger.error("ERROR: This is an error message")
+    logger.debug("Received GET request to /")
 
     return render_template("index.html", all_movies=MOVIE_TITLE_TO_ID_MAPPING)
 
@@ -59,7 +59,7 @@ def make_positive_recommendations():
                 }
             )
         except Exception as e:
-            logger.error(e)
+            logger.error(f"ERROR @ make_positive_recommendations: {e}")
             return jsonify({"data": render_template("error.html")})
 
     return redirect("/")
@@ -106,7 +106,7 @@ def make_negative_recommendations():
                 }
             )
         except Exception as e:
-            logger.error(e)
+            logger.error(f"ERROR @ make_negative_recommendations: {e}")
             return jsonify({"data": render_template("error.html")})
 
     return redirect("/")
