@@ -13,6 +13,8 @@ def login():
     """
 
     if request.method == "POST":
+        logger.debug("Received POST request to /login")
+
         try:
             cursor = DB.cursor
             username = request.form["username"]
@@ -36,6 +38,8 @@ def login():
 
             return render_template("error.html")
 
+    logger.debug("Received GET request to /login")
+
     return render_template("login.html")
 
 
@@ -44,6 +48,7 @@ def logout():
     """
     Handles request to log out user. Redirects to login page.
     """
+    logger.debug("Received request to /logout")
 
     if "username" in session:
         username = session["username"]

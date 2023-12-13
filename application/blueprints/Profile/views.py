@@ -8,13 +8,14 @@ profile = Blueprint(
 )
 
 
-@profile.route("/profile/<username>", methods=["POST", "GET"])
+@profile.route("/profile/<username>", methods=["GET"])
 def render_profile(username):
     """
     Handles request to display user profile page.
 
     Args: username (str): The username of the user whose profile is to be displayed.
     """
+    logger.debug(f"Received GET request to /profile/{username}")
 
     watchlist = []
 
@@ -55,6 +56,7 @@ def add_to_watchlist(movie_id):
 
     Args: movie_id (str): The movie to be added to the user's watchlist.
     """
+    logger.debug(f"Received request to add movie to watchlist @ /watchlist/{movie_id}")
 
     try:
         cursor = DB.cursor
@@ -87,6 +89,9 @@ def remove_from_watchlist(movie_id):
 
     Args: movie_id (str): The movie to be removed from the user's watchlist.
     """
+    logger.debug(
+        f"Received request to remove movie from watchlist @ /remove/{movie_id}"
+    )
 
     try:
         cursor = DB.cursor

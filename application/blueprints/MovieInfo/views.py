@@ -10,13 +10,14 @@ movie_info = Blueprint(
 )
 
 
-@movie_info.route("/info/<movie_id>")
+@movie_info.route("/info/<movie_id>", methods=["GET"])
 def display_movie_info(movie_id):
     """
     Handles request to display movie information.
 
     Args: movie_id (str): Identifier of movie to be displayed.
     """
+    logger.debug(f"Received GET request to /info/{movie_id}")
 
     try:
         cursor = DB.cursor
