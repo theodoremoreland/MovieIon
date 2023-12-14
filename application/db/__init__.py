@@ -22,7 +22,7 @@ class _Database:
         Returns:
             cursor (object): Cursor object for database.
         """
-        if self._cursor == None:
+        if self._cursor == None or self._cursor.connection == None:
             for i in range(3):
                 try:
                     connection = pg8000.connect(
