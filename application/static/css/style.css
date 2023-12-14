@@ -149,14 +149,22 @@ a {
   flex-shrink: none;
 }
 
-/* Other Classes for Page Styling */
-body {
+/* A dedicated element is used for the background-image due
+to its fixed nature. The property "background-attachment": fixed is not supported by
+many mobile browsers AND due to the way mobile transitions between its own UI elements being on the
+viewport to being taken out of the viewport, said property momentarily doesn't cover the entire
+background / looses its fixed effect.  */
+#fixed-background {
+  z-index: -1;
+  position: fixed;
+  top: 0;
+  left: 0;
   background: #007bff;
   background: linear-gradient(to right, #0062e6, #33aeff);
   background-image: url("../images/bg8.gif");
-  background-attachment: fixed;
   background-size: cover;
-  min-height: 100vh;
+  width: 100vw;
+  height: 100vh;
 }
 
 /* Search and scroll bar */

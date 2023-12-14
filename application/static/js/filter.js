@@ -3,7 +3,7 @@ let id_index = { id: [], index: [], title: [] };
 
 $("#reverse").click(() => {
   if (reverse == false) {
-    $("body").css({
+    $("#fixed-background").css({
       "background-image": 'url("/static/images/bg12.gif")',
     });
 
@@ -13,7 +13,7 @@ $("#reverse").click(() => {
 
     reverse = true;
   } else {
-    $("body").css({
+    $("#fixed-background").css({
       "background-image": 'url("/static/images/bg8.gif")',
     });
 

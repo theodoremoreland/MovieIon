@@ -50,8 +50,13 @@
     {% endblock %}
 
     <body class="d-flex flex-column">
+        <!-- A dedicated element is used for the background-image due
+        to its fixed nature. The property "background-attachment": fixed is not supported by
+        many mobile browsers AND due to the way mobile transitions between its own UI elements being on the
+        viewport to being taken out of the viewport, said property momentarily doesn't cover the entire
+        background / looses its fixed effect. -->
+        <div id="fixed-background"></div>
         <div id="page-content">{% block content %} {% endblock %}</div>
-
         {% block footer %}
         <footer id="sticky-footer" class="py-4 bg-dark text-white-50">
             <div class="container text-center text-white">
