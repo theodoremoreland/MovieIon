@@ -182,7 +182,8 @@ background / loses its fixed effect.  */
   background-image: url("../images/bg8.gif");
   background-size: cover;
   width: 100vw;
-  height: 100vh;
+  height: 120vh;
+  overflow: hidden;
 }
 
 /* Search and scroll bar */
