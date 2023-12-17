@@ -111,7 +111,7 @@ Visit: http://localhost:5000 to use the application.
 
 # Known bugs
 
-- Some movies don't play well with the ML model and will silently fail on the UI, only made evident by an infinite loading animation. The suspected cause is the data present in the model supports fewer movies than the movie dataset used in the database, resulting in the application presenting options that the machine learning model cannot process. A workaround upon experiencing long processing times is to refresh the page and avoid the selection of movies that previously caused the failure. I assume more obscure movies have a lesser chance of being supported, but haven't confirmed. Movies known to cause issues include:
+- Some movies don't play well with the ML model and cannot be processed, in which case an error page will appear. The suspected cause is the data present in the model supports fewer movies than the movie dataset used in the database, resulting in the application presenting options that the machine learning model cannot process. A workaround upon experiencing the error is to refresh the page and avoid the selection of movies that previously caused the failure. Movies known to cause issues include:
   - Terminator 3: Rise of the Machines (2003)
   - Clueless (1995)
   - Sabrina (1995)
