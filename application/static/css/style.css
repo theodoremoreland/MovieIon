@@ -182,7 +182,7 @@ background / loses its fixed effect.  */
   background-image: url("../images/bg8.gif");
   background-size: cover;
   width: 100vw;
-  height: 120vh;
+  height: 135vh;
   overflow: hidden;
 }
 
