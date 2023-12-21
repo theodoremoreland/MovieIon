@@ -31,7 +31,12 @@
 
     <body>
         <h1>Error</h1>
-        <p>There was an error processing your request. Please try again later.</p>
+        {% if error_message is defined %}
+        <p>{{ error_message }}</p>
+        {% else %}
+        <p>There was an error processing your request. Please try again later. err was not defined</p>
+        {% endif %}
     </body>
+
 
 </html>
