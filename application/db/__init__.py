@@ -41,7 +41,7 @@ class _Database:
 
                     return self._cursor
                 except Exception as error:
-                    logger.error(
+                    logger.exception(
                         f"Error while connecting to PostgreSQL database.\nTries: {i}\n{error}",
                     )
 
@@ -63,7 +63,7 @@ def _get_movies_json():
 
         return json.load(f)
     except Exception as e:
-        logger.error(e)
+        logger.exception(e)
 
         return None
 
@@ -84,7 +84,7 @@ def _create_movies_json(movie_title_to_id_mapping):
 
             logger.debug(f"SUCCESS: {PATH} created!\n")
     except Exception as e:
-        logger.error(f"ERROR: Failed to create {PATH} - {e}\n")
+        logger.exception(f"ERROR: Failed to create {PATH} - {e}\n")
 
 
 def _get_all_movies(cursor, movies_json):
@@ -108,7 +108,7 @@ def _get_all_movies(cursor, movies_json):
             return movie_title_to_id_mapping
 
         except Exception as error:
-            logger.error(f"Error while selecting rows(title, movie_id):\n{error}")
+            logger.exception(f"Error while selecting rows(title, movie_id):\n{error}")
     else:
         return movie_title_to_id_mapping
 

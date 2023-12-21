@@ -43,7 +43,7 @@ def render_profile(username):
         return render_template("profile.html", watchlist=watchlist, username=username)
 
     except Exception as error:
-        logger.error(f"ERROR: Error while querying database: {error}")
+        logger.exception(f"ERROR: Error while querying database: {error}")
 
         return render_template("error.html")
 
@@ -75,7 +75,7 @@ def add_to_watchlist(movie_id):
         return redirect(f"/info/{movie_id}")
 
     except Exception as error:
-        logger.error(f"Error while querying database:\n {error}")
+        logger.exception(f"Error while querying database:\n {error}")
         flash("There was an error when attempting to add to watchlist.")
 
         return redirect(f"/info/{movie_id}")
@@ -104,6 +104,6 @@ def remove_from_watchlist(movie_id):
         )
         cursor.execute("COMMIT;")
     except Exception as error:
-        logger.error(f"Error while querying database:\n{error}")
+        logger.exception(f"Error while querying database:\n{error}")
 
     return redirect(f"/profile/{username}")

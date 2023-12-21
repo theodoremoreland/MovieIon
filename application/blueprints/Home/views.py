@@ -59,8 +59,11 @@ def make_positive_recommendations():
                 }
             )
         except Exception as e:
-            logger.error(f"ERROR @ make_positive_recommendations: {e}")
-            return jsonify({"data": render_template("error.html")})
+            logger.exception(f"ERROR @ make_positive_recommendations: {e}")
+
+            return jsonify(
+                {"data": render_template("error.html", error_message=str(e))}
+            )
 
     return redirect("/")
 
@@ -106,7 +109,10 @@ def make_negative_recommendations():
                 }
             )
         except Exception as e:
-            logger.error(f"ERROR @ make_negative_recommendations: {e}")
-            return jsonify({"data": render_template("error.html")})
+            logger.exception(f"ERROR @ make_negative_recommendations: {e}")
+
+            return jsonify(
+                {"data": render_template("error.html", error_message=str(e))}
+            )
 
     return redirect("/")
