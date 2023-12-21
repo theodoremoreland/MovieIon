@@ -111,13 +111,9 @@ Visit: http://localhost:5000 to use the application.
 
 # Known bugs
 
-- Some movies don't play well with the ML model and cannot be processed, in which case an error page will appear. The suspected cause is the data present in the model supports fewer movies than the movie dataset used in the database, resulting in the application presenting options that the machine learning model cannot process. A workaround upon experiencing the error is to refresh the page and avoid the selection of movies that previously caused the failure. Movies known to cause issues include:
-  - Terminator 3: Rise of the Machines (2003)
-  - Clueless (1995)
-  - Sabrina (1995)
 - Most movies that start with words such as "A" or "The" erroneously have the word at the end of the movie title preceded by a comma (e.g. `Ref, The (1994)`, `Toy, The (1982)` or `Walk in the Clouds, A (1995)`). Unfortunately, a fix isn't as simple as formatting the data in the database or web server. The issue stems from the source data and would most likely have to be transformed prior to being added to the model.
 - Some (relatively few) movies don't have posters such as `Jurassic Park (1993)`, `Toy Story (1995)`, and `Monsters, Inc. (2001)`.
-- Something went wrong when processing the original Toy Story, so it is unfortunately not supported.
+- Something went wrong when processing the original Toy Story! It is unfortunately not supported!
 
 # Note to developers:
 
