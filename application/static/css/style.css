@@ -44,7 +44,7 @@
   left: 0;
   right: 0;
   bottom: 0;
-  background-color: rgb(255, 245, 202);
+  background-color: rgb(44, 65, 253);
   -webkit-transition: 0.4s;
   transition: 0.4s;
 }
@@ -88,6 +88,10 @@ html,
 body {
   height: 100%;
   font-family: "Permanent Marker", cursive;
+}
+
+body {
+  background-color: #434242;
 }
 
 h2 {
@@ -194,13 +198,12 @@ background / loses its fixed effect.  */
   position: fixed;
   top: 0;
   left: 0;
-  background: #007bff;
-  background: linear-gradient(to right, #0062e6, #33aeff);
   background-image: url("../images/bg8.gif");
   background-size: cover;
   width: 100vw;
   height: 135vh;
   overflow: clip;
+  opacity: 0.77;
 }
 
 /* Search and scroll bar */
