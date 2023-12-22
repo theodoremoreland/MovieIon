@@ -16,7 +16,7 @@ $("#reverse").click(() => {
     });
 
     $("#reverse-label").html(
-      'Make <strong style="color: red;">negative</strong> recommendations &#128530;'
+      'Basis for <strong style="color: red;">negative</strong> recommendations &#128530;'
     );
 
     reverse = true;
@@ -34,7 +34,7 @@ $("#reverse").click(() => {
     });
 
     $("#reverse-label").html(
-      'Make <strong style="color: green;">positive</strong> recommendations &#128525;'
+      'Basis for <strong style="color: green;">positive</strong> recommendations &#128525;'
     );
 
     reverse = false;
