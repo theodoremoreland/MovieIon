@@ -183,7 +183,7 @@ background / loses its fixed effect.  */
   background-size: cover;
   width: 100vw;
   height: 135vh;
-  overflow: hidden;
+  overflow: clip;
 }
 
 /* Search and scroll bar */
@@ -561,6 +561,12 @@ main .poster-container {
 .dropdown-menu {
   font-size: 0.7rem !important;
   width: 100% !important;
+}
+
+.because-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
 }
 
 .because {
