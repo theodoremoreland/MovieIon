@@ -11,6 +11,14 @@ $("#reverse").click(() => {
       color: "black",
     });
 
+    $("#reverse-label").css({
+      color: "black",
+    });
+
+    $("#reverse-label").html(
+      'Make <strong style="color: red;">negative</strong> recommendations &#128530;'
+    );
+
     reverse = true;
   } else {
     $("#fixed-background").css({
@@ -20,6 +28,14 @@ $("#reverse").click(() => {
     $("a").css({
       color: "white",
     });
+
+    $("#reverse-label").css({
+      color: "white",
+    });
+
+    $("#reverse-label").html(
+      'Make <strong style="color: green;">positive</strong> recommendations &#128525;'
+    );
 
     reverse = false;
   }

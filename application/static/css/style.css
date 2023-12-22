@@ -3,6 +3,23 @@
   --input-padding-y: 0.75rem;
 }
 
+.switch-container {
+  gap: 0;
+  margin-left: 0;
+  margin-right: 0;
+  color: white;
+}
+
+@media (min-width: 400px) {
+  .switch-container {
+    gap: 15px;
+  }
+}
+
+#reverse-label {
+  margin: 0;
+}
+
 /* The switch - the box around the slider */
 .switch {
   position: relative;
