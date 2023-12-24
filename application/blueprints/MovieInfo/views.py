@@ -23,6 +23,9 @@ def display_movie_info(movie_id):
         cursor = DB.cursor
         movie_id = int(movie_id)
 
+        if movie_id > 114554 or movie_id < 2:
+            raise ValueError(f"Invalid movie_id: {movie_id}")
+
         cursor.execute(f"SELECT * FROM metadata WHERE id = '{movie_id}';")
         metadata = cursor.fetchone()
 

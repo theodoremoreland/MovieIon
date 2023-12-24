@@ -32,6 +32,7 @@ class _Database:
                         port=int(port),
                         database=database,
                     )
+                    connection.autocommit = True
                     self._cursor = connection.cursor()
 
                     # Print PostgreSQL version
