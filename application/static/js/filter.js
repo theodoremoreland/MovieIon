@@ -1,6 +1,23 @@
 let reverse = false;
 let id_index = { id: [], index: [], title: [] };
 
+const setMovieLinkAttributes = (linkElement, id, title) => {
+  linkElement?.setAttribute("href", `/info/${id}`);
+  linkElement?.setAttribute("target", "_blank");
+  linkElement?.setAttribute("title", title);
+  linkElement?.setAttribute("data-selected", "true");
+};
+
+const removeMovieLinkAttributes = (linkElement) => {
+  linkElement?.removeAttribute("href");
+  linkElement?.removeAttribute("target");
+  linkElement?.setAttribute(
+    "title",
+    "Select one of your favorite movies via dropdown menu below."
+  );
+  linkElement?.setAttribute("data-selected", "false");
+};
+
 $("#reverse").click(() => {
   if (reverse == false) {
     $("#fixed-background").css({
@@ -111,27 +128,21 @@ $("#filter").on(
         document.getElementById("image1").setAttribute("src", poster);
         document.getElementById("movie_name1").innerHTML = title;
 
-        movieLink1?.setAttribute("href", `/info/${id}`);
-        movieLink1?.setAttribute("target", "_blank");
-        movieLink1?.setAttribute("title", title);
+        setMovieLinkAttributes(movieLink1, id, title);
       } else if (space2) {
         const movieLink2 = document.getElementById("link2");
 
         document.getElementById("image2").setAttribute("src", poster);
         document.getElementById("movie_name2").innerHTML = title;
 
-        movieLink2?.setAttribute("href", `/info/${id}`);
-        movieLink2?.setAttribute("target", "_blank");
-        movieLink2?.setAttribute("title", title);
+        setMovieLinkAttributes(movieLink2, id, title);
       } else if (space3) {
         const movieLink3 = document.getElementById("link3");
 
         document.getElementById("image3").setAttribute("src", poster);
         document.getElementById("movie_name3").innerHTML = title;
 
-        movieLink3?.setAttribute("href", `/info/${id}`);
-        movieLink3?.setAttribute("target", "_blank");
-        movieLink3.setAttribute("title", title);
+        setMovieLinkAttributes(movieLink3, id, title);
       }
     }
 
@@ -142,14 +153,9 @@ $("#filter").on(
         document
           .getElementById("image1")
           .setAttribute("src", "static/images/random1.gif");
-
-        movieLink1?.removeAttribute("href");
-        movieLink1?.removeAttribute("target");
-        movieLink1?.setAttribute(
-          "title",
-          "Select one of your favorite movies via dropdown menu below."
-        );
         document.getElementById("movie_name1").innerHTML = "Selection 1";
+
+        removeMovieLinkAttributes(movieLink1);
       } else if (image2.includes(`/${id}.jpg`) || movie_name2 == title) {
         const movieLink2 = document.getElementById("link2");
 
@@ -158,12 +164,7 @@ $("#filter").on(
           .setAttribute("src", "static/images/random2.gif");
         document.getElementById("movie_name2").innerHTML = "Selection 2";
 
-        movieLink2?.removeAttribute("href");
-        movieLink2?.removeAttribute("target");
-        movieLink2?.setAttribute(
-          "title",
-          "Select one of your favorite movies via dropdown menu below."
-        );
+        removeMovieLinkAttributes(movieLink2);
       } else if (image3.includes(`/${id}.jpg`) || movie_name3 == title) {
         const movieLink3 = document.getElementById("link3");
 
@@ -172,12 +173,7 @@ $("#filter").on(
           .setAttribute("src", "static/images/random3.gif");
         document.getElementById("movie_name3").innerHTML = "Selection 3";
 
-        movieLink3?.removeAttribute("href");
-        movieLink3?.removeAttribute("target");
-        movieLink3?.setAttribute(
-          "title",
-          "Select one of your favorite movies via dropdown menu below."
-        );
+        removeMovieLinkAttributes(movieLink3);
       }
     }
 

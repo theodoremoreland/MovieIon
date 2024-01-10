@@ -535,11 +535,11 @@ main .poster-container {
   }
 }
 
-.poster-container:hover {
+.poster-container:has([data-selected="true"]):hover {
   scale: 1.1;
 }
 
-.poster-container:active {
+.poster-container:has([data-selected="true"]):active {
   opacity: 0.75;
 }
 
