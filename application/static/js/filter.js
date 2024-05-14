@@ -92,8 +92,7 @@ $("#filter").on(
     let movie_name2 = document.getElementById("movie_name2").innerHTML;
     let movie_name3 = document.getElementById("movie_name3").innerHTML;
     let isPosterPresent = false;
-    let poster =
-      "https://movie-posters-project3.s3.us-east-2.amazonaws.com/images/";
+    let poster = "https://d2cltuy1xv6n7i.cloudfront.net/images/";
     poster = poster + id + ".jpg";
 
     // Variables to determine empty spaces for posters.
