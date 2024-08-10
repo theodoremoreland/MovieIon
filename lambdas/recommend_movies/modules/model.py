@@ -7,8 +7,6 @@
 from fuzzywuzzy import fuzz
 from joblib import load
 
-from modules.logger import logger
-
 model_knn = load("models/knn_model.joblib")
 movie_matrix = load("models/movie_matrix.joblib")
 movie_title_index = load("models/movie_title_index.joblib")
@@ -72,7 +70,7 @@ def best_recommendations(model_knn, data, fav_movie, mapper, n_recommendations):
                 # eg. the key 5483 is skipped in the reverse mapper dictionary for some reason thus causing a KeyError
                 recommendation = reverse_mapper[idx]
             except KeyError as e:
-                logger.error(
+                print(
                     f"ERROR @ when processing movie {fav_movie}: The following key is not present in reverse mapper dict {e}"
                 )
 
@@ -84,7 +82,7 @@ def best_recommendations(model_knn, data, fav_movie, mapper, n_recommendations):
 
         return final_recommendations
     except Exception as e:
-        logger.exception(
+        print(
             f"ERROR @ best_recommendations function when processing movie {fav_movie}: {e}"
         )
         error_message = (
@@ -127,7 +125,7 @@ def worst_recommendations(model_knn, data, fav_movie, mapper, n_recommendations)
                 # eg. the key 5483 is skipped in the reverse mapper dictionary for some reason thus causing a KeyError
                 recommendation = reverse_mapper[idx]
             except KeyError as e:
-                logger.error(
+                print(
                     f"ERROR @ when processing movie {fav_movie}: The following key is not present in reverse mapper dict {e}"
                 )
 
@@ -139,7 +137,7 @@ def worst_recommendations(model_knn, data, fav_movie, mapper, n_recommendations)
 
         return final_recommendations
     except Exception as e:
-        logger.exception(
+        print(
             f"ERROR @ worst_recommendations function when processing movie {fav_movie}: {e}"
         )
         error_message = (
