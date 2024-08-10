@@ -1,6 +1,6 @@
 # Note: joblib models can only be used by the same version of joblib, sklearn, scikit-learn that created them.
 # Note: Certain versions of joblib, sklearn, scikit-learn are not available on newer versions of python.
-# Note: Certain versions of joblib, sklearn, scikit-learn are not compatible with each other not this codebase.
+# Note: Certain versions of joblib, sklearn, scikit-learn are not compatible with each other nor this codebase.
 # Note: The requirements.txt file contains the last versions of joblib, sklearn, scikit-learn that are compatible with each other and this codebase.
 # Note: As of this writing, Python 3.9 and above are not compatible with versions listed in requirements.txt.
 
