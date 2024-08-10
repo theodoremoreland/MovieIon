@@ -2,7 +2,7 @@
 
 _Movie Ion_ (originally named _Movie Matchmaker_) was a group project for _Washington University's Data Analytics Boot Camp (2019)_. For this project, we created a web application that uses machine learning to recommend movies in terms of what the user will likely enjoy or movies the user is least likely to enjoy.
 
-<img src="presentation/thumbnail.png" width="600">
+<img src="presentation/thumbnail.webp" width="650">
 
 ## Table of Contents
 
