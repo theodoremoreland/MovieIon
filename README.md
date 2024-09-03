@@ -116,6 +116,7 @@ Visit: http://localhost:5000 to use the application.
 - Most movies that start with words such as "A" or "The" erroneously have the word at the end of the movie title preceded by a comma (e.g. `Ref, The (1994)`, `Toy, The (1982)` or `Walk in the Clouds, A (1995)`). Unfortunately, a fix isn't as simple as formatting the data in the database or web server. The issue stems from the source data and would most likely have to be transformed prior to being added to the model.
 - Some (relatively few) movies don't have posters such as `Jurassic Park (1993)`, `Toy Story (1995)`, and `Monsters, Inc. (2001)`.
 - Something went wrong when processing the original Toy Story! It is unfortunately not supported!
+- The same recommendation can appear twice across the three sets of recommendations. Worst case scenario, the same recommendation can appear three times.
 
 # Note to developers:
 
