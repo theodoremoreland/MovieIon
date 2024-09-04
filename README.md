@@ -204,8 +204,6 @@ If intending to run this codebase locally, here are a few things to note.
 
 ## Mobile
 
-<img src="https://dj8eg5xs13hf6.cloudfront.net/movie-ion/14.png" width="250">
-
 <img src="https://dj8eg5xs13hf6.cloudfront.net/movie-ion/15.png" width="250">
 
 <img src="https://dj8eg5xs13hf6.cloudfront.net/movie-ion/16.png" width="250">
