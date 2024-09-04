@@ -204,24 +204,50 @@ If intending to run this codebase locally, here are a few things to note.
 
 ## Mobile
 
+### After selecting three Batman movies (top)
+
 <img src="https://dj8eg5xs13hf6.cloudfront.net/movie-ion/15.png" width="250">
+
+### After selecting three Batman movies (bottom)
 
 <img src="https://dj8eg5xs13hf6.cloudfront.net/movie-ion/16.png" width="250">
 
+### Toggling algorithm to make negative recommendations (top)
+
 <img src="https://dj8eg5xs13hf6.cloudfront.net/movie-ion/17.png" width="250">
+
+### Toggling algorithm to make negative recommendations (bottom)
 
 <img src="https://dj8eg5xs13hf6.cloudfront.net/movie-ion/18.png" width="250">
 
+### Negative recommendations 1
+
 <img src="https://dj8eg5xs13hf6.cloudfront.net/movie-ion/19.png" width="250">
+
+### Negative recommendations 2
 
 <img src="https://dj8eg5xs13hf6.cloudfront.net/movie-ion/20.png" width="250">
 
+### Negative recommendations 3
+
 <img src="https://dj8eg5xs13hf6.cloudfront.net/movie-ion/21.png" width="250">
+
+### Movie information for Underworld: Evolution (top)
 
 <img src="https://dj8eg5xs13hf6.cloudfront.net/movie-ion/22.png" width="250">
 
+### Movie information for Underworld: Evolution (middle)
+
 <img src="https://dj8eg5xs13hf6.cloudfront.net/movie-ion/23.png" width="250">
+
+### Movie information for Underworld: Evolution (bottom)
 
 <img src="https://dj8eg5xs13hf6.cloudfront.net/movie-ion/24.png" width="250">
 
+### Instructions
+
 <img src="https://dj8eg5xs13hf6.cloudfront.net/movie-ion/25.png" width="250">
+
+### About
+
+<img src="https://dj8eg5xs13hf6.cloudfront.net/movie-ion/26.png" width="250">
