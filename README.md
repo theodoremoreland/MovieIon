@@ -150,7 +150,7 @@ If intending to run this codebase locally, here are a few things to note.
 
 <img src="https://dj8eg5xs13hf6.cloudfront.net/movie-ion/1.png" width="650">
 
-### Toggling algorithm to recommend non recommended movies
+### Toggling algorithm to make negative recommendations
 
 <img src="https://dj8eg5xs13hf6.cloudfront.net/movie-ion/2.png" width="650">
 
