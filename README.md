@@ -164,26 +164,26 @@ If intending to run this codebase locally, here are a few things to note.
 
 ## Mobile
 
-<img src="https://dj8eg5xs13hf6.cloudfront.net/movie-ion/14.png" width="650">
+<img src="https://dj8eg5xs13hf6.cloudfront.net/movie-ion/14.png" width="250">
 
-<img src="https://dj8eg5xs13hf6.cloudfront.net/movie-ion/15.png" width="650">
+<img src="https://dj8eg5xs13hf6.cloudfront.net/movie-ion/15.png" width="250">
 
-<img src="https://dj8eg5xs13hf6.cloudfront.net/movie-ion/16.png" width="650">
+<img src="https://dj8eg5xs13hf6.cloudfront.net/movie-ion/16.png" width="250">
 
-<img src="https://dj8eg5xs13hf6.cloudfront.net/movie-ion/17.png" width="650">
+<img src="https://dj8eg5xs13hf6.cloudfront.net/movie-ion/17.png" width="250">
 
-<img src="https://dj8eg5xs13hf6.cloudfront.net/movie-ion/18.png" width="650">
+<img src="https://dj8eg5xs13hf6.cloudfront.net/movie-ion/18.png" width="250">
 
-<img src="https://dj8eg5xs13hf6.cloudfront.net/movie-ion/19.png" width="650">
+<img src="https://dj8eg5xs13hf6.cloudfront.net/movie-ion/19.png" width="250">
 
-<img src="https://dj8eg5xs13hf6.cloudfront.net/movie-ion/20.png" width="650">
+<img src="https://dj8eg5xs13hf6.cloudfront.net/movie-ion/20.png" width="250">
 
-<img src="https://dj8eg5xs13hf6.cloudfront.net/movie-ion/21.png" width="650">
+<img src="https://dj8eg5xs13hf6.cloudfront.net/movie-ion/21.png" width="250">
 
-<img src="https://dj8eg5xs13hf6.cloudfront.net/movie-ion/22.png" width="650">
+<img src="https://dj8eg5xs13hf6.cloudfront.net/movie-ion/22.png" width="250">
 
-<img src="https://dj8eg5xs13hf6.cloudfront.net/movie-ion/23.png" width="650">
+<img src="https://dj8eg5xs13hf6.cloudfront.net/movie-ion/23.png" width="250">
 
-<img src="https://dj8eg5xs13hf6.cloudfront.net/movie-ion/24.png" width="650">
+<img src="https://dj8eg5xs13hf6.cloudfront.net/movie-ion/24.png" width="250">
 
-<img src="https://dj8eg5xs13hf6.cloudfront.net/movie-ion/25.png" width="650">
+<img src="https://dj8eg5xs13hf6.cloudfront.net/movie-ion/25.png" width="250">
