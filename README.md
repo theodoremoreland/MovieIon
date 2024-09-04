@@ -134,98 +134,56 @@ If intending to run this codebase locally, here are a few things to note.
 
 ## Desktop
 
-### Home Screen
+<img src="https://dj8eg5xs13hf6.cloudfront.net/movie-ion/1.png" width="650">
 
-<img src="presentation/step1.PNG" width="900">
+<img src="https://dj8eg5xs13hf6.cloudfront.net/movie-ion/2.png" width="650">
 
-### Home Screen (After Toggle):
+<img src="https://dj8eg5xs13hf6.cloudfront.net/movie-ion/3.png" width="650">
 
-<img src="presentation/step2.PNG" width="900">
+<img src="https://dj8eg5xs13hf6.cloudfront.net/movie-ion/4.png" width="650">
 
-### Searching for Year One
+<img src="https://dj8eg5xs13hf6.cloudfront.net/movie-ion/5.png" width="650">
 
-<img src="presentation/step3.PNG" width="900">
+<img src="https://dj8eg5xs13hf6.cloudfront.net/movie-ion/6.png" width="650">
 
-### After selecting Year One
+<img src="https://dj8eg5xs13hf6.cloudfront.net/movie-ion/7.png" width="650">
 
-<img src="presentation/step4.PNG" width="900">
+<img src="https://dj8eg5xs13hf6.cloudfront.net/movie-ion/8.png" width="650">
 
-### Searching for Pacific Rim
+<img src="https://dj8eg5xs13hf6.cloudfront.net/movie-ion/9.png" width="650">
 
-<img src="presentation/step5.PNG" width="900">
+<img src="https://dj8eg5xs13hf6.cloudfront.net/movie-ion/10.png" width="650">
 
-### After selecting Pacific Rim and 500 Days of Summer
+<img src="https://dj8eg5xs13hf6.cloudfront.net/movie-ion/11.png" width="650">
 
-<img src="presentation/step6.PNG" width="900">
+<img src="https://dj8eg5xs13hf6.cloudfront.net/movie-ion/12.png" width="650">
 
-### After clicking submit button
+<img src="https://dj8eg5xs13hf6.cloudfront.net/movie-ion/13.png" width="650">
 
-<img src="presentation/step7.PNG" width="900">
+<img src="https://dj8eg5xs13hf6.cloudfront.net/movie-ion/14.png" width="650">
 
-### Results (View 1)
+## Mobile
 
-<img src="presentation/step8.PNG" width="900">
+<img src="https://dj8eg5xs13hf6.cloudfront.net/movie-ion/14.png" width="650">
 
-### Results (View 2)
+<img src="https://dj8eg5xs13hf6.cloudfront.net/movie-ion/15.png" width="650">
 
-<img src="presentation/step9.PNG" width="900">
+<img src="https://dj8eg5xs13hf6.cloudfront.net/movie-ion/16.png" width="650">
 
-### Results (View 3)
+<img src="https://dj8eg5xs13hf6.cloudfront.net/movie-ion/17.png" width="650">
 
-<img src="presentation/step10.PNG" width="900">
+<img src="https://dj8eg5xs13hf6.cloudfront.net/movie-ion/18.png" width="650">
 
-### After selecting a movie result (Example 1)
+<img src="https://dj8eg5xs13hf6.cloudfront.net/movie-ion/19.png" width="650">
 
-<img src="presentation/step11.PNG" width="900">
+<img src="https://dj8eg5xs13hf6.cloudfront.net/movie-ion/20.png" width="650">
 
-### After selecting a movie result (Example 2)
+<img src="https://dj8eg5xs13hf6.cloudfront.net/movie-ion/21.png" width="650">
 
-<img src="presentation/step12.PNG" width="900">
+<img src="https://dj8eg5xs13hf6.cloudfront.net/movie-ion/22.png" width="650">
 
-### After selecting a movie result (Example 3)
+<img src="https://dj8eg5xs13hf6.cloudfront.net/movie-ion/23.png" width="650">
 
-<img src="presentation/step13.PNG" width="900">
+<img src="https://dj8eg5xs13hf6.cloudfront.net/movie-ion/24.png" width="650">
 
-### User log in (Demo version)
-
-<img src="presentation/step14.PNG" width="900">
-
-### User profile (Demo version)
-
-<img src="presentation/step15.PNG" width="900">
-
-### Movie selections (After Toggle)
-
-<img src="presentation/step16.PNG" width="900">
-
-### Movie submit (After Toggle)
-
-<img src="presentation/step17.PNG" width="900">
-
-### Results (View 1) (After Toggle)
-
-<img src="presentation/step18.PNG" width="900">
-
-### Results (View 2) (After Toggle)
-
-<img src="presentation/step19.PNG" width="900">
-
-### Results (View 3) (After Toggle)
-
-<img src="presentation/step20.PNG" width="900">
-
-### After selecting a movie result (After Toggle)
-
-<img src="presentation/step21.PNG" width="900">
-
-### After adding movie to watchlist
-
-<img src="presentation/step22.PNG" width="900">
-
-### User Profile (After adding three movies to watchlist)
-
-<img src="presentation/step23.PNG" width="900">
-
-### User Profile (After removing two movies from watchlist)
-
-<img src="presentation/step24.PNG" width="900">
+<img src="https://dj8eg5xs13hf6.cloudfront.net/movie-ion/25.png" width="650">
