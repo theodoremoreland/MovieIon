@@ -134,31 +134,71 @@ If intending to run this codebase locally, here are a few things to note.
 
 ## Desktop
 
+### Default home screen
+
+<img src="https://dj8eg5xs13hf6.cloudfront.net/movie-ion/0.png" width="650">
+
+### Selection dropdown
+
+<img src="https://dj8eg5xs13hf6.cloudfront.net/movie-ion/0-5.png" width="650">
+
+### After selecting three Batman movies
+
+<img src="https://dj8eg5xs13hf6.cloudfront.net/movie-ion/0-6.png" width="650">
+
+### Selecting three of my favorite comedies
+
 <img src="https://dj8eg5xs13hf6.cloudfront.net/movie-ion/1.png" width="650">
+
+### Toggling algorithm to recommend non recommended movies
 
 <img src="https://dj8eg5xs13hf6.cloudfront.net/movie-ion/2.png" width="650">
 
+### Loading positive recommendations
+
 <img src="https://dj8eg5xs13hf6.cloudfront.net/movie-ion/3.png" width="650">
+
+### Positive recommedations (top)
 
 <img src="https://dj8eg5xs13hf6.cloudfront.net/movie-ion/4.png" width="650">
 
+### Positive recommedations (bottom)
+
 <img src="https://dj8eg5xs13hf6.cloudfront.net/movie-ion/5.png" width="650">
+
+### Movie information for Hot Tub Time Machine
 
 <img src="https://dj8eg5xs13hf6.cloudfront.net/movie-ion/6.png" width="650">
 
+### Loading negative recommendations
+
 <img src="https://dj8eg5xs13hf6.cloudfront.net/movie-ion/7.png" width="650">
+
+### Negative recommedations (top)
 
 <img src="https://dj8eg5xs13hf6.cloudfront.net/movie-ion/8.png" width="650">
 
+### Negative recommedations (bottom)
+
 <img src="https://dj8eg5xs13hf6.cloudfront.net/movie-ion/9.png" width="650">
+
+### Movie information for Man On Fire
 
 <img src="https://dj8eg5xs13hf6.cloudfront.net/movie-ion/10.png" width="650">
 
+### Instructions
+
 <img src="https://dj8eg5xs13hf6.cloudfront.net/movie-ion/11.png" width="650">
+
+### About
 
 <img src="https://dj8eg5xs13hf6.cloudfront.net/movie-ion/12.png" width="650">
 
+### Log in
+
 <img src="https://dj8eg5xs13hf6.cloudfront.net/movie-ion/13.png" width="650">
+
+### User profile / watch list
 
 <img src="https://dj8eg5xs13hf6.cloudfront.net/movie-ion/14.png" width="650">
 
