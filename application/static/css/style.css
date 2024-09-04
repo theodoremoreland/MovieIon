@@ -471,6 +471,7 @@ background / loses its fixed effect.  */
 main.content {
   position: relative;
   width: 85%;
+  font-family: Arial, Helvetica, sans-serif;
 }
 
 @media (min-width: 700px) {
